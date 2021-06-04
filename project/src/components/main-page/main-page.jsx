@@ -92,7 +92,7 @@ function MainPage(props) {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {offers.map((offer) => <OfferListItem key={offer.id} offer={{price: offer.price, type: offer.type, title: offer.title, previewImage: offer.preview_image}}/>)}
+                {offers.map((offer) => <OfferListItem key={offer.id} offer={{price: offer.price, type: offer.type, title: offer.title, previewImage: offer.preview_image, isPremium: offer.is_premium, rating: offer.rating}}/>)}
               </div>
             </section>
             <div className="cities__right-section">
