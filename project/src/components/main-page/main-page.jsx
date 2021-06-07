@@ -4,7 +4,7 @@ import OfferListItem from '../offer-list-item/offer-list-item';
 import Logo from '../logo/logo';
 
 function MainPage(props) {
-  const {offers, offersCount} = props;
+  const {offers, offersQuantity} = props;
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -72,7 +72,7 @@ function MainPage(props) {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{`${offersCount} places to stay in Amsterdam`}</b>
+              <b className="places__found">{`${offersQuantity} places to stay in Amsterdam`}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex="0">
@@ -103,7 +103,7 @@ function MainPage(props) {
 }
 
 MainPage.propTypes = {
-  offersCount: PropTypes.number.isRequired,
+  offersQuantity: PropTypes.number.isRequired,
   offers: PropTypes.array.isRequired,
 };
 

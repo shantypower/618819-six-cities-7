@@ -10,7 +10,7 @@ import {AppRoute} from '../../const';
 
 
 function App(props) {
-  const {offersCount, offers} = props;
+  const {offersQuantity, offers} = props;
 
   return (
     <BrowserRouter>
@@ -21,11 +21,11 @@ function App(props) {
         <Route exact path={AppRoute.FAVORITES}>
           <Favorites/>
         </Route>
+        <Route exact path={AppRoute.ROOT}>
+          <MainPage offersQuantity = {offersQuantity} offers = {offers}/>
+        </Route>
         <Route exact path={AppRoute.OFFER}>
           <OfferPage/>
-        </Route>
-        <Route exact path={AppRoute.ROOT}>
-          <MainPage offersCount = {offersCount} offers = {offers}/>
         </Route>
         <Route >
           <NotFoundPage />
@@ -36,7 +36,7 @@ function App(props) {
 }
 
 App.propTypes = {
-  offersCount: PropTypes.number.isRequired,
+  offersQuantity: PropTypes.number.isRequired,
   offers: PropTypes.array.isRequired,
 };
 

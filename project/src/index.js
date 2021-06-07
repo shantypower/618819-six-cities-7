@@ -175,11 +175,11 @@ const Settings = {
       'type': 'Private room',
     },
   ],
-  offersCount: 5,
+  offersQuantity: 5,
 };
 
 ReactDOM.render(
   <React.StrictMode>
-    <App offers = {Settings.offers} offersCount = {Settings.offersCount}/>
+    <App offers = {Settings.offers} offersQuantity = {Settings.offersQuantity}/>
   </React.StrictMode>,
   document.getElementById('root'));
