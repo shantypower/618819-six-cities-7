@@ -1,4 +1,4 @@
-export const AppRoute = {
+export const Routes = {
   LOGIN: '/login',
   ROOT: '/',
   FAVORITES: '/favorites',

@@ -6,7 +6,7 @@ import NotFoundPage from '../not-found-page/not-found-page';
 import LoginPage from '../login-page/login-page';
 import Favorites from '../favorites-page/favorites-page';
 import OfferPage from '../offer-page/offer-page';
-import {AppRoute} from '../../const';
+import {Routes} from '../../const';
 
 
 function App(props) {
@@ -15,16 +15,16 @@ function App(props) {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path={AppRoute.LOGIN}>
+        <Route exact path={Routes.LOGIN}>
           <LoginPage/>
         </Route>
-        <Route exact path={AppRoute.FAVORITES}>
+        <Route exact path={Routes.FAVORITES}>
           <Favorites/>
         </Route>
-        <Route exact path={AppRoute.ROOT}>
+        <Route exact path={Routes.ROOT}>
           <MainPage offersQuantity = {offersQuantity} offers = {offers}/>
         </Route>
-        <Route exact path={AppRoute.OFFER}>
+        <Route exact path={Routes.OFFER}>
           <OfferPage/>
         </Route>
         <Route >
