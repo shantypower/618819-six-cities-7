@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app';
 
-const Settings = {
+const SETTINGS = {
   offers: [
     {
       'bedrooms': 3,
@@ -180,6 +180,6 @@ const Settings = {
 
 ReactDOM.render(
   <React.StrictMode>
-    <App offers = {Settings.offers} offersQuantity = {Settings.offersQuantity}/>
+    <App offers = {SETTINGS.offers} offersQuantity = {SETTINGS.offersQuantity}/>
   </React.StrictMode>,
   document.getElementById('root'));
