@@ -32,7 +32,7 @@ function OfferListItem(props) {
 
   return (
     <article className='cities__place-card place-card'>
-      { offer.isPremium &&
+      {offer.isPremium &&
         <div className='place-card__mark'>
           <span>Premium</span>
         </div>}

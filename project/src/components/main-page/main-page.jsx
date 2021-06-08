@@ -1,19 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import OfferListItem from '../offer-list-item/offer-list-item';
+import Logo from '../logo/logo';
 
 function MainPage(props) {
-  const {offers, offersCount} = props;
+  const {offers, offersQuantity} = props;
   return (
     <div className="page page--gray page--main">
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
-            <div className="header__left">
-              <a className="header__logo-link header__logo-link--active" href="/#">
-                <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
-              </a>
-            </div>
+            <Logo/>
             <nav className="header__nav">
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
@@ -75,7 +72,7 @@ function MainPage(props) {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{`${offersCount} places to stay in Amsterdam`}</b>
+              <b className="places__found">{`${offersQuantity} places to stay in Amsterdam`}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex="0">
@@ -106,7 +103,7 @@ function MainPage(props) {
 }
 
 MainPage.propTypes = {
-  offersCount: PropTypes.number.isRequired,
+  offersQuantity: PropTypes.number.isRequired,
   offers: PropTypes.array.isRequired,
 };
 
