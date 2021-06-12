@@ -7,10 +7,12 @@ import LoginPage from '../login-page/login-page';
 import Favorites from '../favorites-page/favorites-page';
 import OfferPage from '../offer-page/offer-page';
 import {Routes} from '../../const';
+import offerListItemProp from '../offer-list-item/offer-list-item.prop';
+import reviewListItemProp from '../rewiew-list-item/review-list-item.prop';
 
 
 function App(props) {
-  const {offersQuantity, offers} = props;
+  const {offersQuantity, offers, reviews} = props;
 
   return (
     <BrowserRouter>
@@ -22,7 +24,7 @@ function App(props) {
           <Favorites/>
         </Route>
         <Route exact path={Routes.ROOT}>
-          <MainPage offersQuantity = {offersQuantity} offers = {offers}/>
+          <MainPage offersQuantity = {offersQuantity} offers = {offers} reviews = {reviews}/>
         </Route>
         <Route exact path={Routes.OFFER}>
           <OfferPage/>
@@ -37,7 +39,8 @@ function App(props) {
 
 App.propTypes = {
   offersQuantity: PropTypes.number.isRequired,
-  offers: PropTypes.array.isRequired,
+  offers: offerListItemProp.isRequired,
+  reviews: reviewListItemProp.isRequired,
 };
 
 export default App;
