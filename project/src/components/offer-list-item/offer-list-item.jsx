@@ -1,5 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import offerListItemProp from '../offer-list-item/offer-list-item.prop';
+
 
 function OfferListItem(props) {
 
@@ -70,7 +71,7 @@ function OfferListItem(props) {
 }
 
 OfferListItem.propTypes = {
-  offer: PropTypes.object.isRequired,
+  offer: offerListItemProp.isRequired,
 };
 
 export default OfferListItem;
