@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+//import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import OfferListItem from '../offer-list-item/offer-list-item';
+import OffersList from '../offers-list/offers-list';
 import offerListItemProp from '../offer-list-item/offer-list-item.prop';
 import Logo from '../logo/logo';
 
 function MainPage(props) {
-  const [activeOfferId, setActiveOfferId] = useState(1);
+  //const [activeOfferId, setActiveOfferId] = useState(1);
   const { offers, offersQuantity } = props;
   return (
     <div className="page page--gray page--main">
@@ -108,26 +109,7 @@ function MainPage(props) {
                   </li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                {offers.map((offer) => (
-                  <OfferListItem
-                    hovered={activeOfferId}
-                    showActiveOfferOnMap={({ target }) => {
-                      const value = target.hovered;
-                      setActiveOfferId(value);
-                    }}
-                    key={offer.id}
-                    offer={{
-                      price: offer.price,
-                      type: offer.type,
-                      title: offer.title,
-                      previewImage: offer.preview_image,
-                      isPremium: offer.isPremium,
-                      rating: offer.rating,
-                    }}
-                  />
-                ))}
-              </div>
+              <OffersList offers = {offers}/>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
