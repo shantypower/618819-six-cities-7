@@ -1,8 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Logo from '../logo/logo';
 import CommentForm from '../comment-form/comment-form';
+import ReviewListItem from '../rewiew-list-item/review-list-item';
+import reviewListItemProp from '../rewiew-list-item/review-list-item.prop';
 
-function OfferPage() {
+function OfferPage(props) {
+
+  const {reviews} = props;
+
   return (
     <div className="page">
       <header className="header">
@@ -151,28 +157,20 @@ function OfferPage() {
               <section className="property__reviews reviews">
                 <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
                 <ul className="reviews__list">
-                  <li className="reviews__item">
-                    <div className="reviews__user user">
-                      <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                        <img className="reviews__avatar user__avatar" src="img/avatar-max.jpg" width="54" height="54" alt="Reviews avatar"/>
-                      </div>
-                      <span className="reviews__user-name">
-                        Max
-                      </span>
-                    </div>
-                    <div className="reviews__info">
-                      <div className="reviews__rating rating">
-                        <div className="reviews__stars rating__stars">
-                          <span style={{width: '80%'}}></span>
-                          <span className="visually-hidden">Rating</span>
-                        </div>
-                      </div>
-                      <p className="reviews__text">
-                        A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-                      </p>
-                      <time className="reviews__time" dateTime="2019-04-24">April 2019</time>
-                    </div>
-                  </li>
+                  {reviews.map((review) => (
+                    <ReviewListItem
+                      key={review.id}
+                      review={{
+                        comment: review.comment,
+                        date: review.date,
+                        avatarUrl: review.user.avatarUrl,
+                        title: review.title,
+                        previewImage: review.preview_image,
+                        isPremium: review.isPremium,
+                        rating: review.rating,
+                      }}
+                    />
+                  ))}
                 </ul>
                 <CommentForm/>
               </section>
@@ -286,5 +284,11 @@ function OfferPage() {
     </div>
   );
 }
+
+OfferPage.propTypes = {
+  reviews: PropTypes.arrayOf(
+    PropTypes.shape(reviewListItemProp).isRequired,
+  ),
+};
 
 export default OfferPage;

@@ -1,13 +1,12 @@
-//import React, { useState } from 'react';
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import OffersList from '../offers-list/offers-list';
 import offerListItemProp from '../offer-list-item/offer-list-item.prop';
 import Logo from '../logo/logo';
 
 function MainPage(props) {
-  //const [activeOfferId, setActiveOfferId] = useState(1);
-  const { offers, offersQuantity } = props;
+  const [activeOfferId, setActiveOfferId] = useState(1);
+  const { offers, offersQuantity, history } = props;
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -109,7 +108,7 @@ function MainPage(props) {
                   </li>
                 </ul>
               </form>
-              <OffersList offers = {offers}/>
+              <OffersList offers = {offers} history = {history} activeOfferId = {activeOfferId} setActiveOfferId = {setActiveOfferId}/>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
@@ -123,7 +122,12 @@ function MainPage(props) {
 
 MainPage.propTypes = {
   offersQuantity: PropTypes.number.isRequired,
-  offers: offerListItemProp.isRequired,
+  offers: PropTypes.arrayOf(
+    offerListItemProp,
+  ),
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 export default MainPage;

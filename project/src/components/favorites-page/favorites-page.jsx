@@ -1,5 +1,6 @@
 import React from 'react';
 import Logo from '../logo/logo';
+import PropTypes from 'prop-types';
 import OfferListItem from '../offer-list-item/offer-list-item';
 import offerListItemProp from '../offer-list-item/offer-list-item.prop';
 
@@ -49,12 +50,14 @@ function FavoritesPage(props) {
                     <OfferListItem
                       key={offer.id}
                       offer={{
+                        id: offer.id,
                         price: offer.price,
                         type: offer.type,
                         title: offer.title,
                         previewImage: offer.preview_image,
                         isPremium: offer.isPremium,
                         rating: offer.rating,
+                        isFavorite: offer.isFavorite,
                       }}
                     />
                   ))}
@@ -74,12 +77,14 @@ function FavoritesPage(props) {
                     <OfferListItem
                       key={offer.id}
                       offer={{
+                        id: offer.id,
                         price: offer.price,
                         type: offer.type,
                         title: offer.title,
                         previewImage: offer.preview_image,
                         isPremium: offer.isPremium,
                         rating: offer.rating,
+                        isFavorite: offer.isFavorite,
                       }}
                     />
                   ))}
@@ -99,7 +104,9 @@ function FavoritesPage(props) {
 }
 
 FavoritesPage.propTypes = {
-  offers: offerListItemProp.isRequired,
+  offers: PropTypes.arrayOf(
+    offerListItemProp,
+  ),
 };
 
 export default FavoritesPage;
