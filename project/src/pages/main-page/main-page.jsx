@@ -6,7 +6,7 @@ import Header from '../../components/header/header';
 
 function MainPage(props) {
   const [activeOfferId, setActiveOfferId] = useState(1);
-  const { offers, offersQuantity, history } = props;
+  const { offers, offersQuantity } = props;
   return (
     <div className="page page--gray page--main">
       <Header/>
@@ -82,7 +82,7 @@ function MainPage(props) {
                   </li>
                 </ul>
               </form>
-              <OffersList offers = {offers} history = {history} activeOfferId = {activeOfferId} setActiveOfferId = {setActiveOfferId}/>
+              <OffersList offers = {offers} activeOfferId = {activeOfferId} setActiveOfferId = {setActiveOfferId}/>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
