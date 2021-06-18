@@ -12,13 +12,13 @@ const offers = [
     'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     'goods': ['Heating', 'Kitchen', 'Cable TV', 'Washing machine', 'Coffee machine', 'Dishwasher'],
     'host': {
-      'avatarUrl': 'img/1.png',
+      'avatarUrl': 'img/avatar-angelina.jpg',
       'id': 3,
       'is_pro': true,
       'name': 'Angelina',
     },
     'id': 1,
-    'images': ['img/.png', 'img/2.png'],
+    'images': ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'],
     'isFavorite': true,
     'isPremium': true,
     'location': {
@@ -52,7 +52,7 @@ const offers = [
       'name': 'Angelina',
     },
     'id': 2,
-    'images': ['img/1.png', 'img/2.png'],
+    'images': ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'],
     'isFavorite': false,
     'isPremium': false,
     'location': {
@@ -86,7 +86,7 @@ const offers = [
       'name': 'Angelina',
     },
     'id': 3,
-    'images': ['img/1.png', 'img/2.png'],
+    'images': ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'],
     'isFavorite': false,
     'isPremium': false,
     'location': {
@@ -120,7 +120,7 @@ const offers = [
       'name': 'Angelina',
     },
     'id': 4,
-    'images': ['img/1.png', 'img/2.png'],
+    'images': ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'],
     'isFavorite': false,
     'isPremium': true,
     'location': {
@@ -154,7 +154,7 @@ const offers = [
       'name': 'Angelina',
     },
     'id': 5,
-    'images': ['img/1.png', 'img/2.png'],
+    'images': ['img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'],
     'isFavorite': true,
     'isPremium': false,
     'location': {

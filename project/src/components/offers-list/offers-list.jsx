@@ -4,7 +4,7 @@ import OfferListItem from '../offer-list-item/offer-list-item';
 import offerListItemProp from '../offer-list-item/offer-list-item.prop';
 
 function OffersList(props) {
-  const { offers,  activeOfferId, setActiveOfferId, history} = props;
+  const { offers, type} = props;
 
 
   return (
@@ -22,10 +22,7 @@ function OffersList(props) {
             rating: offer.rating,
             isFavorite: offer.isFavorite,
           }}
-          onMouseOver = {() => {
-            setActiveOfferId(activeOfferId);
-          }}
-          history = {history}
+          type={type}
         />
       ))}
     </div>
@@ -37,11 +34,11 @@ OffersList.propTypes = {
   offers: PropTypes.arrayOf(
     offerListItemProp.isRequired,
   ),
-  activeOfferId: PropTypes.number.isRequired,
-  setActiveOfferId: PropTypes.func.isRequired,
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }).isRequired,
+  type: PropTypes.shape({
+    articleClass: PropTypes.string,
+    imageContainerClass: PropTypes.string,
+    infoContainerClass: PropTypes.string,
+  }),
 };
 
 export default OffersList;

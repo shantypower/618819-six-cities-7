@@ -1,8 +1,9 @@
 import React from 'react';
 import Header from '../../components/header/header';
 import PropTypes from 'prop-types';
-import OfferListItem from '../../components/offer-list-item/offer-list-item';
+import OffersList from '../../components/offers-list/offers-list';
 import offerListItemProp from '../../components/offer-list-item/offer-list-item.prop';
+import { OfferTypeSettings } from '../../const';
 
 function FavoritesPage(props) {
   const { offers } = props;
@@ -23,21 +24,7 @@ function FavoritesPage(props) {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  {offers.map((offer) => (
-                    <OfferListItem
-                      key={offer.id}
-                      offer={{
-                        id: offer.id,
-                        price: offer.price,
-                        type: offer.type,
-                        title: offer.title,
-                        previewImage: offer.preview_image,
-                        isPremium: offer.isPremium,
-                        rating: offer.rating,
-                        isFavorite: offer.isFavorite,
-                      }}
-                    />
-                  ))}
+                  <OffersList offers = {offers} type={OfferTypeSettings.FAVORITES}/>
                 </div>
               </li>
 
@@ -50,21 +37,7 @@ function FavoritesPage(props) {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  {offers.map((offer) => (
-                    <OfferListItem
-                      key={offer.id}
-                      offer={{
-                        id: offer.id,
-                        price: offer.price,
-                        type: offer.type,
-                        title: offer.title,
-                        previewImage: offer.preview_image,
-                        isPremium: offer.isPremium,
-                        rating: offer.rating,
-                        isFavorite: offer.isFavorite,
-                      }}
-                    />
-                  ))}
+                  <OffersList offers = {offers} type={OfferTypeSettings.FAVORITES}/>
                 </div>
               </li>
             </ul>

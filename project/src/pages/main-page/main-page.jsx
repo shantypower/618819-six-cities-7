@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import OffersList from '../../components/offers-list/offers-list';
 import offerListItemProp from '../../components/offer-list-item/offer-list-item.prop';
 import Header from '../../components/header/header';
+import { OfferTypeSettings } from '../../const';
 
 function MainPage(props) {
-  const [activeOfferId, setActiveOfferId] = useState(1);
+  // const [activeOfferId, setActiveOfferId] = useState(1);
   const { offers, offersQuantity } = props;
   return (
     <div className="page page--gray page--main">
@@ -82,7 +83,7 @@ function MainPage(props) {
                   </li>
                 </ul>
               </form>
-              <OffersList offers = {offers} activeOfferId = {activeOfferId} setActiveOfferId = {setActiveOfferId}/>
+              <OffersList offers = {offers} type={OfferTypeSettings.MAIN}/>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>

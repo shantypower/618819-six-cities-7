@@ -28,7 +28,7 @@ function App(props) {
           <MainPage offersQuantity = {offersQuantity} offers = {offers} />
         </Route>
         <Route exact path={Routes.OFFER}>
-          <OfferPage reviews = {reviews}/>
+          <OfferPage offers = {offers} reviews = {reviews}/>
         </Route>
         <Route >
           <NotFoundPage />
