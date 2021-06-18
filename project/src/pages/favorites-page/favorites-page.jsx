@@ -1,8 +1,8 @@
 import React from 'react';
-import Logo from '../logo/logo';
+import Logo from '../../components/logo/logo';
 import PropTypes from 'prop-types';
-import OfferListItem from '../offer-list-item/offer-list-item';
-import offerListItemProp from '../offer-list-item/offer-list-item.prop';
+import OfferListItem from '../../components/offer-list-item/offer-list-item';
+import offerListItemProp from '../../components/offer-list-item/offer-list-item.prop';
 
 function FavoritesPage(props) {
   const { offers } = props;

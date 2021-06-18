@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Logo from '../logo/logo';
-import CommentForm from '../comment-form/comment-form';
-import ReviewListItem from '../rewiew-list-item/review-list-item';
-import reviewListItemProp from '../rewiew-list-item/review-list-item.prop';
+import Logo from '../../components/logo/logo';
+import CommentForm from '../../components/comment-form/comment-form';
+import ReviewListItem from '../../components/rewiew-list-item/review-list-item';
+import reviewListItemProp from '../../components/rewiew-list-item/review-list-item.prop';
 
 function OfferPage(props) {
 

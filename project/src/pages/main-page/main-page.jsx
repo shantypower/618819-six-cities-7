@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import OffersList from '../offers-list/offers-list';
-import offerListItemProp from '../offer-list-item/offer-list-item.prop';
-import Logo from '../logo/logo';
+import OffersList from '../../components/offers-list/offers-list';
+import offerListItemProp from '../../components/offer-list-item/offer-list-item.prop';
+import Logo from '../../components/logo/logo';
 
 function MainPage(props) {
   const [activeOfferId, setActiveOfferId] = useState(1);

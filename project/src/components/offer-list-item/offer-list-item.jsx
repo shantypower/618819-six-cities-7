@@ -22,7 +22,7 @@ function OfferListItem(props) {
           <span>Premium</span>
         </div>}
       <div className='cities__image-wrapper place-card__image-wrapper'>
-        <Link to={`${Routes.OFFER}:${id}?`}>
+        <Link to={`${Routes.OFFER}${id}?`}>
           <img className='place-card__image' src={previewImage} width='260' height='200' alt='Place view'/>
         </Link>
       </div>
