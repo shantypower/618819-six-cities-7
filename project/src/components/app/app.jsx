@@ -13,7 +13,6 @@ import {createBrowserHistory} from 'history';
 
 
 function App(props) {
-  //const history = createBrowserHistory();
   const {offersQuantity, offers, reviews} = props;
 
   return (
