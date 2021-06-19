@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import OffersList from '../../components/offers-list/offers-list';
 import offerListItemProp from '../../components/offer-list-item/offer-list-item.prop';
 import Header from '../../components/header/header';
+import Map from '../../components/map/map';
 import { OfferTypeSettings, ListSettings, OfferImageSettings } from '../../const';
 
 function MainPage(props) {
@@ -90,7 +91,7 @@ function MainPage(props) {
               </div>
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <Map offers={offers} city={offers[0].city}/>
             </div>
           </div>
         </div>
