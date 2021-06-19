@@ -4,11 +4,10 @@ import OfferListItem from '../offer-list-item/offer-list-item';
 import offerListItemProp from '../offer-list-item/offer-list-item.prop';
 
 function OffersList(props) {
-  const { offers, type} = props;
-
+  const { offers, type, offerImageSettings} = props;
 
   return (
-    <div className="cities__places-list places__list tabs__content">
+    <>
       {offers.map((offer) => (
         <OfferListItem
           key={offer.id}
@@ -22,10 +21,12 @@ function OffersList(props) {
             rating: offer.rating,
             isFavorite: offer.isFavorite,
           }}
+          idLink={offer.id}
           type={type}
+          offerImageSettings={offerImageSettings}
         />
       ))}
-    </div>
+    </>
 
   );
 }
@@ -39,6 +40,7 @@ OffersList.propTypes = {
     imageContainerClass: PropTypes.string,
     infoContainerClass: PropTypes.string,
   }),
+  offerImageSettings: PropTypes.object.isRequired,
 };
 
 export default OffersList;

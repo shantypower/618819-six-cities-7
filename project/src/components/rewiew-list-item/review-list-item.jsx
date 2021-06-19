@@ -1,5 +1,6 @@
 import React from 'react';
 import reviewListItemProp from '../rewiew-list-item/review-list-item.prop';
+import {formatDate} from '../../const';
 function ReviewListItem(props) {
 
   const {review} = props;
@@ -24,7 +25,7 @@ function ReviewListItem(props) {
         <p className="reviews__text">
           {review.comment}
         </p>
-        <time className="reviews__time" dateTime="2019-04-24">April 2019</time>
+        <time className="reviews__time" dateTime="2019-04-24">{formatDate(review.date)}</time>
       </div>
     </li>
   );

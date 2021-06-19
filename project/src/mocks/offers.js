@@ -14,7 +14,7 @@ const offers = [
     'host': {
       'avatarUrl': 'img/avatar-angelina.jpg',
       'id': 3,
-      'is_pro': true,
+      'isPro': true,
       'name': 'Angelina',
     },
     'id': 1,
@@ -48,7 +48,7 @@ const offers = [
     'host': {
       'avatarUrl': 'img/1.png',
       'id': 3,
-      'is_pro': true,
+      'isPro': true,
       'name': 'Angelina',
     },
     'id': 2,
@@ -82,7 +82,7 @@ const offers = [
     'host': {
       'avatarUrl': 'img/1.png',
       'id': 3,
-      'is_pro': true,
+      'isPro': true,
       'name': 'Angelina',
     },
     'id': 3,
@@ -116,7 +116,7 @@ const offers = [
     'host': {
       'avatarUrl': 'img/1.png',
       'id': 3,
-      'is_pro': true,
+      'isPro': true,
       'name': 'Angelina',
     },
     'id': 4,
@@ -150,7 +150,7 @@ const offers = [
     'host': {
       'avatarUrl': 'img/1.png',
       'id': 3,
-      'is_pro': true,
+      'isPro': true,
       'name': 'Angelina',
     },
     'id': 5,

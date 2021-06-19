@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 function OfferListItem(props) {
 
-  const {offer, type} = props;
+  const {offer, type, offerImageSettings} = props;
   const { isPremium, previewImage, price, title, isFavorite, rating, id } = offer;
 
   // eslint-disable-next-line no-unused-vars
@@ -29,7 +29,7 @@ function OfferListItem(props) {
         </div>}
       <div className={type.imageContainerClass}>
         <Link to={`${Routes.OFFER}${id}?`}>
-          <img className='place-card__image' src={previewImage} width='260' height='200' alt='Place view'/>
+          <img className='place-card__image' src={previewImage} width={offerImageSettings.width} height={offerImageSettings.height} alt='Place view'/>
         </Link>
       </div>
       <div className={type.infoContainerClass}>
@@ -71,6 +71,10 @@ OfferListItem.propTypes = {
     articleClass: PropTypes.string,
     imageContainerClass: PropTypes.string,
     infoContainerClass: PropTypes.string,
+  }),
+  offerImageSettings: PropTypes.shape({
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
   }),
 };
 

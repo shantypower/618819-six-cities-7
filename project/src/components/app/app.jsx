@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Switch, Route, Router} from 'react-router-dom';
 import MainPage from '../../pages/main-page/main-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
-import LoginPage from '../login-page/login-page';
+import LoginPage from '../../pages/login-page/login-page';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import {Routes} from '../../const';
@@ -13,7 +13,7 @@ import {createBrowserHistory} from 'history';
 
 
 function App(props) {
-  const {offersQuantity, offers, reviews} = props;
+  const {offers, reviews} = props;
 
   return (
     <Router history = {createBrowserHistory()}>
@@ -25,11 +25,9 @@ function App(props) {
           <FavoritesPage offers = {offers}/>
         </Route>
         <Route exact path={Routes.ROOT}>
-          <MainPage offersQuantity = {offersQuantity} offers = {offers} />
+          <MainPage offers = {offers} />
         </Route>
-        <Route exact path={Routes.OFFER}>
-          <OfferPage offers = {offers} reviews = {reviews}/>
-        </Route>
+        <Route exact path={Routes.OFFER} render={()=> <OfferPage reviews={reviews} offers={offers}/>}/>
         <Route >
           <NotFoundPage />
         </Route>
@@ -39,7 +37,6 @@ function App(props) {
 }
 
 App.propTypes = {
-  offersQuantity: PropTypes.number.isRequired,
   offers: PropTypes.arrayOf(
     PropTypes.shape(offerListItemProp).isRequired,
   ),

@@ -1,5 +1,6 @@
 import React from 'react';
-import Logo from '../logo/logo';
+import Logo from '../../components/logo/logo';
+import { LogoSettings } from '../../const';
 
 function LoginPage() {
   return (
@@ -7,7 +8,7 @@ function LoginPage() {
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
-            <Logo/>
+            <Logo logoSettings={LogoSettings.HEADER}/>
             <nav className="header__nav">
               <ul className="header__nav-list">
                 <li className="header__nav-item user">

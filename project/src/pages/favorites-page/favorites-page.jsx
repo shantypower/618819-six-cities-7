@@ -2,8 +2,10 @@ import React from 'react';
 import Header from '../../components/header/header';
 import PropTypes from 'prop-types';
 import OffersList from '../../components/offers-list/offers-list';
+import Logo from '../../components/logo/logo';
 import offerListItemProp from '../../components/offer-list-item/offer-list-item.prop';
-import { OfferTypeSettings } from '../../const';
+import { OfferImageSettings, OfferTypeSettings } from '../../const';
+import { LogoSettings } from '../../const';
 
 function FavoritesPage(props) {
   const { offers } = props;
@@ -24,7 +26,7 @@ function FavoritesPage(props) {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  <OffersList offers = {offers} type={OfferTypeSettings.FAVORITES}/>
+                  <OffersList offers = {offers} offerImageSettings={OfferImageSettings.FAVORITES} type={OfferTypeSettings.FAVORITES}/>
                 </div>
               </li>
 
@@ -37,7 +39,7 @@ function FavoritesPage(props) {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  <OffersList offers = {offers} type={OfferTypeSettings.FAVORITES}/>
+                  <OffersList offers = {offers} offerImageSettings={OfferImageSettings.FAVORITES} type={OfferTypeSettings.FAVORITES}/>
                 </div>
               </li>
             </ul>
@@ -45,9 +47,7 @@ function FavoritesPage(props) {
         </div>
       </main>
       <footer className="footer container">
-        <a className="footer__logo-link" href="main.html">
-          <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33"/>
-        </a>
+        <Logo logoSettings={LogoSettings.FOOTER}/>
       </footer>
     </div>
   );
