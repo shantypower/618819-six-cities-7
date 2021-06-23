@@ -7,7 +7,7 @@ export const Routes = {
   LOGIN: '/login',
   ROOT: '/',
   FAVORITES: '/favorites',
-  OFFER: '/offer/',
+  OFFER: '/offer/:id',
 };
 
 export const OfferTypeSettings = {

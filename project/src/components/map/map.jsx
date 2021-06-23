@@ -41,8 +41,8 @@ function Map({offers, city}) {
   }, [map, offers]);
 
   return (
-    <section className="cities__map map" style={{height: '100%'}} ref={mapRef}>
-    </section>
+    <div className="cities__map map" style={{height: '100%'}} ref={mapRef}>
+    </div>
   );
 }
 

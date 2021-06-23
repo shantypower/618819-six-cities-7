@@ -7,11 +7,12 @@ import GoodsList from '../../components/goods-list/goods-list';
 import OffersList from '../../components/offers-list/offers-list';
 import reviewListItemProp from '../../components/rewiew-list-item/review-list-item.prop';
 import offerListItemProp from '../../components/offer-list-item/offer-list-item.prop';
+import Map from '../../components/map/map';
 import { OfferTypeSettings, OfferImageSettings } from '../../const';
 
-function OfferPage({offers, reviews}) {
+function OfferPage({offers, reviews, nearby}) {
 
-  const {isPremium, isFavorite, title, rating, bedrooms, maxAdults, host, description, goods, type, price, images} = offers[0];
+  const {isPremium, isFavorite, title, rating, bedrooms, maxAdults, host, description, goods, type, price, images, city} = offers[id];
   const {isPro} = host;
 
   return (
@@ -89,7 +90,7 @@ function OfferPage({offers, reviews}) {
                 </div>
               </div>
               <section className="property__reviews reviews">
-                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
+                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
                 <ul className="reviews__list">
                   {reviews.map((review) => (
                     <ReviewListItem
@@ -110,13 +111,15 @@ function OfferPage({offers, reviews}) {
               </section>
             </div>
           </div>
-          <section className="property__map map"></section>
+          <section className="property__map map">
+            <Map offers={nearby} city={city}/>
+          </section>
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <OffersList offers = {offers} offerImageSettings={OfferImageSettings} type={OfferTypeSettings.NEARBY}/>
+              <OffersList offers = {nearby} offerImageSettings={OfferImageSettings} type={OfferTypeSettings.NEARBY}/>
             </div>
           </section>
         </div>
@@ -130,6 +133,7 @@ OfferPage.propTypes = {
   reviews: PropTypes.arrayOf(
     PropTypes.shape(reviewListItemProp).isRequired,
   ),
+  nearby: PropTypes.arrayOf(offerListItemProp).isRequired,
   images: PropTypes.arrayOf(string),
 };
 
