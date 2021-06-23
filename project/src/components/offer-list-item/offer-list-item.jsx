@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import offerListItemProp from '../offer-list-item/offer-list-item.prop';
-import {Routes} from '../../const';
 import PropTypes from 'prop-types';
-
 
 function OfferListItem(props) {
 
@@ -13,10 +11,10 @@ function OfferListItem(props) {
   // eslint-disable-next-line no-unused-vars
   const [activeOfferId, setActiveOfferId] = useState(1);
 
-  function handleClick(evt){
+  /*   function handleClick(evt){
     evt.preventDefault();
-    History.push(`${Routes.OFFER}${id}?`);
-  }
+    History.push(Routes.OFFER);
+  } */
 
   return (
     <article
@@ -28,7 +26,7 @@ function OfferListItem(props) {
           <span>Premium</span>
         </div>}
       <div className={type.imageContainerClass}>
-        <Link to={`${Routes.OFFER}${id}?`}>
+        <Link to={`/offer/${id}`}>
           <img className='place-card__image' src={previewImage} width={offerImageSettings.width} height={offerImageSettings.height} alt='Place view'/>
         </Link>
       </div>
@@ -57,7 +55,7 @@ function OfferListItem(props) {
           </div>
         </div>
         <h2 className='place-card__name'>
-          <Link to='/#' onClick = {handleClick}>{title}</Link>
+          <Link to={`/offer/${id}`}>{title}</Link>
         </h2>
         <p className='place-card__type'>{offer.type}</p>
       </div>
