@@ -1,53 +1,47 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
+import offerListItemProp from '../offer-list-item/offer-list-item.prop';
 import PropTypes from 'prop-types';
 
 function OfferListItem(props) {
 
-  const {offer} = props;
+  const {offer, type, offerImageSettings} = props;
+  const { isPremium, previewImage, price, title, isFavorite, rating, id } = offer;
 
-  const rating = function (star) {
-    let rateStar = '';
-    switch (star) {
-      case 1:
-        rateStar = '20%';
-        break;
-      case 2:
-        rateStar = '40%';
-        break;
-      case 3:
-        rateStar = '60%';
-        break;
-      case 4:
-        rateStar = '80%';
-        break;
-      case 5:
-        rateStar = '100%';
-        break;
-      default:
-        rateStar = '0%';
-        break;
-    }
-    return rateStar;
-  };
+  // eslint-disable-next-line no-unused-vars
+  const [activeOfferId, setActiveOfferId] = useState(1);
+
+  /*   function handleClick(evt){
+    evt.preventDefault();
+    History.push(Routes.OFFER);
+  } */
 
   return (
-    <article className='cities__place-card place-card'>
-      {offer.isPremium &&
+    <article
+      className={type.articleClass}
+      onMouseEnter={() => setActiveOfferId(offer)}
+    >
+      {isPremium &&
         <div className='place-card__mark'>
           <span>Premium</span>
         </div>}
-      <div className='cities__image-wrapper place-card__image-wrapper'>
-        <a href='/#'>
-          <img className='place-card__image' src={offer.previewImage} width='260' height='200' alt='Place view'/>
-        </a>
+      <div className={type.imageContainerClass}>
+        <Link to={`/offer/${id}`}>
+          <img className='place-card__image' src={previewImage} width={offerImageSettings.width} height={offerImageSettings.height} alt='Place view'/>
+        </Link>
       </div>
-      <div className='place-card__info'>
+      <div className={type.infoContainerClass}>
         <div className='place-card__price-wrapper'>
           <div className='place-card__price'>
-            <b className='place-card__price-value'>&euro;{offer.price}</b>
+            <b className='place-card__price-value'>&euro;{price}</b>
             <span className='place-card__price-text'>&#47;&nbsp;night</span>
           </div>
-          <button className='place-card__bookmark-button button' type='button'>
+          <button className={
+            isFavorite
+              ? 'place-card__bookmark-button place-card__bookmark-button--active button'
+              : 'place-card__bookmark-button button'
+          } type='button'
+          >
             <svg className='place-card__bookmark-icon' width='18' height='19'>
               <use xlinkHref='#icon-bookmark'></use>
             </svg>
@@ -56,12 +50,12 @@ function OfferListItem(props) {
         </div>
         <div className='place-card__rating rating'>
           <div className='place-card__stars rating__stars'>
-            <span style = {{width : rating(offer.rating)}}></span>
+            <span style = {{width : rating*100/5}}></span>
             <span className='visually-hidden'>Rating</span>
           </div>
         </div>
         <h2 className='place-card__name'>
-          <a href='/#'>{offer.title}</a>
+          <Link to={`/offer/${id}`}>{title}</Link>
         </h2>
         <p className='place-card__type'>{offer.type}</p>
       </div>
@@ -70,7 +64,16 @@ function OfferListItem(props) {
 }
 
 OfferListItem.propTypes = {
-  offer: PropTypes.object.isRequired,
+  offer: offerListItemProp,
+  type: PropTypes.shape({
+    articleClass: PropTypes.string,
+    imageContainerClass: PropTypes.string,
+    infoContainerClass: PropTypes.string,
+  }),
+  offerImageSettings: PropTypes.shape({
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
+  }),
 };
 
 export default OfferListItem;
