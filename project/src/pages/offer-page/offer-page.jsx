@@ -8,11 +8,15 @@ import OffersList from '../../components/offers-list/offers-list';
 import reviewListItemProp from '../../components/rewiew-list-item/review-list-item.prop';
 import offerListItemProp from '../../components/offer-list-item/offer-list-item.prop';
 import { OfferTypeSettings, OfferImageSettings } from '../../const';
+import { useParams } from 'react-router-dom';
 
 function OfferPage({offers, reviews}) {
 
-  const {isPremium, isFavorite, title, rating, bedrooms, maxAdults, host, description, goods, type, price, images} = offers[0];
+  const {id} = useParams();
+
+  const {isPremium, isFavorite, title, rating, bedrooms, maxAdults, host, description, goods, type, price, images} = offers[id];
   const {isPro} = host;
+
 
   return (
     <div className="page">
@@ -21,8 +25,8 @@ function OfferPage({offers, reviews}) {
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {images.map((image, id) => (
-                <div key={`${id + image}`} className="property__image-wrapper">
+              {images.map((image, k) => (
+                <div key={`${k + image}`} className="property__image-wrapper">
                   <img className="property__image" src={image} alt="studio view"/>
                 </div>
               ))}
@@ -89,11 +93,12 @@ function OfferPage({offers, reviews}) {
                 </div>
               </div>
               <section className="property__reviews reviews">
-                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
+                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
                 <ul className="reviews__list">
                   {reviews.map((review) => (
                     <ReviewListItem
                       key={review.id}
+                      id={id}
                       review={{
                         comment: review.comment,
                         date: review.date,
