@@ -27,7 +27,9 @@ function App(props) {
         <Route exact path={Routes.ROOT}>
           <MainPage offers = {offers} />
         </Route>
-        <Route exact path={Routes.OFFER} render={()=> <OfferPage reviews={reviews} offers={offers}/>}/>
+        <Route exact path={Routes.OFFER}>
+          <OfferPage reviews={reviews} offers={offers}/>
+        </Route>
         <Route >
           <NotFoundPage />
         </Route>

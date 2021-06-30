@@ -5,7 +5,8 @@ import offerListItemProp from '../offer-list-item/offer-list-item.prop';
 
 function OffersList(props) {
   const { offers, type, offerImageSettings} = props;
-
+  // eslint-disable-next-line no-console
+  console.log('offers', offers);
   return (
     <>
       {offers.map((offer) => (
@@ -21,7 +22,6 @@ function OffersList(props) {
             rating: offer.rating,
             isFavorite: offer.isFavorite,
           }}
-          idLink={offer.id}
           type={type}
           offerImageSettings={offerImageSettings}
         />

@@ -9,11 +9,15 @@ import reviewListItemProp from '../../components/rewiew-list-item/review-list-it
 import offerListItemProp from '../../components/offer-list-item/offer-list-item.prop';
 import Map from '../../components/map/map';
 import { OfferTypeSettings, OfferImageSettings } from '../../const';
+import { useParams } from 'react-router-dom';
 
 function OfferPage({offers, reviews, nearby}) {
 
+  const {id} = useParams();
+
   const {isPremium, isFavorite, title, rating, bedrooms, maxAdults, host, description, goods, type, price, images, city} = offers[id];
   const {isPro} = host;
+
 
   return (
     <div className="page">
@@ -22,8 +26,8 @@ function OfferPage({offers, reviews, nearby}) {
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {images.map((image, id) => (
-                <div key={`${id + image}`} className="property__image-wrapper">
+              {images.map((image, k) => (
+                <div key={`${k + image}`} className="property__image-wrapper">
                   <img className="property__image" src={image} alt="studio view"/>
                 </div>
               ))}
@@ -95,6 +99,7 @@ function OfferPage({offers, reviews, nearby}) {
                   {reviews.map((review) => (
                     <ReviewListItem
                       key={review.id}
+                      id={id}
                       review={{
                         comment: review.comment,
                         date: review.date,
