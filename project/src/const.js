@@ -57,4 +57,13 @@ export const OfferImageSettings = {
   },
 };
 
+export const DEFAULT_CITY = 'Paris';
+
+export const SortTypes = {
+  POPULAR: 'Popular',
+  PRICE_LOW: 'Price: low to high',
+  PRICE_HIGH: 'Price: high to low',
+  TOP: 'Top rated first',
+};
+
 export const formatDate = (date) => dayjs(date).format('MMMM YYYY');
