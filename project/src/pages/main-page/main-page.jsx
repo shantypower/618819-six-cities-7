@@ -9,6 +9,7 @@ import { OfferTypeSettings, ListSettings, OfferImageSettings } from '../../const
 function MainPage(props) {
   // const [activeOfferId, setActiveOfferId] = useState(1);
   const { offers } = props;
+
   return (
     <div className="page page--gray page--main">
       <div className="header__left">
@@ -87,7 +88,7 @@ function MainPage(props) {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <OffersList offers = {offers} offerImageSettings={OfferImageSettings.MAIN} type={OfferTypeSettings.MAIN}/>
+                <OffersList offers={offers} offerImageSettings={OfferImageSettings.MAIN} type={OfferTypeSettings.MAIN}/>
               </div>
             </section>
             <div className="cities__right-section">
