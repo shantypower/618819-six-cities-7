@@ -1,8 +1,10 @@
 import {DEFAULT_CITY, DEFAULT_SORT_TYPE} from '../const';
 import offers from '../mocks/offers';
+import reviews from '../mocks/reviews';
 import {ActionType} from './action';
 
 const initialState = {
+  reviews: reviews,
   offers: offers,
   city: DEFAULT_CITY,
   activeSortType: DEFAULT_SORT_TYPE,

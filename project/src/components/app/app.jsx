@@ -10,6 +10,7 @@ import {Routes} from '../../const';
 import offerListItemProp from '../offer-list-item/offer-list-item.prop';
 import reviewListItemProp from '../rewiew-list-item/review-list-item.prop';
 import {createBrowserHistory} from 'history';
+import { connect } from 'react-redux';
 
 
 function App(props) {
@@ -25,7 +26,7 @@ function App(props) {
           <FavoritesPage offers = {offers}/>
         </Route>
         <Route exact path={Routes.ROOT}>
-          <MainPage offers = {offers} />
+          <MainPage currentOffers = {offers} />
         </Route>
         <Route exact path={Routes.OFFER}>
           <OfferPage reviews={reviews} offers={offers}/>
@@ -47,4 +48,9 @@ App.propTypes = {
   ),
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  offers: state.offers,
+});
+
+export {App};
+export default connect(mapStateToProps)(App);

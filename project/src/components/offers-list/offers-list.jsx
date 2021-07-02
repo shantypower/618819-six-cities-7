@@ -2,15 +2,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import OfferListItem from '../offer-list-item/offer-list-item';
 import offerListItemProp from '../offer-list-item/offer-list-item.prop';
+import { connect } from 'react-redux';
+import {ActionCreator} from '../../store/action';
 
 function OffersList(props) {
-  const { offers, type, offerImageSettings} = props;
+  // eslint-disable-next-line react/prop-types
+  const { currentOffers, type, offerImageSettings, city, setCity} = props;
+
+  const handleClick = (evt) => {
+    const {textContent} = evt.target;
+    if (city === textContent) {
+      return;
+    }
+    setCity(textContent);
+  };
 
   return (
     <>
-      {offers.map((offer) => (
+      {currentOffers.map((offer) => (
         <OfferListItem
           key={offer.id}
+          name={offer.name}
           offer={{
             id: offer.id,
             price: offer.price,
@@ -21,9 +33,11 @@ function OffersList(props) {
             rating: offer.rating,
             isFavorite: offer.isFavorite,
           }}
+          isActive={offer.name === city}
           idLink={offer.id}
           type={type}
           offerImageSettings={offerImageSettings}
+          onClick={handleClick}
         />
       ))}
     </>
@@ -32,7 +46,7 @@ function OffersList(props) {
 }
 
 OffersList.propTypes = {
-  offers: PropTypes.arrayOf(
+  currentOffers: PropTypes.arrayOf(
     offerListItemProp.isRequired,
   ),
   type: PropTypes.shape({
@@ -43,4 +57,16 @@ OffersList.propTypes = {
   offerImageSettings: PropTypes.object.isRequired,
 };
 
-export default OffersList;
+const mapDispatchToProps = (dispatch) => ({
+  setCity(city) {
+    dispatch(ActionCreator.setCity(city));
+  },
+});
+
+const mapStateToProps = ({ city }) => ({
+  city: city,
+});
+
+export {OffersList};
+
+export default connect(mapStateToProps, mapDispatchToProps)(OffersList);
