@@ -11,11 +11,11 @@ import Map from '../../components/map/map';
 import { OfferTypeSettings, OfferImageSettings } from '../../const';
 import { useParams } from 'react-router-dom';
 
-function OfferPage({offers, reviews, nearby}) {
+function OfferPage({offers, reviews}) {
 
   const {id} = useParams();
 
-  const {isPremium, isFavorite, title, rating, bedrooms, maxAdults, host, description, goods, type, price, images, city} = offers[id];
+  const {isPremium, isFavorite, title, rating, bedrooms, maxAdults, host, description, goods, type, price, images, city} = offers[id-1];
   const {isPro} = host;
 
 
@@ -117,14 +117,14 @@ function OfferPage({offers, reviews, nearby}) {
             </div>
           </div>
           <section className="property__map map">
-            <Map offers={nearby} city={city}/>
+            <Map offers={offers} city={city}/>
           </section>
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <OffersList offers = {nearby} offerImageSettings={OfferImageSettings} type={OfferTypeSettings.NEARBY}/>
+              <OffersList offers = {offers} offerImageSettings={OfferImageSettings} type={OfferTypeSettings.NEARBY}/>
             </div>
           </section>
         </div>
@@ -138,7 +138,6 @@ OfferPage.propTypes = {
   reviews: PropTypes.arrayOf(
     PropTypes.shape(reviewListItemProp).isRequired,
   ),
-  nearby: PropTypes.arrayOf(offerListItemProp).isRequired,
   images: PropTypes.arrayOf(string),
 };
 
