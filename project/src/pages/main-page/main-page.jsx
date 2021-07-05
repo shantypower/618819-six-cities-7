@@ -13,7 +13,12 @@ import { OfferTypeSettings, OfferImageSettings } from '../../const';
 // eslint-disable-next-line react/prop-types
 function MainPage({ currentOffers, city, activeSortType }) {
   // const [activeOfferId, setActiveOfferId] = useState(1);
+<<<<<<< HEAD
   //const { offers } = props;
+=======
+  const { offers } = props;
+
+>>>>>>> master
   return (
     <div className="page page--gray page--main">
       <div className="header__left">

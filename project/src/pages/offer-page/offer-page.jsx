@@ -7,6 +7,7 @@ import GoodsList from '../../components/goods-list/goods-list';
 import OffersList from '../../components/offers-list/offers-list';
 import reviewListItemProp from '../../components/rewiew-list-item/review-list-item.prop';
 import offerListItemProp from '../../components/offer-list-item/offer-list-item.prop';
+import Map from '../../components/map/map';
 import { OfferTypeSettings, OfferImageSettings } from '../../const';
 import { useParams } from 'react-router-dom';
 
@@ -14,7 +15,7 @@ function OfferPage({offers, reviews}) {
 
   const {id} = useParams();
 
-  const {isPremium, isFavorite, title, rating, bedrooms, maxAdults, host, description, goods, type, price, images} = offers[id];
+  const {isPremium, isFavorite, title, rating, bedrooms, maxAdults, host, description, goods, type, price, images, city} = offers[id-1];
   const {isPro} = host;
 
 
@@ -115,7 +116,9 @@ function OfferPage({offers, reviews}) {
               </section>
             </div>
           </div>
-          <section className="property__map map"></section>
+          <section className="property__map map">
+            <Map offers={offers} city={city}/>
+          </section>
         </section>
         <div className="container">
           <section className="near-places places">

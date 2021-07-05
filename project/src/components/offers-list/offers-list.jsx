@@ -33,8 +33,11 @@ function OffersList(props) {
             rating: offer.rating,
             isFavorite: offer.isFavorite,
           }}
+<<<<<<< HEAD
           isActive={offer.name === city}
           idLink={offer.id}
+=======
+>>>>>>> master
           type={type}
           offerImageSettings={offerImageSettings}
           onClick={handleClick}
