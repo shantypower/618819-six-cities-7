@@ -11,14 +11,8 @@ import { connect } from 'react-redux';
 import { OfferTypeSettings, OfferImageSettings } from '../../const';
 
 // eslint-disable-next-line react/prop-types
-function MainPage({ currentOffers, city, activeSortType }) {
+function MainPage({ offers, city, activeSortType }) {
   // const [activeOfferId, setActiveOfferId] = useState(1);
-<<<<<<< HEAD
-  //const { offers } = props;
-=======
-  const { offers } = props;
-
->>>>>>> master
   return (
     <div className="page page--gray page--main">
       <div className="header__left">
@@ -35,14 +29,14 @@ function MainPage({ currentOffers, city, activeSortType }) {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{`${currentOffers.length} places to stay in ${city}`}</b>
+              <b className="places__found">{`${offers.length} places to stay in ${city}`}</b>
               <LocationsSortingForm />
               <div className="cities__places-list places__list tabs__content">
-                <OffersList currentOffers = {currentOffers} activeSortType={activeSortType} offerImageSettings={OfferImageSettings.MAIN} type={OfferTypeSettings.MAIN}/>
+                <OffersList offers = {offers} activeSortType={activeSortType} offerImageSettings={OfferImageSettings.MAIN} type={OfferTypeSettings.MAIN}/>
               </div>
             </section>
             <div className="cities__right-section">
-              <Map offers={currentOffers} city={LOCATIONS.find(({ name }) => name === city)}/>
+              <Map offers={offers} city={LOCATIONS.find(({ name }) => name === city)}/>
             </div>
           </div>
         </div>
@@ -52,7 +46,7 @@ function MainPage({ currentOffers, city, activeSortType }) {
 }
 
 MainPage.propTypes = {
-  currentOffers: PropTypes.arrayOf(
+  offers: PropTypes.arrayOf(
     offerListItemProp,
   ),
   history: PropTypes.shape({
@@ -63,9 +57,9 @@ MainPage.propTypes = {
 
 const mapStateToProps = (state) => {
   const city = state.city;
-  const currentOffers = state.offers.filter((offer) => offer.city.name === city);
+  const offers = state.offers.filter((offer) => offer.city.name === city);
   return {
-    currentOffers: currentOffers,
+    offers: offers,
     city: city,
     activeSortType: state.activeSortType,
   };

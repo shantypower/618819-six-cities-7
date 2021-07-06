@@ -7,7 +7,7 @@ import {ActionCreator} from '../../store/action';
 
 function OffersList(props) {
   // eslint-disable-next-line react/prop-types
-  const { currentOffers, type, offerImageSettings, city, setCity} = props;
+  const { offers, type, offerImageSettings, city, setCity, onActiveOfferSet = () => {}} = props;
 
   const handleClick = (evt) => {
     const {textContent} = evt.target;
@@ -19,9 +19,11 @@ function OffersList(props) {
 
   return (
     <>
-      {currentOffers.map((offer) => (
+      {offers.map((offer) => (
         <OfferListItem
           key={offer.id}
+          onMouseEnter={() => onActiveOfferSet(offer.id)}
+          onMouseLeave={() => onActiveOfferSet(0)}
           name={offer.name}
           offer={{
             id: offer.id,
@@ -33,11 +35,8 @@ function OffersList(props) {
             rating: offer.rating,
             isFavorite: offer.isFavorite,
           }}
-<<<<<<< HEAD
           isActive={offer.name === city}
           idLink={offer.id}
-=======
->>>>>>> master
           type={type}
           offerImageSettings={offerImageSettings}
           onClick={handleClick}
@@ -49,7 +48,7 @@ function OffersList(props) {
 }
 
 OffersList.propTypes = {
-  currentOffers: PropTypes.arrayOf(
+  offers: PropTypes.arrayOf(
     offerListItemProp.isRequired,
   ),
   type: PropTypes.shape({

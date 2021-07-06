@@ -26,7 +26,7 @@ function App(props) {
           <FavoritesPage offers = {offers}/>
         </Route>
         <Route exact path={Routes.ROOT}>
-          <MainPage currentOffers = {offers} />
+          <MainPage offers = {offers} />
         </Route>
         <Route exact path={Routes.OFFER}>
           <OfferPage reviews={reviews} offers={offers}/>
