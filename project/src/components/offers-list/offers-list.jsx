@@ -7,7 +7,7 @@ import {ActionCreator} from '../../store/action';
 
 function OffersList(props) {
   // eslint-disable-next-line react/prop-types
-  const { offers, type, offerImageSettings, city, setCity, onActiveOfferSet = () => {}} = props;
+  const { offers, type, offerImageSettings, city, setCity, setActiveOfferId = () => {}} = props;
 
   const handleClick = (evt) => {
     const {textContent} = evt.target;
@@ -22,8 +22,8 @@ function OffersList(props) {
       {offers.map((offer) => (
         <OfferListItem
           key={offer.id}
-          onMouseEnter={() => onActiveOfferSet(offer.id)}
-          onMouseLeave={() => onActiveOfferSet(0)}
+          onMouseEnter={() => setActiveOfferId(offer.id)}
+          onMouseLeave={() => setActiveOfferId(null)}
           name={offer.name}
           offer={{
             id: offer.id,
@@ -40,6 +40,7 @@ function OffersList(props) {
           type={type}
           offerImageSettings={offerImageSettings}
           onClick={handleClick}
+          setActiveOfferId={setActiveOfferId}
         />
       ))}
     </>
@@ -57,6 +58,7 @@ OffersList.propTypes = {
     infoContainerClass: PropTypes.string,
   }),
   offerImageSettings: PropTypes.object.isRequired,
+  setActiveOfferId: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({

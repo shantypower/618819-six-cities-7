@@ -21,24 +21,30 @@ const currentCustomIcon = leaflet.icon({
   iconAnchor: [15, 30],
 });
 
-function Map({offers, city}) {
+function Map({offers, city, activeOfferId}) {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
+  const markers = leaflet.layerGroup();
 
   useEffect(() => {
     if (map) {
+      markers.clearLayers();
       offers.forEach((offer) => {
-        leaflet
+        const marker = leaflet
           .marker({
             lat: offer.location.latitude,
             lng: offer.location.longitude,
           }, {
-            icon: defaultCustomIcon,
-          })
-          .addTo(map);
+            icon: (offer.id === activeOfferId) ? currentCustomIcon : defaultCustomIcon,
+          });
+        markers.addLayer(marker);
       });
+      markers.addTo(map);
     }
-  }, [map, offers]);
+    return () => {
+      markers.clearLayers();
+    };
+  }, [map, offers, markers, activeOfferId]);
 
   return (
     <div className="cities__map map" style={{height: '100%'}} ref={mapRef}>
@@ -58,6 +64,7 @@ Map.propTypes = {
     }),
     name: PropTypes.string.isRequired,
   }),
+  activeOfferId: PropTypes.string,
 };
 
 export default Map;
