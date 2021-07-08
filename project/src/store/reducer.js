@@ -1,5 +1,4 @@
 import {DEFAULT_CITY, DEFAULT_SORT_TYPE, AuthorizationStatus} from '../const';
-//import offers from '../mocks/offers';
 import reviews from '../mocks/reviews';
 import {ActionType} from './action';
 

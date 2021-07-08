@@ -25,16 +25,7 @@ function OffersList(props) {
           onMouseEnter={() => setActiveOfferId(offer.id)}
           onMouseLeave={() => setActiveOfferId(null)}
           name={offer.name}
-          offer={{
-            id: offer.id,
-            price: offer.price,
-            type: offer.type,
-            title: offer.title,
-            previewImage: offer.preview_image,
-            isPremium: offer.isPremium,
-            rating: offer.rating,
-            isFavorite: offer.isFavorite,
-          }}
+          offer={offer}
           isActive={offer.name === city}
           idLink={offer.id}
           type={type}
