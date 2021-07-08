@@ -10,6 +10,18 @@ export const Routes = {
   OFFER: '/offer/:id',
 };
 
+export const AuthorizationStatus = {
+  AUTH: 'AUTH',
+  NO_AUTH: 'NO_AUTH',
+  UNKNOWN: 'UNKNOWN',
+};
+
+export const APIRoute = {
+  OFFERS: '/hotels',
+  LOGIN: '/login',
+  LOGOUT: '/logout',
+};
+
 export const OfferTypeSettings = {
   MAIN: {
     articleClass: 'cities__place-card place-card',
