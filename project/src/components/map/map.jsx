@@ -28,7 +28,6 @@ function Map({offers, city, activeOfferId}) {
 
   useEffect(() => {
     if (map) {
-      markers.clearLayers();
       offers.forEach((offer) => {
         const marker = leaflet
           .marker({
