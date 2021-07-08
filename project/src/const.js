@@ -1,4 +1,3 @@
-import dayjs from 'dayjs';
 export const ListSettings = {
   offersQuantity: 5,
 };
@@ -130,5 +129,3 @@ export const LOCATIONS = [
     },
   },
 ];
-
-export const formatDate = (date) => dayjs(date).format('MMMM YYYY');
