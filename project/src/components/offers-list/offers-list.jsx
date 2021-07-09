@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import {ActionCreator} from '../../store/action';
 
 function OffersList(props) {
-  // eslint-disable-next-line react/prop-types
   const { offers, type, offerImageSettings, city, setCity, setActiveOfferId = () => {}} = props;
 
   const handleClick = (evt) => {
@@ -59,6 +58,8 @@ OffersList.propTypes = {
   }),
   offerImageSettings: PropTypes.object.isRequired,
   setActiveOfferId: PropTypes.func.isRequired,
+  city: PropTypes.string.isRequired,
+  setCity: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({

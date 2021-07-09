@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import SortingSelect from '../../components/sorting-select/sorting-select';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 
-// eslint-disable-next-line react/prop-types
 function LocationsSortingForm({ activeSortType }) {
   const [isSortOpen, toggleIsSortActive] = useState(false);
 
@@ -28,6 +28,10 @@ function LocationsSortingForm({ activeSortType }) {
     </form>
   );
 }
+
+LocationsSortingForm.propTypes = {
+  activeSortType: PropTypes.string.isRequired,
+};
 
 
 const mapStateToProps = ({ activeSortType}) =>({
