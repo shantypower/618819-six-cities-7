@@ -1,8 +1,9 @@
 import React from 'react';
 import {SortTypes} from '../../const';
+import PropTypes from 'prop-types';
 import SortingSelectOption from '../sorting-select-option/sorting-select-option';
 
-// eslint-disable-next-line react/prop-types
+
 function SortingSelect({ handleSortTypeClick }) {
   const sortingOptions = Object.keys(SortTypes);
 
@@ -17,6 +18,10 @@ function SortingSelect({ handleSortTypeClick }) {
     </ul>
   );
 }
+
+SortingSelect.propTypes = {
+  handleSortTypeClick: PropTypes.func.isRequired,
+};
 
 
 export default SortingSelect;

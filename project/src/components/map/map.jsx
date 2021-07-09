@@ -14,7 +14,6 @@ const defaultCustomIcon = leaflet.icon({
   iconAnchor: [15, 30],
 });
 
-// eslint-disable-next-line no-unused-vars
 const currentCustomIcon = leaflet.icon({
   iconUrl: URL_MARKER_CURRENT,
   iconSize: [30, 30],
@@ -39,11 +38,12 @@ function Map({offers, city, activeOfferId}) {
         markers.addLayer(marker);
       });
       markers.addTo(map);
+      map.flyTo([city.location.latitude, city.location.longitude], city.location.zoom);
     }
     return () => {
       markers.clearLayers();
     };
-  }, [map, offers, markers, activeOfferId]);
+  }, [map, offers, markers, activeOfferId, city.location.latitude, city.location.longitude, city.location.zoom]);
 
   return (
     <div className="cities__map map" style={{height: '100%'}} ref={mapRef}>

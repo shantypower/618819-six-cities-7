@@ -5,7 +5,6 @@ import {SortTypes} from '../../const';
 import {ActionCreator} from '../../store/action';
 
 
-// eslint-disable-next-line react/prop-types
 function SortingSelectOption({ sortingType, activeSortType, handleSortTypeClick, setSortType}) {
 
   const handleSortOptionClick = () => {
@@ -27,6 +26,9 @@ function SortingSelectOption({ sortingType, activeSortType, handleSortTypeClick,
 
 SortingSelectOption.propTypes = {
   sortingType: PropTypes.string.isRequired,
+  activeSortType: PropTypes.string.isRequired,
+  handleSortTypeClick: PropTypes.func.isRequired,
+  setSortType: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

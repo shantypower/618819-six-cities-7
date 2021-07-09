@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import offerListItemProp from '../offer-list-item/offer-list-item.prop';
 import PropTypes from 'prop-types';
@@ -7,14 +7,6 @@ function OfferListItem(props) {
 
   const {offer, type, offerImageSettings, onMouseEnter, onMouseLeave} = props;
   const { isPremium, previewImage, price, title, isFavorite, rating, id } = offer;
-
-  // eslint-disable-next-line no-unused-vars
-  const [activeOfferId, setActiveOfferId] = useState(1);
-
-  /*   function handleClick(evt){
-    evt.preventDefault();
-    History.push(Routes.OFFER);
-  } */
 
   return (
     <article

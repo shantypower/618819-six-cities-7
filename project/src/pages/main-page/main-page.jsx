@@ -10,12 +10,11 @@ import {LOCATIONS} from '../../const';
 import { connect } from 'react-redux';
 import { OfferTypeSettings, OfferImageSettings } from '../../const';
 
-// eslint-disable-next-line react/prop-types
 function MainPage({ offers, city, activeSortType }) {
   const [activeOfferId, setActiveOfferId] = useState(1);
   return (
     <div className="page page--gray page--main">
-      <div className="header__left">
+      <div className="header__left container">
         <Header/>
       </div>
       <main className="page__main page__main--index">
@@ -52,6 +51,7 @@ MainPage.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }),
+  activeSortType: PropTypes.string.isRequired,
   city: PropTypes.string.isRequired,
 };
 
