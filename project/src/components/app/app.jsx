@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Switch, Route, Router} from 'react-router-dom';
+import PrivateRoute from '../private-route/private-route.jsx';
 import MainPage from '../../pages/main-page/main-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import LoginPage from '../../pages/login-page/login-page';
@@ -30,9 +31,9 @@ function App(props) {
         <Route exact path={Routes.LOGIN}>
           <LoginPage/>
         </Route>
-        <Route exact path={Routes.FAVORITES}>
+        <PrivateRoute exact path={Routes.FAVORITES}>
           <FavoritesPage offers = {offers}/>
-        </Route>
+        </PrivateRoute>
         <Route exact path={Routes.ROOT}>
           <MainPage offers = {offers} />
         </Route>

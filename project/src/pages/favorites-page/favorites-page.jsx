@@ -7,8 +7,7 @@ import offerListItemProp from '../../components/offer-list-item/offer-list-item.
 import { OfferImageSettings, OfferTypeSettings } from '../../const';
 import { LogoSettings } from '../../const';
 
-function FavoritesPage(props) {
-  const { offers } = props;
+function FavoritesPage({offers}) {
   return (
     <div className="page">
       <Header/>
