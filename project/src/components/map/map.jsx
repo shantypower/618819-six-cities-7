@@ -14,31 +14,36 @@ const defaultCustomIcon = leaflet.icon({
   iconAnchor: [15, 30],
 });
 
-// eslint-disable-next-line no-unused-vars
 const currentCustomIcon = leaflet.icon({
   iconUrl: URL_MARKER_CURRENT,
   iconSize: [30, 30],
   iconAnchor: [15, 30],
 });
 
-function Map({offers, city}) {
+function Map({offers, city, activeOfferId}) {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
+  const markers = leaflet.layerGroup();
 
   useEffect(() => {
     if (map) {
       offers.forEach((offer) => {
-        leaflet
+        const marker = leaflet
           .marker({
             lat: offer.location.latitude,
             lng: offer.location.longitude,
           }, {
-            icon: defaultCustomIcon,
-          })
-          .addTo(map);
+            icon: (offer.id === activeOfferId) ? currentCustomIcon : defaultCustomIcon,
+          });
+        markers.addLayer(marker);
       });
+      markers.addTo(map);
+      map.flyTo([city.location.latitude, city.location.longitude], city.location.zoom);
     }
-  }, [map, offers]);
+    return () => {
+      markers.clearLayers();
+    };
+  }, [map, offers, markers, activeOfferId, city.location.latitude, city.location.longitude, city.location.zoom]);
 
   return (
     <div className="cities__map map" style={{height: '100%'}} ref={mapRef}>
@@ -58,6 +63,7 @@ Map.propTypes = {
     }),
     name: PropTypes.string.isRequired,
   }),
+  activeOfferId: PropTypes.string,
 };
 
 export default Map;

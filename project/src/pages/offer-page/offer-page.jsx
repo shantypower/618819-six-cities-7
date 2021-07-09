@@ -5,13 +5,13 @@ import CommentForm from '../../components/comment-form/comment-form';
 import ReviewListItem from '../../components/rewiew-list-item/review-list-item';
 import GoodsList from '../../components/goods-list/goods-list';
 import OffersList from '../../components/offers-list/offers-list';
-import reviewListItemProp from '../../components/rewiew-list-item/review-list-item.prop';
 import offerListItemProp from '../../components/offer-list-item/offer-list-item.prop';
 import Map from '../../components/map/map';
 import { OfferTypeSettings, OfferImageSettings } from '../../const';
 import { useParams } from 'react-router-dom';
+import reviews from '../../mocks/reviews';
 
-function OfferPage({offers, reviews}) {
+function OfferPage({offers}) {
 
   const {id} = useParams();
 
@@ -135,9 +135,6 @@ function OfferPage({offers, reviews}) {
 
 OfferPage.propTypes = {
   offers: offerListItemProp,
-  reviews: PropTypes.arrayOf(
-    PropTypes.shape(reviewListItemProp).isRequired,
-  ),
   images: PropTypes.arrayOf(string),
 };
 
