@@ -11,10 +11,18 @@ import offerListItemProp from '../offer-list-item/offer-list-item.prop';
 import reviewListItemProp from '../rewiew-list-item/review-list-item.prop';
 import {createBrowserHistory} from 'history';
 import { connect } from 'react-redux';
+import Spinner from '../spinner/spinner';
+import {isCheckedAuth} from '../../utils/common';
 
 
 function App(props) {
-  const {offers, reviews} = props;
+  const {offers, reviews, authorizationStatus, isDataLoaded} = props;
+
+  if (isCheckedAuth(authorizationStatus) || !isDataLoaded) {
+    return (
+      <Spinner />
+    );
+  }
 
   return (
     <Router history = {createBrowserHistory()}>
@@ -46,10 +54,14 @@ App.propTypes = {
   reviews: PropTypes.arrayOf(
     PropTypes.shape(reviewListItemProp).isRequired,
   ),
+  authorizationStatus: PropTypes.string.isRequired,
+  isDataLoaded: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   offers: state.offers,
+  authorizationStatus: state.authorizationStatus,
+  isDataLoaded: state.isDataLoaded,
 });
 
 export {App};

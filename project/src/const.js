@@ -1,4 +1,3 @@
-import dayjs from 'dayjs';
 export const ListSettings = {
   offersQuantity: 5,
 };
@@ -8,6 +7,18 @@ export const Routes = {
   ROOT: '/',
   FAVORITES: '/favorites',
   OFFER: '/offer/:id',
+};
+
+export const AuthorizationStatus = {
+  AUTH: 'AUTH',
+  NO_AUTH: 'NO_AUTH',
+  UNKNOWN: 'UNKNOWN',
+};
+
+export const APIRoute = {
+  OFFERS: '/hotels',
+  LOGIN: '/login',
+  LOGOUT: '/logout',
 };
 
 export const OfferTypeSettings = {
@@ -118,5 +129,3 @@ export const LOCATIONS = [
     },
   },
 ];
-
-export const formatDate = (date) => dayjs(date).format('MMMM YYYY');
