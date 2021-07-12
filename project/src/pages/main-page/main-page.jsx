@@ -10,7 +10,7 @@ import {LOCATIONS} from '../../const';
 import { connect } from 'react-redux';
 import { OfferTypeSettings, OfferImageSettings } from '../../const';
 
-function MainPage({ offers, city, activeSortType }) {
+function MainPage({ offers, city, activeSortType, authorizationStatus}) {
   const [activeOfferId, setActiveOfferId] = useState(1);
   return (
     <div className="page page--gray page--main">
@@ -31,7 +31,7 @@ function MainPage({ offers, city, activeSortType }) {
               <b className="places__found">{`${offers.length} places to stay in ${city}`}</b>
               <LocationsSortingForm />
               <div className="cities__places-list places__list tabs__content">
-                <OffersList offers = {offers} activeSortType={activeSortType} setActiveOfferId={setActiveOfferId} offerImageSettings={OfferImageSettings.MAIN} type={OfferTypeSettings.MAIN}/>
+                <OffersList offers = {offers} activeSortType={activeSortType} setActiveOfferId={setActiveOfferId} offerImageSettings={OfferImageSettings.MAIN} type={OfferTypeSettings.MAIN} authorizationStatus={authorizationStatus}/>
               </div>
             </section>
             <div className="cities__right-section">
@@ -53,6 +53,7 @@ MainPage.propTypes = {
   }),
   activeSortType: PropTypes.string.isRequired,
   city: PropTypes.string.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -62,6 +63,7 @@ const mapStateToProps = (state) => {
     offers: offers,
     city: city,
     activeSortType: state.activeSortType,
+    authorizationStatus: state.authorizationStatus,
   };
 };
 

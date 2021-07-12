@@ -2,11 +2,19 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import offerListItemProp from '../offer-list-item/offer-list-item.prop';
 import PropTypes from 'prop-types';
+import {AuthorizationStatus, Routes} from '../../const';
+import { useHistory } from 'react-router-dom';
 
 function OfferListItem(props) {
 
-  const {offer, type, offerImageSettings, onMouseEnter, onMouseLeave} = props;
+  const {offer, type, offerImageSettings, onMouseEnter, onMouseLeave, authorizationStatus} = props;
   const { isPremium, previewImage, price, title, isFavorite, rating, id } = offer;
+  const history = useHistory();
+  const handleClick = () => {
+    if (authorizationStatus !== AuthorizationStatus.AUTH) {
+      history.push(Routes.LOGIN);
+    }
+  };
 
   return (
     <article
@@ -34,6 +42,7 @@ function OfferListItem(props) {
               ? 'place-card__bookmark-button place-card__bookmark-button--active button'
               : 'place-card__bookmark-button button'
           } type='button'
+          onClick={handleClick}
           >
             <svg className='place-card__bookmark-icon' width='18' height='19'>
               <use xlinkHref='#icon-bookmark'></use>
@@ -57,6 +66,7 @@ function OfferListItem(props) {
 }
 
 OfferListItem.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
   onMouseEnter: PropTypes.func,
   onMouseLeave: PropTypes.func,
   offer: offerListItemProp,

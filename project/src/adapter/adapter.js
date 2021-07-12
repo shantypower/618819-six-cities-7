@@ -31,7 +31,5 @@ export const adaptUserData = (user) => {
 
   delete adaptedUser.avatar_url;
   delete adaptedUser.is_pro;
-  // eslint-disable-next-line no-console
-  console.log('adaptedUser', adaptedUser);
   return adaptedUser;
 };

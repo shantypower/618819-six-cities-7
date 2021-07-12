@@ -4,9 +4,15 @@ import {Link} from 'react-router-dom';
 import {Routes} from '../../const';
 import {useDispatch} from 'react-redux';
 import {logout} from '../../store/api-actions';
+//import { useHistory } from 'react-router-dom';
 
-function UserNavigationAuthorized({ username, avatarUrl }) {
+function UserNavigationAuthorized({ email, avatarUrl}) {
+  //const history = useHistory();
   const dispatch = useDispatch();
+
+  /*const handleClickToFavorites = () => {
+    history.push(Routes.FAVORITES);
+  }; */
   const handleClick = () => {
     dispatch(logout());
   };
@@ -19,7 +25,7 @@ function UserNavigationAuthorized({ username, avatarUrl }) {
             <div className="header__avatar-wrapper user__avatar-wrapper">
               <img src={avatarUrl} alt={'avatar'} style={{borderRadius: '50%'}}/>
             </div>
-            <span className="header__user-name user__name">{username}</span>
+            <span className="header__user-name user__name">{email}</span>
           </Link>
         </li>
         <li className="header__nav-item">
@@ -38,7 +44,7 @@ function UserNavigationAuthorized({ username, avatarUrl }) {
 
 
 UserNavigationAuthorized.propTypes = {
-  username: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
   avatarUrl: PropTypes.string.isRequired,
 };
 

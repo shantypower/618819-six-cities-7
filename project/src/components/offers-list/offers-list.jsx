@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import {ActionCreator} from '../../store/action';
 
 function OffersList(props) {
-  const { offers, type, offerImageSettings, city, setCity, setActiveOfferId = () => {}} = props;
+  const { offers, type, offerImageSettings, city, setCity, authorizationStatus, setActiveOfferId = () => {}} = props;
 
   const handleClick = (evt) => {
     const {textContent} = evt.target;
@@ -31,6 +31,7 @@ function OffersList(props) {
           offerImageSettings={offerImageSettings}
           onClick={handleClick}
           setActiveOfferId={setActiveOfferId}
+          authorizationStatus={authorizationStatus}
         />
       ))}
     </>
@@ -51,6 +52,7 @@ OffersList.propTypes = {
   setActiveOfferId: PropTypes.func.isRequired,
   city: PropTypes.string.isRequired,
   setCity: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({

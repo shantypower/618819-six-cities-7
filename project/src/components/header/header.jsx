@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React from 'react';
 import {connect} from 'react-redux';
 import { LogoSettings } from '../../const';
@@ -9,7 +8,7 @@ import UserNavigationAuthorized from '../user-navigation-authorised/user-navigat
 import PropTypes from 'prop-types';
 import {logout} from '../../store/api-actions';
 
-function Header({username, authorizationStatus, avatarUrl}) {
+function Header({email, authorizationStatus, avatarUrl}) {
   return(
     <header className="header">
       <div className="container">
@@ -21,7 +20,7 @@ function Header({username, authorizationStatus, avatarUrl}) {
             <ul className="header__nav-list">
               {
                 (authorizationStatus === AuthorizationStatus.AUTH
-                && <UserNavigationAuthorized username={username} avatarUrl={avatarUrl}/>)
+                && <UserNavigationAuthorized email={email} avatarUrl={avatarUrl} authorizationStatus={authorizationStatus}/>)
                 || <UserNavigationGuest />
               }
             </ul>
@@ -35,12 +34,12 @@ function Header({username, authorizationStatus, avatarUrl}) {
 Header.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   avatarUrl: PropTypes.string,
-  username: PropTypes.string,
+  email: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
   authorizationStatus: state.authorizationStatus,
-  username: state.user.name,
+  email: state.user.email,
   avatarUrl: state.user.avatarUrl,
 });
 
