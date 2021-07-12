@@ -4,9 +4,10 @@ import OfferListItem from '../offer-list-item/offer-list-item';
 import offerListItemProp from '../offer-list-item/offer-list-item.prop';
 import { connect } from 'react-redux';
 import {ActionCreator} from '../../store/action';
+import {getSortedOffers} from '../../utils/common';
 
 function OffersList(props) {
-  const { offers, type, offerImageSettings, city, setCity, authorizationStatus, setActiveOfferId = () => {}} = props;
+  const { offers, type, offerImageSettings, city, setCity, authorizationStatus, activeSortType, setActiveOfferId = () => {}} = props;
 
   const handleClick = (evt) => {
     const {textContent} = evt.target;
@@ -18,7 +19,7 @@ function OffersList(props) {
 
   return (
     <>
-      {offers.map((offer) => (
+      {getSortedOffers(offers, activeSortType).map((offer) => (
         <OfferListItem
           key={offer.id}
           onMouseEnter={() => setActiveOfferId(offer.id)}
@@ -53,6 +54,7 @@ OffersList.propTypes = {
   city: PropTypes.string.isRequired,
   setCity: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
+  activeSortType: PropTypes.string.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
