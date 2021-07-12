@@ -12,7 +12,7 @@ function ReviewListItem(props) {
           <img className="reviews__avatar user__avatar" src={review.avatarUrl} width="54" height="54" alt={`Reviews avatar - ${review.id}`}/>
         </div>
         <span className="reviews__user-name">
-          {review.user}
+          {review.name}
         </span>
       </div>
       <div className="reviews__info">

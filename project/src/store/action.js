@@ -5,8 +5,9 @@ export const ActionType = {
   REQUIRED_AUTHORIZATION: 'user/requiredAuthorization',
   LOGOUT: 'user/logout',
   SET_USER: 'user/setUser',
-  LOAD_COMMENTS: 'comments/loadComments',
+  LOAD_REVIEWS: 'comments/loadComments',
   LOAD_OFFERS_NEARBY: 'offers/loadOffersNearby',
+  SET_ARE_REVIEWS_LOADED: 'offers/setAreReviewsLoaded',
   REDIRECT_TO_ROUTE: 'cities/redirectToRoute',
 };
 
@@ -23,6 +24,10 @@ export const ActionCreator = {
     type: ActionType.LOAD_OFFERS,
     payload: offers,
   }),
+  setAreReviewsLoaded: (areLoaded) => ({
+    type: ActionType.SET_ARE_REVIEWS_LOADED,
+    payload: areLoaded,
+  }),
   requireAuthorization: (status) => ({
     type: ActionType.REQUIRED_AUTHORIZATION,
     payload: status,
@@ -34,9 +39,9 @@ export const ActionCreator = {
     type: ActionType.SET_USER,
     payload: userData,
   }),
-  loadComments: (comments) => ({
-    type: ActionType.LOAD_COMMENTS,
-    payload: comments,
+  loadReviews: (reviews) => ({
+    type: ActionType.LOAD_REVIEWS,
+    payload: reviews,
   }),
   loadOffersNearby: (offers) => ({
     type: ActionType.LOAD_OFFERS_NEARBY,

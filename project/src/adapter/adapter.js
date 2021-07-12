@@ -33,3 +33,19 @@ export const adaptUserData = (user) => {
   delete adaptedUser.is_pro;
   return adaptedUser;
 };
+
+export const adaptReviewData = (review) => {
+  const adaptedReview = {
+    ...review,
+    user: {
+      ...review.user,
+      avatarUrl: review.user.avatar_url,
+      isPro: review.user.is_pro,
+    },
+  };
+
+  delete adaptedReview.user.avatar_url;
+  delete adaptedReview.user.is_pro;
+
+  return adaptedReview;
+};

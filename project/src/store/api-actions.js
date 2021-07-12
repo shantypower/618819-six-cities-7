@@ -1,6 +1,6 @@
 import {ActionCreator} from './action';
 import {AuthorizationStatus, APIRoute, Routes} from '../const';
-import {adaptOffer, adaptUserData} from '../adapter/adapter';
+import {adaptOffer, adaptReviewData, adaptUserData} from '../adapter/adapter';
 
 export const getOffers = () => (dispatch, _getState, api) => (
   api.get(APIRoute.OFFERS)
@@ -10,6 +10,17 @@ export const getOffers = () => (dispatch, _getState, api) => (
     })
     .then((offers) => dispatch(ActionCreator.loadOffers(offers)))
 );
+
+export const getReviews = (id) => (dispatch, _getState, api) => {
+  dispatch(ActionCreator.setAreReviewsLoaded(false));
+  api.get(`/comments/${id}`)
+    .then(({data}) => {
+      const reviews = data.map((review) => adaptReviewData(review));
+      dispatch(ActionCreator.loadReviews(reviews));
+    })
+    .catch(() => dispatch(ActionCreator.loadReviews([])))
+    .finally(() => dispatch(ActionCreator.setAreReviewsLoaded(true)));
+};
 
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(APIRoute.LOGIN)

@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable react/prop-types */
+import React, {useEffect} from 'react';
 import PropTypes, {string} from 'prop-types';
 import Header from '../../components/header/header';
 import CommentForm from '../../components/comment-form/comment-form';
@@ -7,16 +8,25 @@ import GoodsList from '../../components/goods-list/goods-list';
 import OffersList from '../../components/offers-list/offers-list';
 import offerListItemProp from '../../components/offer-list-item/offer-list-item.prop';
 import Map from '../../components/map/map';
-import { OfferTypeSettings, OfferImageSettings } from '../../const';
+import { OfferTypeSettings, OfferImageSettings, ListSettings, AuthorizationStatus } from '../../const';
 import { useParams } from 'react-router-dom';
-import reviews from '../../mocks/reviews';
+import {getReviews} from '../../store/api-actions';
+//import reviews from '../../mocks/reviews';
+import {connect, useDispatch} from 'react-redux';
 
-function OfferPage({offers}) {
+// eslint-disable-next-line react/prop-types
+function OfferPage({offers, reviews, authorizationStatus}) {
 
   const {id} = useParams();
 
   const {isPremium, isFavorite, title, rating, bedrooms, maxAdults, host, description, goods, type, price, images, city} = offers[id-1];
   const {isPro} = host;
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getReviews(id));
+  }, [id, dispatch]);
 
 
   return (
@@ -108,11 +118,15 @@ function OfferPage({offers}) {
                         previewImage: review.preview_image,
                         isPremium: review.isPremium,
                         rating: review.rating,
+                        name: review.user.name,
                       }}
                     />
                   ))}
                 </ul>
-                <CommentForm/>
+                {
+                  authorizationStatus === AuthorizationStatus.AUTH
+                && <CommentForm offerId={id}/>
+                }
               </section>
             </div>
           </div>
@@ -135,7 +149,14 @@ function OfferPage({offers}) {
 
 OfferPage.propTypes = {
   offers: offerListItemProp,
+  //reviews: reviewListItemProp,
   images: PropTypes.arrayOf(string),
 };
 
-export default OfferPage;
+const mapStateToProps = (state) => ({
+  reviews: state.reviews.slice().splice(0, ListSettings.offersQuantity),
+  areReviewsLoaded: state.areReviewsLoaded,
+});
+
+export {OfferPage};
+export default connect(mapStateToProps)(OfferPage);
