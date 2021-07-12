@@ -57,6 +57,16 @@ const reducer = (state = initialState, action) => {
         offers: action.payload,
         isDataLoaded: true,
       };
+    case ActionType.LOAD_COMMENTS:
+      return {
+        ...state,
+        comments: action.payload,
+      };
+    case ActionType.LOAD_OFFERS_NEARBY:
+      return {
+        ...state,
+        offersNearby: action.payload,
+      };
     case ActionType.REDIRECT_TO_ROUTE:
       return {
         ...state,

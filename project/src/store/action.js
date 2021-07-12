@@ -5,6 +5,8 @@ export const ActionType = {
   REQUIRED_AUTHORIZATION: 'user/requiredAuthorization',
   LOGOUT: 'user/logout',
   SET_USER: 'user/setUser',
+  LOAD_COMMENTS: 'comments/loadComments',
+  LOAD_OFFERS_NEARBY: 'offers/loadOffersNearby',
   REDIRECT_TO_ROUTE: 'cities/redirectToRoute',
 };
 
@@ -31,6 +33,14 @@ export const ActionCreator = {
   setUser: (userData) => ({
     type: ActionType.SET_USER,
     payload: userData,
+  }),
+  loadComments: (comments) => ({
+    type: ActionType.LOAD_COMMENTS,
+    payload: comments,
+  }),
+  loadOffersNearby: (offers) => ({
+    type: ActionType.LOAD_OFFERS_NEARBY,
+    payload: offers,
   }),
   redirectToRoute: (url) => ({
     type: ActionType.REDIRECT_TO_ROUTE,
