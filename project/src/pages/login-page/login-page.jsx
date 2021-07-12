@@ -3,11 +3,13 @@ import Header from '../../components/header/header';
 import PropTypes from 'prop-types';
 import {login} from '../../store/api-actions';
 import {connect} from 'react-redux';
-
+import {Routes} from '../../const';
+import { useHistory } from 'react-router-dom';
 
 function LoginPage({onSubmit, authorizationStatus}) {
   const loginRef = useRef();
   const passwordRef = useRef();
+  const history = useHistory();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -15,6 +17,7 @@ function LoginPage({onSubmit, authorizationStatus}) {
       login: loginRef.current.value,
       password: passwordRef.current.value.trim(),
     });
+    history.push(Routes.ROOT);
   };
 
   return (

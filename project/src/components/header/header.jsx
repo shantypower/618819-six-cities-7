@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import {connect} from 'react-redux';
 import { LogoSettings } from '../../const';
@@ -39,7 +40,8 @@ Header.propTypes = {
 
 const mapStateToProps = (state) => ({
   authorizationStatus: state.authorizationStatus,
-  username: state.username,
+  username: state.user.name,
+  avatarUrl: state.user.avatarUrl,
 });
 
 const mapDispatchToProps = (dispatch) => ({

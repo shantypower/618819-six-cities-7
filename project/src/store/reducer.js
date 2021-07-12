@@ -3,6 +3,13 @@ import reviews from '../mocks/reviews';
 import {ActionType} from './action';
 
 const initialState = {
+  user: {
+    avatarUrl: '',
+    email: '',
+    id: null,
+    isPro: false,
+    name: '',
+  },
   reviews: reviews,
   offers: [],
   city: DEFAULT_CITY,
@@ -13,6 +20,17 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case ActionType.SET_USER:
+      return {
+        ...state,
+        user: {
+          avatarUrl: action.payload.avatarUrl,
+          email: action.payload.email,
+          id: action.payload.id,
+          isPro: action.payload.isPro,
+          name: action.payload.name,
+        },
+      };
     case ActionType.SET_CITY:
       return {
         ...state,
@@ -38,6 +56,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         offers: action.payload,
         isDataLoaded: true,
+      };
+    case ActionType.REDIRECT_TO_ROUTE:
+      return {
+        ...state,
+        url: action.payload,
       };
     default:
       return state;

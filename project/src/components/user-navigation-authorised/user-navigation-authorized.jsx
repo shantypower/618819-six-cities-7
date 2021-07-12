@@ -6,7 +6,6 @@ import {useDispatch} from 'react-redux';
 import {logout} from '../../store/api-actions';
 
 function UserNavigationAuthorized({ username, avatarUrl }) {
-
   const dispatch = useDispatch();
   const handleClick = () => {
     dispatch(logout());
