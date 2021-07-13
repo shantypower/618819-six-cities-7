@@ -9,7 +9,7 @@ import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import {Routes} from '../../const';
 import offerListItemProp from '../offer-list-item/offer-list-item.prop';
-import reviewListItemProp from '../rewiew-list-item/review-list-item.prop';
+//import reviewListItemProp from '../rewiew-list-item/review-list-item.prop';
 import {createBrowserHistory} from 'history';
 import { connect } from 'react-redux';
 import Spinner from '../spinner/spinner';
@@ -17,7 +17,8 @@ import {isCheckedAuth} from '../../utils/common';
 
 
 function App(props) {
-  const {offers, reviews, authorizationStatus, isDataLoaded} = props;
+  // eslint-disable-next-line react/prop-types
+  const {offers, authorizationStatus, isDataLoaded} = props;
 
   if (isCheckedAuth(authorizationStatus) || !isDataLoaded) {
     return (
@@ -38,7 +39,7 @@ function App(props) {
           <MainPage offers = {offers} />
         </Route>
         <Route exact path={Routes.OFFER}>
-          <OfferPage reviews={reviews} offers={offers}/>
+          <OfferPage offers={offers}/>
         </Route>
         <Route >
           <NotFoundPage />
@@ -52,9 +53,9 @@ App.propTypes = {
   offers: PropTypes.arrayOf(
     PropTypes.shape(offerListItemProp).isRequired,
   ),
-  reviews: PropTypes.arrayOf(
+  /*   reviews: PropTypes.arrayOf(
     PropTypes.shape(reviewListItemProp).isRequired,
-  ),
+  ), */
   authorizationStatus: PropTypes.string.isRequired,
   isDataLoaded: PropTypes.bool.isRequired,
 };

@@ -7,6 +7,7 @@ export const Routes = {
   ROOT: '/',
   FAVORITES: '/favorites',
   OFFER: '/offer/:id',
+  NOT_FOUND: '/offer/',
 };
 
 export const AuthorizationStatus = {

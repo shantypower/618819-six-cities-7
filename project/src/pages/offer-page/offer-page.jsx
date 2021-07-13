@@ -8,26 +8,26 @@ import GoodsList from '../../components/goods-list/goods-list';
 import OffersList from '../../components/offers-list/offers-list';
 import offerListItemProp from '../../components/offer-list-item/offer-list-item.prop';
 import Map from '../../components/map/map';
+import Spinner from '../../components/spinner/spinner';
 import { OfferTypeSettings, OfferImageSettings, ListSettings, AuthorizationStatus } from '../../const';
 import { useParams } from 'react-router-dom';
-import {getReviews} from '../../store/api-actions';
-//import reviews from '../../mocks/reviews';
-import {connect, useDispatch} from 'react-redux';
+import {getReviews, getOffer} from '../../store/api-actions';
+import {connect} from 'react-redux';
 
 // eslint-disable-next-line react/prop-types
-function OfferPage({offers, reviews, authorizationStatus}) {
+function OfferPage({offers, currentOffer, reviews, authorizationStatus, onLoad, isOfferLoaded}) {
 
   const {id} = useParams();
 
-  const {isPremium, isFavorite, title, rating, bedrooms, maxAdults, host, description, goods, type, price, images, city} = offers[id-1];
-  const {isPro} = host;
-
-  const dispatch = useDispatch();
-
   useEffect(() => {
-    dispatch(getReviews(id));
-  }, [id, dispatch]);
+    onLoad(id);
+  }, [id, onLoad]);
 
+  if (!isOfferLoaded) {
+    return (
+      <Spinner />
+    );
+  }
 
   return (
     <div className="page">
@@ -36,7 +36,7 @@ function OfferPage({offers, reviews, authorizationStatus}) {
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {images.map((image, k) => (
+              {currentOffer.images.map((image, k) => (
                 <div key={`${k + image}`} className="property__image-wrapper">
                   <img className="property__image" src={image} alt="studio view"/>
                 </div>
@@ -45,16 +45,16 @@ function OfferPage({offers, reviews, authorizationStatus}) {
           </div>
           <div className="property__container container">
             <div className="property__wrapper">
-              {isPremium && (
+              {currentOffer.isPremium && (
                 <div className="property__mark">
                   <span>Premium</span>
                 </div>
               )}
               <div className="property__name-wrapper">
                 <h1 className="property__name">
-                  {title}
+                  {currentOffer.title}
                 </h1>
-                <button className={`property__bookmark-button button ${isFavorite && 'property__bookmark-button--active'}`} type="button">
+                <button className={`property__bookmark-button button ${currentOffer.isFavorite && 'property__bookmark-button--active'}`} type="button">
                   <svg className="property__bookmark-icon" width="31" height="33">
                     <use xlinkHref="#icon-bookmark"></use>
                   </svg>
@@ -63,43 +63,45 @@ function OfferPage({offers, reviews, authorizationStatus}) {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width : rating*100/5}}></span>
+                  <span style={{width : currentOffer.rating*100/5}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="property__rating-value rating__value">{rating}</span>
+                <span className="property__rating-value rating__value">{currentOffer.rating}</span>
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
-                  {type}
+                  {currentOffer.type}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
-                  {bedrooms} Bedrooms
+                  {currentOffer.bedrooms} Bedrooms
                 </li>
                 <li className="property__feature property__feature--adults">
-                  Max {maxAdults} adults
+                  Max {currentOffer.maxAdults} adults
                 </li>
               </ul>
               <div className="property__price">
-                <b className="property__price-value">&euro;{price}</b>
+                <b className="property__price-value">&euro;{currentOffer.price}</b>
                 <span className="property__price-text">&nbsp;night</span>
               </div>
-              <GoodsList goods={goods}/>
+              <GoodsList goods={currentOffer.goods}/>
               <div className="property__host">
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
-                  <div className={`property__avatar-wrapper ${isPro && 'property__avatar-wrapper--pro'} user__avatar-wrapper`}>
-                    <img className="property__avatar user__avatar" src={host.avatarUrl} width="74" height="74" alt="Host avatar"/>
+                  <div className={`property__avatar-wrapper ${currentOffer.host.isPro && 'property__avatar-wrapper--pro'} user__avatar-wrapper`}>
+                    <img className="property__avatar user__avatar" src={currentOffer.host.avatarUrl} width="74" height="74" alt="Host avatar"/>
                   </div>
                   <span className="property__user-name">
-                    {host.name}
+                    {currentOffer.host.name}
                   </span>
-                  <span className="property__user-status">
-                    Pro
-                  </span>
+                  {currentOffer.host.isPro && (
+                    <span className="property__user-status">
+                  Pro
+                    </span>
+                  )}
                 </div>
                 <div className="property__description">
                   <p className="property__text">
-                    {description}
+                    {currentOffer.description}
                   </p>
                 </div>
               </div>
@@ -131,7 +133,7 @@ function OfferPage({offers, reviews, authorizationStatus}) {
             </div>
           </div>
           <section className="property__map map">
-            <Map offers={offers} city={city}/>
+            <Map offers={offers} city={currentOffer.city}/>
           </section>
         </section>
         <div className="container">
@@ -149,14 +151,24 @@ function OfferPage({offers, reviews, authorizationStatus}) {
 
 OfferPage.propTypes = {
   offers: offerListItemProp,
-  //reviews: reviewListItemProp,
   images: PropTypes.arrayOf(string),
+  onLoad: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   reviews: state.reviews.slice().splice(0, ListSettings.offersQuantity),
+  currentOffer: state.currentOffer,
   areReviewsLoaded: state.areReviewsLoaded,
+  isOfferLoaded: state.isOfferLoaded,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onLoad(id) {
+    dispatch(getOffer(id));
+    //dispatch(getNearby(id));
+    dispatch(getReviews(id));
+  },
 });
 
 export {OfferPage};
-export default connect(mapStateToProps)(OfferPage);
+export default connect(mapStateToProps,  mapDispatchToProps)(OfferPage);

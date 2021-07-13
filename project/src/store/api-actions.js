@@ -11,6 +11,19 @@ export const getOffers = () => (dispatch, _getState, api) => (
     .then((offers) => dispatch(ActionCreator.loadOffers(offers)))
 );
 
+export const getOffer = (id) => (dispatch, _getState, api) => {
+  dispatch(ActionCreator.setOfferLoadingStatus(false));
+  api.get(`/hotels/${id}`)
+    .then(({data}) => {
+      const offer = adaptOffer(data);
+      dispatch(ActionCreator.loadOffer(offer));
+    })
+    .then(() => dispatch(ActionCreator.setOfferLoadingStatus(true)))
+    .catch(() => {
+      dispatch(ActionCreator.redirectToRoute(Routes.NOT_FOUND));
+    });
+};
+
 export const getReviews = (id) => (dispatch, _getState, api) => {
   dispatch(ActionCreator.setAreReviewsLoaded(false));
   api.get(`/comments/${id}`)

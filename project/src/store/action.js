@@ -2,12 +2,14 @@ export const ActionType = {
   SET_CITY: 'cities/setCity',
   SET_SORT_TYPE: 'setSortType',
   LOAD_OFFERS: 'offers/loadOffers',
+  LOAD_OFFER: 'offers/loadOffer',
   REQUIRED_AUTHORIZATION: 'user/requiredAuthorization',
   LOGOUT: 'user/logout',
   SET_USER: 'user/setUser',
   LOAD_REVIEWS: 'comments/loadComments',
   LOAD_OFFERS_NEARBY: 'offers/loadOffersNearby',
   SET_ARE_REVIEWS_LOADED: 'offers/setAreReviewsLoaded',
+  SET_IS_OFFER_LOADED: 'offers/setIsOfferLoaded',
   REDIRECT_TO_ROUTE: 'cities/redirectToRoute',
 };
 
@@ -24,9 +26,17 @@ export const ActionCreator = {
     type: ActionType.LOAD_OFFERS,
     payload: offers,
   }),
+  loadOffer: (offer) => ({
+    type: ActionType.LOAD_OFFER,
+    payload: offer,
+  }),
   setAreReviewsLoaded: (areLoaded) => ({
     type: ActionType.SET_ARE_REVIEWS_LOADED,
     payload: areLoaded,
+  }),
+  setOfferLoadingStatus: (isLoaded) => ({
+    type: ActionType.SET_IS_OFFER_LOADED,
+    payload: isLoaded,
   }),
   requireAuthorization: (status) => ({
     type: ActionType.REQUIRED_AUTHORIZATION,
