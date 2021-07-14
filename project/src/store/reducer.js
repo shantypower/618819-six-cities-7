@@ -13,11 +13,17 @@ const initialState = {
   offers: [],
   currentOffer: null,
   areReviewsLoaded: false,
+  areLoadedOffersNearby: false,
   city: DEFAULT_CITY,
   activeSortType: DEFAULT_SORT_TYPE,
   authorizationStatus: AuthorizationStatus.UNKNOWN,
   isDataLoaded: false,
   isOfferLoaded: false,
+  hasPostedComment: {
+    hasPosted: true,
+    comment: '',
+    rating: 0,
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -83,6 +89,20 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         offersNearby: action.payload,
+      };
+    case ActionType.SET_ARE_LOADED_OFFERS_NEARBY:
+      return {
+        ...state,
+        areLoadedOffersNearby: action.payload,
+      };
+    case ActionType.SET_HAS_POSTED_COMMENT:
+      return {
+        ...state,
+        hasPostedComment: {
+          hasPosted: action.payload.hasPosted,
+          comment: action.payload.comment,
+          rating: action.payload.rating,
+        },
       };
     case ActionType.REDIRECT_TO_ROUTE:
       return {

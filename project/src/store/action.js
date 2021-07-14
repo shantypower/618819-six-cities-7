@@ -10,6 +10,8 @@ export const ActionType = {
   LOAD_OFFERS_NEARBY: 'offers/loadOffersNearby',
   SET_ARE_REVIEWS_LOADED: 'offers/setAreReviewsLoaded',
   SET_IS_OFFER_LOADED: 'offers/setIsOfferLoaded',
+  SET_ARE_LOADED_OFFERS_NEARBY: 'offers/setAreLoadedOffersNearby',
+  SET_HAS_POSTED_COMMENT: 'comments/setHasPostedComment',
   REDIRECT_TO_ROUTE: 'cities/redirectToRoute',
 };
 
@@ -37,6 +39,14 @@ export const ActionCreator = {
   setOfferLoadingStatus: (isLoaded) => ({
     type: ActionType.SET_IS_OFFER_LOADED,
     payload: isLoaded,
+  }),
+  setAreLoadedOffersNearby: (areLoaded) => ({
+    type: ActionType.SET_ARE_LOADED_OFFERS_NEARBY,
+    payload: areLoaded,
+  }),
+  setHasPostedComment: (hasPosted) => ({
+    type: ActionType.SET_HAS_POSTED_COMMENT,
+    payload: hasPosted,
   }),
   requireAuthorization: (status) => ({
     type: ActionType.REQUIRED_AUTHORIZATION,

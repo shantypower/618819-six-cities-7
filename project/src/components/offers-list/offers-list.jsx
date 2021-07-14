@@ -8,7 +8,6 @@ import {getSortedOffers} from '../../utils/common';
 
 function OffersList(props) {
   const { offers, type, offerImageSettings, city, setCity, authorizationStatus, activeSortType, setActiveOfferId = () => {}} = props;
-
   const handleClick = (evt) => {
     const {textContent} = evt.target;
     if (city === textContent) {

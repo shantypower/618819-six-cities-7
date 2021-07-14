@@ -6,16 +6,16 @@ import CommentForm from '../../components/comment-form/comment-form';
 import ReviewListItem from '../../components/rewiew-list-item/review-list-item';
 import GoodsList from '../../components/goods-list/goods-list';
 import OffersList from '../../components/offers-list/offers-list';
-import offerListItemProp from '../../components/offer-list-item/offer-list-item.prop';
+//import offerListItemProp from '../../components/offer-list-item/offer-list-item.prop';
 import Map from '../../components/map/map';
 import Spinner from '../../components/spinner/spinner';
 import { OfferTypeSettings, OfferImageSettings, ListSettings, AuthorizationStatus } from '../../const';
 import { useParams } from 'react-router-dom';
-import {getReviews, getOffer} from '../../store/api-actions';
+import {getReviews, getOffer, getNearby} from '../../store/api-actions';
 import {connect} from 'react-redux';
 
 // eslint-disable-next-line react/prop-types
-function OfferPage({offers, currentOffer, reviews, authorizationStatus, onLoad, isOfferLoaded}) {
+function OfferPage({offersNearby, currentOffer, reviews, authorizationStatus, onLoad, isOfferLoaded, areLoadedOffersNearby, activeSortType}) {
 
   const {id} = useParams();
 
@@ -23,7 +23,7 @@ function OfferPage({offers, currentOffer, reviews, authorizationStatus, onLoad, 
     onLoad(id);
   }, [id, onLoad]);
 
-  if (!isOfferLoaded) {
+  if (!isOfferLoaded || !areLoadedOffersNearby) {
     return (
       <Spinner />
     );
@@ -133,14 +133,14 @@ function OfferPage({offers, currentOffer, reviews, authorizationStatus, onLoad, 
             </div>
           </div>
           <section className="property__map map">
-            <Map offers={offers} city={currentOffer.city}/>
+            <Map offers={[...offersNearby, currentOffer]} city={currentOffer.city}/>
           </section>
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <OffersList offers = {offers} offerImageSettings={OfferImageSettings} type={OfferTypeSettings.NEARBY}/>
+              <OffersList offers = {offersNearby} activeSortType={activeSortType} offerImageSettings={OfferImageSettings} type={OfferTypeSettings.NEARBY}/>
             </div>
           </section>
         </div>
@@ -150,23 +150,26 @@ function OfferPage({offers, currentOffer, reviews, authorizationStatus, onLoad, 
 }
 
 OfferPage.propTypes = {
-  offers: offerListItemProp,
+  //offers: offerListItemProp,
   images: PropTypes.arrayOf(string),
   onLoad: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   reviews: state.reviews.slice().splice(0, ListSettings.offersQuantity),
+  offersNearby: state.offersNearby,
   currentOffer: state.currentOffer,
   areReviewsLoaded: state.areReviewsLoaded,
   isOfferLoaded: state.isOfferLoaded,
+  areLoadedOffersNearby: state.areLoadedOffersNearby,
+  activeSortType: state.activeSortType,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onLoad(id) {
     dispatch(getOffer(id));
-    //dispatch(getNearby(id));
     dispatch(getReviews(id));
+    dispatch(getNearby(id));
   },
 });
 

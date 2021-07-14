@@ -10,6 +10,8 @@ export const Routes = {
   NOT_FOUND: '/offer/',
 };
 
+export const RESPONSE_SUCCESS = 200;
+
 export const AuthorizationStatus = {
   AUTH: 'AUTH',
   NO_AUTH: 'NO_AUTH',
