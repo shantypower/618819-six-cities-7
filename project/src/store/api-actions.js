@@ -1,5 +1,5 @@
 import {ActionCreator} from './action';
-import {AuthorizationStatus, APIRoute, Routes, RESPONSE_SUCCESS} from '../const';
+import {AuthorizationStatus, APIRoute, Routes, ResponceCodes} from '../const';
 import {adaptOffer, adaptReviewData, adaptUserData} from '../adapter/adapter';
 
 export const getOffers = () => (dispatch, _getState, api) => (
@@ -14,9 +14,16 @@ export const getOffers = () => (dispatch, _getState, api) => (
 export const getOffer = (id) => (dispatch, _getState, api) => {
   dispatch(ActionCreator.setOfferLoadingStatus(false));
   api.get(`/hotels/${id}`)
-    .then(({data}) => {
+    .then((response) => {
+      const {status, data } = response;
       const offer = adaptOffer(data);
-      dispatch(ActionCreator.loadOffer(offer));
+      if ((status === ResponceCodes.NOT_FOUND) || (status === 400)) {
+        dispatch(ActionCreator.offerIsFound(false));
+        dispatch(ActionCreator.redirectToRoute(Routes.NOT_FOUND));
+      } else {
+        dispatch(ActionCreator.offerIsFound(true));
+        dispatch(ActionCreator.loadOffer(offer));
+      }
     })
     .then(() => dispatch(ActionCreator.setOfferLoadingStatus(true)))
     .catch(() => {
@@ -51,7 +58,7 @@ export const sendComment = ({id, comment, rating}) => (dispatch, _getState, api)
   return api.post(`/comments/${id}`, {comment, rating})
     .then((response) => {
       const { status, data } = response;
-      if (status !== RESPONSE_SUCCESS) {
+      if (status !== ResponceCodes.SUCCESS) {
         dispatch(ActionCreator.setHasPostedComment({hasPosted: false, comment: comment, rating: rating}));
       } else {
         const comments = data.map(adaptReviewData);

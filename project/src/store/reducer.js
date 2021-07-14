@@ -19,6 +19,7 @@ const initialState = {
   authorizationStatus: AuthorizationStatus.UNKNOWN,
   isDataLoaded: false,
   isOfferLoaded: false,
+  isExist: false,
   hasPostedComment: {
     hasPosted: true,
     comment: '',
@@ -108,6 +109,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         url: action.payload,
+      };
+    case ActionType.OFFER_IS_FOUND:
+      return {
+        ...state,
+        isExist: action.payload,
       };
     default:
       return state;

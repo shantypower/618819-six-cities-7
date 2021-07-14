@@ -9,25 +9,30 @@ import OffersList from '../../components/offers-list/offers-list';
 //import offerListItemProp from '../../components/offer-list-item/offer-list-item.prop';
 import Map from '../../components/map/map';
 import Spinner from '../../components/spinner/spinner';
-import { OfferTypeSettings, OfferImageSettings, ListSettings, AuthorizationStatus } from '../../const';
-import { useParams } from 'react-router-dom';
+import { OfferTypeSettings, OfferImageSettings, ListSettings, AuthorizationStatus} from '../../const';
+import { useParams} from 'react-router-dom';
 import {getReviews, getOffer, getNearby} from '../../store/api-actions';
 import {connect} from 'react-redux';
+//import { useHistory } from 'react-router-dom';
 
-// eslint-disable-next-line react/prop-types
-function OfferPage({offersNearby, currentOffer, reviews, authorizationStatus, onLoad, isOfferLoaded, areLoadedOffersNearby, activeSortType}) {
-
+function OfferPage({isExist, offersNearby, currentOffer, reviews, authorizationStatus, onLoad, isOfferLoaded, areLoadedOffersNearby, activeSortType}) {
+  //const history = useHistory();
   const {id} = useParams();
 
   useEffect(() => {
     onLoad(id);
   }, [id, onLoad]);
 
+
   if (!isOfferLoaded || !areLoadedOffersNearby) {
     return (
       <Spinner />
     );
   }
+
+  /* if (!isExist) {
+    history.push(Routes.NOT_FOUND);
+  } */
 
   return (
     <div className="page">
@@ -163,6 +168,7 @@ const mapStateToProps = (state) => ({
   isOfferLoaded: state.isOfferLoaded,
   areLoadedOffersNearby: state.areLoadedOffersNearby,
   activeSortType: state.activeSortType,
+  isExist: state.isExist,
 });
 
 const mapDispatchToProps = (dispatch) => ({

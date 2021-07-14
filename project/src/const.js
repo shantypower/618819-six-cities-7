@@ -7,10 +7,15 @@ export const Routes = {
   ROOT: '/',
   FAVORITES: '/favorites',
   OFFER: '/offer/:id',
-  NOT_FOUND: '/offer/',
+  NOT_FOUND: '/notFound',
 };
 
 export const RESPONSE_SUCCESS = 200;
+
+export const ResponceCodes = {
+  SUCCESS: 200,
+  NOT_FOUND: 404,
+};
 
 export const AuthorizationStatus = {
   AUTH: 'AUTH',
