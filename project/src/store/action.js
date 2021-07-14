@@ -76,4 +76,8 @@ export const ActionCreator = {
     type: ActionType.OFFER_IS_FOUND,
     payload: isExist,
   }),
+  loadComments: (comments) => ({
+    type: ActionType.LOAD_COMMENTS,
+    payload: comments,
+  }),
 };

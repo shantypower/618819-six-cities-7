@@ -9,6 +9,7 @@ import OffersList from '../../components/offers-list/offers-list';
 //import offerListItemProp from '../../components/offer-list-item/offer-list-item.prop';
 import Map from '../../components/map/map';
 import Spinner from '../../components/spinner/spinner';
+// eslint-disable-next-line no-unused-vars
 import { OfferTypeSettings, OfferImageSettings, ListSettings, AuthorizationStatus} from '../../const';
 import { useParams} from 'react-router-dom';
 import {getReviews, getOffer, getNearby} from '../../store/api-actions';
@@ -130,10 +131,7 @@ function OfferPage({isExist, offersNearby, currentOffer, reviews, authorizationS
                     />
                   ))}
                 </ul>
-                {
-                  authorizationStatus === AuthorizationStatus.AUTH
-                && <CommentForm offerId={id}/>
-                }
+                <CommentForm offerId={id}/>
               </section>
             </div>
           </div>

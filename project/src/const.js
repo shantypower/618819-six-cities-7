@@ -87,6 +87,14 @@ export const DEFAULT_CITY = 'Paris';
 
 export const DEFAULT_SORT_TYPE = SortTypes.POPULAR;
 
+export const MAX_ROOMS_PER_PAGE = 4;
+
+export const MIN_REVIEW_LENGTH = 50;
+
+export const MAX_REVIEW_LENGTH = 300;
+
+export const MAX_REVIEWS_COUNT = 10;
+
 export const LOCATIONS = [
   {
     name: 'Paris',
