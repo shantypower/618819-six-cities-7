@@ -10,7 +10,6 @@ import OfferPage from '../../pages/offer-page/offer-page';
 import {Routes} from '../../const';
 import offerListItemProp from '../offer-list-item/offer-list-item.prop';
 import reviewListItemProp from '../rewiew-list-item/review-list-item.prop';
-import {createBrowserHistory} from 'history';
 import { connect } from 'react-redux';
 import Spinner from '../spinner/spinner';
 import {isCheckedAuth} from '../../utils/common';
@@ -26,25 +25,13 @@ function App(props) {
   }
 
   return (
-    <Router history = {createBrowserHistory()}>
       <Switch>
-        <Route exact path={Routes.LOGIN}>
-          <LoginPage/>
-        </Route>
-        <PrivateRoute exact path={Routes.FAVORITES}>
-          <FavoritesPage offers = {offers}/>
-        </PrivateRoute>
-        <Route exact path={Routes.ROOT}>
-          <MainPage offers = {offers} />
-        </Route>
-        <Route exact path={Routes.OFFER}>
-          <OfferPage reviews={reviews} offers={offers}/>
-        </Route>
-        <Route >
-          <NotFoundPage />
-        </Route>
+        <Route exact path={Routes.LOGIN} render={() =><LoginPage/>}/>
+        <PrivateRoute exact  path={Routes.FAVORITES}  render={() => <FavoritesPage offers = {offers}/>}/>
+        <Route exact path={Routes.ROOT} render={() => <MainPage offers = {offers} />}/>
+        <Route exact path={Routes.OFFER} render={() => <OfferPage reviews={reviews} offers={offers}/>}/>
+        <Route render={() => <NotFoundPage />}/>
       </Switch>
-    </Router>
   );
 }
 
