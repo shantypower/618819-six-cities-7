@@ -13,7 +13,6 @@ export const ActionType = {
   SET_ARE_LOADED_OFFERS_NEARBY: 'offers/setAreLoadedOffersNearby',
   SET_HAS_POSTED_COMMENT: 'comments/setHasPostedComment',
   REDIRECT_TO_ROUTE: 'cities/redirectToRoute',
-  OFFER_IS_FOUND: 'offer/isFound',
 };
 
 export const ActionCreator = {
@@ -71,10 +70,6 @@ export const ActionCreator = {
   redirectToRoute: (url) => ({
     type: ActionType.REDIRECT_TO_ROUTE,
     payload: url,
-  }),
-  offerIsFound: (isExist) => ({
-    type: ActionType.OFFER_IS_FOUND,
-    payload: isExist,
   }),
   loadComments: (comments) => ({
     type: ActionType.LOAD_COMMENTS,

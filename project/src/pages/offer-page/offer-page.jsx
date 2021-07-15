@@ -16,7 +16,7 @@ import {getReviews, getOffer, getNearby} from '../../store/api-actions';
 import {connect} from 'react-redux';
 //import { useHistory } from 'react-router-dom';
 
-function OfferPage({isExist, offersNearby, currentOffer, reviews, authorizationStatus, onLoad, isOfferLoaded, areLoadedOffersNearby, activeSortType}) {
+function OfferPage({offersNearby, currentOffer, reviews, authorizationStatus, onLoad, isOfferLoaded, areLoadedOffersNearby, activeSortType}) {
   //const history = useHistory();
   const {id} = useParams();
 
@@ -30,10 +30,6 @@ function OfferPage({isExist, offersNearby, currentOffer, reviews, authorizationS
       <Spinner />
     );
   }
-
-  /* if (!isExist) {
-    history.push(Routes.NOT_FOUND);
-  } */
 
   return (
     <div className="page">
@@ -166,7 +162,6 @@ const mapStateToProps = (state) => ({
   isOfferLoaded: state.isOfferLoaded,
   areLoadedOffersNearby: state.areLoadedOffersNearby,
   activeSortType: state.activeSortType,
-  isExist: state.isExist,
 });
 
 const mapDispatchToProps = (dispatch) => ({
