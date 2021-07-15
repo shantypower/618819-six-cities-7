@@ -10,20 +10,19 @@ import OffersList from '../../components/offers-list/offers-list';
 import Map from '../../components/map/map';
 import Spinner from '../../components/spinner/spinner';
 // eslint-disable-next-line no-unused-vars
-import { OfferTypeSettings, OfferImageSettings, ListSettings, AuthorizationStatus} from '../../const';
+import { OfferTypeSettings, OfferImageSettings, ListSettings, AuthorizationStatus, MAX_ROOMS_PER_PAGE, MAX_REVIEWS_COUNT} from '../../const';
 import { useParams} from 'react-router-dom';
 import {getReviews, getOffer, getNearby} from '../../store/api-actions';
 import {connect} from 'react-redux';
 //import { useHistory } from 'react-router-dom';
 
-function OfferPage({offersNearby, currentOffer, reviews, authorizationStatus, onLoad, isOfferLoaded, areLoadedOffersNearby, activeSortType}) {
+function OfferPage({areReviewsLoaded, offersNearby, currentOffer, reviews, authorizationStatus, onLoad, isOfferLoaded, areLoadedOffersNearby, activeSortType, hasPostedComment}) {
   //const history = useHistory();
   const {id} = useParams();
 
   useEffect(() => {
     onLoad(id);
   }, [id, onLoad]);
-
 
   if (!isOfferLoaded || !areLoadedOffersNearby) {
     return (
@@ -140,7 +139,7 @@ function OfferPage({offersNearby, currentOffer, reviews, authorizationStatus, on
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <OffersList offers = {offersNearby} activeSortType={activeSortType} offerImageSettings={OfferImageSettings} type={OfferTypeSettings.NEARBY}/>
+              <OffersList offers = {offersNearby.slice().splice(0, MAX_ROOMS_PER_PAGE)} activeSortType={activeSortType} offerImageSettings={OfferImageSettings} type={OfferTypeSettings.NEARBY}/>
             </div>
           </section>
         </div>
@@ -156,7 +155,7 @@ OfferPage.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  reviews: state.reviews.slice().splice(0, ListSettings.offersQuantity),
+  reviews: state.reviews.slice().splice(0, MAX_REVIEWS_COUNT),
   offersNearby: state.offersNearby,
   currentOffer: state.currentOffer,
   areReviewsLoaded: state.areReviewsLoaded,
@@ -164,6 +163,7 @@ const mapStateToProps = (state) => ({
   areLoadedOffersNearby: state.areLoadedOffersNearby,
   activeSortType: state.activeSortType,
   authorizationStatus: state.authorizationStatus,
+  hasPostedComment: state.hasPostedComment,
 });
 
 const mapDispatchToProps = (dispatch) => ({

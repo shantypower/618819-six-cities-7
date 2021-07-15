@@ -20,7 +20,7 @@ const initialState = {
   isDataLoaded: false,
   isOfferLoaded: false,
   hasPostedComment: {
-    hasPosted: true,
+    hasPosted: false,
     comment: '',
     rating: 0,
   },

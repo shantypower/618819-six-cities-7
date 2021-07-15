@@ -60,6 +60,7 @@ export const sendComment = ({id, comment, rating}) => (dispatch, _getState, api)
         dispatch(ActionCreator.setHasPostedComment({hasPosted: false, comment: comment, rating: rating}));
       } else {
         const comments = data.map(adaptReviewData);
+        dispatch(ActionCreator.setHasPostedComment({hasPosted: true, comment: comment, rating: rating}));
         dispatch(ActionCreator.loadComments(comments));
         dispatch(ActionCreator.setAreReviewsLoaded(true));
       }
