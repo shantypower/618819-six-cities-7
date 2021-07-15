@@ -18,10 +18,8 @@ export const getOffer = (id) => (dispatch, _getState, api) => {
       const {status, data } = response;
       const offer = adaptOffer(data);
       if ((status === ResponceCodes.NOT_FOUND) || (status === 400)) {
-        dispatch(ActionCreator.offerIsFound(false));
         dispatch(ActionCreator.redirectToRoute(Routes.NOT_FOUND));
       } else {
-        dispatch(ActionCreator.offerIsFound(true));
         dispatch(ActionCreator.loadOffer(offer));
       }
     })

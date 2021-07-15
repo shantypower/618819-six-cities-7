@@ -127,7 +127,8 @@ function OfferPage({offersNearby, currentOffer, reviews, authorizationStatus, on
                     />
                   ))}
                 </ul>
-                <CommentForm offerId={id}/>
+                {authorizationStatus === AuthorizationStatus.AUTH &&
+                  <CommentForm offerId={id}/>}
               </section>
             </div>
           </div>
@@ -162,6 +163,7 @@ const mapStateToProps = (state) => ({
   isOfferLoaded: state.isOfferLoaded,
   areLoadedOffersNearby: state.areLoadedOffersNearby,
   activeSortType: state.activeSortType,
+  authorizationStatus: state.authorizationStatus,
 });
 
 const mapDispatchToProps = (dispatch) => ({
