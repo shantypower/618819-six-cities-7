@@ -2,18 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import OfferListItem from '../offer-list-item/offer-list-item';
 import offerListItemProp from '../offer-list-item/offer-list-item.prop';
-import { connect } from 'react-redux';
-import {ActionCreator} from '../../store/action';
+import {useDispatch, useSelector} from 'react-redux';
 import {getSortedOffers} from '../../utils/common';
+import {setCity} from '../../store/action';
+import {getCity} from '../../store/ui/selectors';
 
 function OffersList(props) {
-  const { offers, type, offerImageSettings, city, setCity, authorizationStatus, activeSortType, setActiveOfferId = () => {}} = props;
+  const { offers, type, offerImageSettings, authorizationStatus, activeSortType, setActiveOfferId = () => {}} = props;
+
+  const dispatch = useDispatch();
+  const city = useSelector(getCity);
+
   const handleClick = (evt) => {
     const {textContent} = evt.target;
     if (city === textContent) {
       return;
     }
-    setCity(textContent);
+    dispatch(setCity(city));
   };
 
   return (
@@ -41,7 +46,7 @@ function OffersList(props) {
 
 OffersList.propTypes = {
   offers: PropTypes.arrayOf(
-    offerListItemProp.isRequired,
+    offerListItemProp,
   ),
   type: PropTypes.shape({
     articleClass: PropTypes.string,
@@ -50,22 +55,8 @@ OffersList.propTypes = {
   }),
   offerImageSettings: PropTypes.object.isRequired,
   setActiveOfferId: PropTypes.func.isRequired,
-  city: PropTypes.string.isRequired,
-  setCity: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   activeSortType: PropTypes.string.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  setCity(city) {
-    dispatch(ActionCreator.setCity(city));
-  },
-});
-
-const mapStateToProps = ({ city }) => ({
-  city: city,
-});
-
-export {OffersList};
-
-export default connect(mapStateToProps, mapDispatchToProps)(OffersList);
+export default OffersList;
