@@ -3,20 +3,27 @@ import {Link} from 'react-router-dom';
 import offerListItemProp from '../offer-list-item/offer-list-item.prop';
 import PropTypes from 'prop-types';
 import {AuthorizationStatus, Routes} from '../../const';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import {addOfferToFavorites} from '../../store/api-actions';
 import {getAuthorizationStatus} from '../../store/user/selectors';
+import {getCurrentOffer} from '../../store/data/selectors';
 
 function OfferListItem(props) {
 
   const {offer, type, offerImageSettings, onMouseEnter, onMouseLeave} = props;
   const { isPremium, previewImage, price, title, isFavorite, rating, id } = offer;
+
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  const offerId = useSelector(getCurrentOffer);
   const authorizationStatus = useSelector(getAuthorizationStatus);
   const handleClick = () => {
     if (authorizationStatus !== AuthorizationStatus.AUTH) {
       history.push(Routes.LOGIN);
     }
+    dispatch(addOfferToFavorites({ offerId, status: Number(!isFavorite)}));
   };
 
   return (

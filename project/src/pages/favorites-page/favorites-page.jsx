@@ -1,15 +1,22 @@
-import React from 'react';
-import {useSelector} from 'react-redux';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import Header from '../../components/header/header';
 import OffersList from '../../components/offers-list/offers-list';
 import Logo from '../../components/logo/logo';
-import { OfferImageSettings, OfferTypeSettings } from '../../const';
-import { LogoSettings } from '../../const';
-import {getOffers} from '../../store/data/selectors';
+import {OfferImageSettings, OfferTypeSettings} from '../../const';
+import {LogoSettings}  from '../../const';
+import {getFavoriteOffers} from '../../store/data/selectors';
+import {fetchFavoriteOffers} from '../../store/api-actions';
 
 function FavoritesPage() {
 
-  const offers = useSelector(getOffers);
+  const offers = useSelector(getFavoriteOffers);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchFavoriteOffers());
+  }, [dispatch]);
 
   return (
     <div className="page">

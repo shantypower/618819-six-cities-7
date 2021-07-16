@@ -27,6 +27,9 @@ export const APIRoute = {
   OFFERS: '/hotels',
   LOGIN: '/login',
   LOGOUT: '/logout',
+  REVIEWS: '/comments/',
+  NEARBY: '/nearby',
+  FAVORITES: '/favorite/',
 };
 
 export const OfferTypeSettings = {
