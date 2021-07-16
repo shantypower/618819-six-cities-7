@@ -3,13 +3,16 @@ import {Link} from 'react-router-dom';
 import offerListItemProp from '../offer-list-item/offer-list-item.prop';
 import PropTypes from 'prop-types';
 import {AuthorizationStatus, Routes} from '../../const';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import {getAuthorizationStatus} from '../../store/user/selectors';
 
 function OfferListItem(props) {
 
-  const {offer, type, offerImageSettings, onMouseEnter, onMouseLeave, authorizationStatus} = props;
+  const {offer, type, offerImageSettings, onMouseEnter, onMouseLeave} = props;
   const { isPremium, previewImage, price, title, isFavorite, rating, id } = offer;
   const history = useHistory();
+  const authorizationStatus = useSelector(getAuthorizationStatus);
   const handleClick = () => {
     if (authorizationStatus !== AuthorizationStatus.AUTH) {
       history.push(Routes.LOGIN);
@@ -66,7 +69,6 @@ function OfferListItem(props) {
 }
 
 OfferListItem.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
   onMouseEnter: PropTypes.func,
   onMouseLeave: PropTypes.func,
   offer: offerListItemProp,

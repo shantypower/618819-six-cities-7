@@ -6,8 +6,8 @@ import GoodsList from '../../components/goods-list/goods-list';
 import OffersList from '../../components/offers-list/offers-list';
 import Map from '../../components/map/map';
 import Spinner from '../../components/spinner/spinner';
-import { OfferTypeSettings, OfferImageSettings, AuthorizationStatus, MAX_ROOMS_PER_PAGE} from '../../const';
-import { useParams} from 'react-router-dom';
+import {OfferTypeSettings, OfferImageSettings, AuthorizationStatus, MAX_ROOMS_PER_PAGE} from '../../const';
+import {useParams} from 'react-router-dom';
 import {getReviews, getOffer, getNearby} from '../../store/api-actions';
 import {useDispatch, useSelector} from 'react-redux';
 import {getAuthorizationStatus} from '../../store/user/selectors';
@@ -145,7 +145,7 @@ function OfferPage() {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <OffersList offers = {offersNearby.slice().splice(0, MAX_ROOMS_PER_PAGE)} offerImageSettings={OfferImageSettings} type={OfferTypeSettings.NEARBY}/>
+              <OffersList offers = {offersNearby.slice().splice(0, MAX_ROOMS_PER_PAGE)} offerImageSettings={OfferImageSettings.FAVORITES} type={OfferTypeSettings.NEARBY}/>
             </div>
           </section>
         </div>

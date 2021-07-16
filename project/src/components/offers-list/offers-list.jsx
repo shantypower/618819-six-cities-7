@@ -5,13 +5,14 @@ import offerListItemProp from '../offer-list-item/offer-list-item.prop';
 import {useDispatch, useSelector} from 'react-redux';
 import {getSortedOffers} from '../../utils/common';
 import {setCity} from '../../store/action';
-import {getCity} from '../../store/ui/selectors';
+import {getCity, getActiveSortType} from '../../store/ui/selectors';
 
 function OffersList(props) {
-  const { offers, type, offerImageSettings, authorizationStatus, activeSortType, setActiveOfferId = () => {}} = props;
+  const { offers, type, offerImageSettings, setActiveOfferId = () => {}} = props;
 
   const dispatch = useDispatch();
   const city = useSelector(getCity);
+  const activeSortType = useSelector(getActiveSortType);
 
   const handleClick = (evt) => {
     const {textContent} = evt.target;
@@ -36,7 +37,6 @@ function OffersList(props) {
           offerImageSettings={offerImageSettings}
           onClick={handleClick}
           setActiveOfferId={setActiveOfferId}
-          authorizationStatus={authorizationStatus}
         />
       ))}
     </>
@@ -54,9 +54,7 @@ OffersList.propTypes = {
     infoContainerClass: PropTypes.string,
   }),
   offerImageSettings: PropTypes.object.isRequired,
-  setActiveOfferId: PropTypes.func.isRequired,
-  authorizationStatus: PropTypes.string.isRequired,
-  activeSortType: PropTypes.string.isRequired,
+  setActiveOfferId: PropTypes.func,
 };
 
 export default OffersList;
