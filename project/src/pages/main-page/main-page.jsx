@@ -8,12 +8,12 @@ import {LOCATIONS} from '../../const';
 import { useSelector } from 'react-redux';
 import { OfferTypeSettings, OfferImageSettings } from '../../const';
 import { getCity, getActiveSortType } from '../../store/ui/selectors';
-import { getOffers } from '../../store/data/selectors';
+import { getCurrentOffers } from '../../store/data/selectors';
 import {getAuthorizationStatus} from '../../store/user/selectors';
 
 function MainPage() {
 
-  const offers = useSelector(getOffers);
+  const currentOffers = useSelector(getCurrentOffers);
   const city = useSelector(getCity);
   const activeSortType = useSelector(getActiveSortType);
   const authorizationStatus = useSelector(getAuthorizationStatus);
@@ -35,14 +35,14 @@ function MainPage() {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{`${offers.length} places to stay in ${city}`}</b>
+              <b className="places__found">{`${currentOffers.length} places to stay in ${city}`}</b>
               <LocationsSortingForm activeSortType={activeSortType} />
               <div className="cities__places-list places__list tabs__content">
-                <OffersList offers = {offers} activeSortType={activeSortType} setActiveOfferId={setActiveOfferId} offerImageSettings={OfferImageSettings.MAIN} type={OfferTypeSettings.MAIN} authorizationStatus={authorizationStatus}/>
+                <OffersList offers = {currentOffers} activeSortType={activeSortType} setActiveOfferId={setActiveOfferId} offerImageSettings={OfferImageSettings.MAIN} type={OfferTypeSettings.MAIN} authorizationStatus={authorizationStatus}/>
               </div>
             </section>
             <div className="cities__right-section">
-              <Map offers={offers} city={LOCATIONS.find(({ name }) => name === city)} activeOfferId={activeOfferId}/>
+              <Map offers={currentOffers} city={LOCATIONS.find(({ name }) => name === city)} activeOfferId={activeOfferId}/>
             </div>
           </div>
         </div>
