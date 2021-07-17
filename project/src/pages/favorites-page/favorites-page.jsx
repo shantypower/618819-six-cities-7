@@ -7,6 +7,7 @@ import {OfferImageSettings, OfferTypeSettings} from '../../const';
 import {LogoSettings}  from '../../const';
 import {getFavoriteOffers} from '../../store/data/selectors';
 import {fetchFavoriteOffers} from '../../store/api-actions';
+import MainEmpty from '../main-empty/main-empty';
 
 function FavoritesPage() {
 
@@ -17,6 +18,10 @@ function FavoritesPage() {
   useEffect(() => {
     dispatch(fetchFavoriteOffers());
   }, [dispatch]);
+
+  if (!offers.length) {
+    return <MainEmpty/>;
+  }
 
   return (
     <div className="page">
