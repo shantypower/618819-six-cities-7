@@ -5,19 +5,25 @@ import OffersList from '../../components/offers-list/offers-list';
 import Logo from '../../components/logo/logo';
 import {OfferImageSettings, OfferTypeSettings} from '../../const';
 import {LogoSettings}  from '../../const';
-import {getFavoriteOffers} from '../../store/data/selectors';
+import {getFavoriteOffers, getFavoriteOffersLoadingStatus} from '../../store/data/selectors';
 import {fetchFavoriteOffers} from '../../store/api-actions';
 import MainEmpty from '../main-empty/main-empty';
+import Spinner from '../../components/spinner/spinner';
 
 function FavoritesPage() {
 
   const offers = useSelector(getFavoriteOffers);
+  const areFavoriteOffersLoaded = useSelector(getFavoriteOffersLoadingStatus);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchFavoriteOffers());
   }, [dispatch]);
+
+  if (!areFavoriteOffersLoaded) {
+    return <Spinner/>;
+  }
 
   if (!offers.length) {
     return <MainEmpty/>;
