@@ -51,6 +51,24 @@ export const OfferTypeSettings = {
   },
 };
 
+export const ButtonTypes = {
+  LIST_ITEM: 'LIST_ITEM',
+  LIST_ITEM_DETAIL: 'LIST_ITEM_DETAIL',
+};
+
+export const FAVORITE_BUTTON_SETTINGS = {
+  'LIST_ITEM': {
+    CLASS: 'place-card',
+    WIDTH: 18,
+    HEIGHT: 19,
+  },
+  'LIST_ITEM_DETAIL': {
+    CLASS: 'property',
+    WIDTH: 31,
+    HEIGHT: 33,
+  },
+};
+
 export const LogoSettings = {
   HEADER: {
     width: 81,

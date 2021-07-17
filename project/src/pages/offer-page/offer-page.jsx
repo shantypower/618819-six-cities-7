@@ -6,7 +6,8 @@ import GoodsList from '../../components/goods-list/goods-list';
 import OffersList from '../../components/offers-list/offers-list';
 import Map from '../../components/map/map';
 import Spinner from '../../components/spinner/spinner';
-import {OfferTypeSettings, OfferImageSettings, AuthorizationStatus, MAX_ROOMS_PER_PAGE} from '../../const';
+import AddToFavoritesButton from '../../components/add-to-favorites-button/add-to-favorites-button';
+import {OfferTypeSettings, OfferImageSettings, AuthorizationStatus, MAX_ROOMS_PER_PAGE, ButtonTypes} from '../../const';
 import {useParams} from 'react-router-dom';
 import {getReviews, getOffer, getNearby} from '../../store/api-actions';
 import {useDispatch, useSelector} from 'react-redux';
@@ -21,6 +22,7 @@ function OfferPage() {
   const areLoadedOffersNearby = useSelector(getAreLoadedOffersNearbyStatus);
   const authorizationStatus = useSelector(getAuthorizationStatus);
   const reviews = useSelector(getReviewsSliced).slice().sort((firstComment, secondComment) => new Date(secondComment.date) - new Date(firstComment.date));
+
 
   const dispatch = useDispatch();
 
@@ -61,12 +63,7 @@ function OfferPage() {
                 <h1 className="property__name">
                   {currentOffer.title}
                 </h1>
-                <button className={`property__bookmark-button button ${currentOffer.isFavorite && 'property__bookmark-button--active'}`} type="button">
-                  <svg className="property__bookmark-icon" width="31" height="33">
-                    <use xlinkHref="#icon-bookmark"></use>
-                  </svg>
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
+                <AddToFavoritesButton offerId={id} isFavorite={currentOffer.isFavorite} buttonType={ButtonTypes.LIST_ITEM_DETAIL}/>
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
