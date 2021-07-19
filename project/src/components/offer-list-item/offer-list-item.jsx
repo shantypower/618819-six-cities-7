@@ -5,16 +5,12 @@ import PropTypes from 'prop-types';
 import {ButtonTypes} from '../../const';
 import AddToFavoritesButton from '../../components/add-to-favorites-button/add-to-favorites-button';
 import { useSelector } from 'react-redux';
-//import { useHistory } from 'react-router-dom';
-//import {addOfferToFavorites} from '../../store/api-actions';
 import {getAuthorizationStatus} from '../../store/user/selectors';
 
 function OfferListItem(props) {
 
   const {offer, type, offerImageSettings, onMouseEnter, onMouseLeave} = props;
   const { isPremium, previewImage, price, title, isFavorite, rating, id } = offer;
-
-  //const dispatch = useDispatch();
 
   const authorizationStatus = useSelector(getAuthorizationStatus);
 
@@ -39,7 +35,7 @@ function OfferListItem(props) {
             <b className='place-card__price-value'>&euro;{price}</b>
             <span className='place-card__price-text'>&#47;&nbsp;night</span>
           </div>
-          <AddToFavoritesButton offerId={id} isFavorite={isFavorite} buttonType={ButtonTypes.LIST_ITEM} authorizationStatus={authorizationStatus}/>
+          <AddToFavoritesButton offerId={+id} isFavorite={isFavorite} buttonType={ButtonTypes.LIST_ITEM} authorizationStatus={authorizationStatus}/>
         </div>
         <div className='place-card__rating rating'>
           <div className='place-card__stars rating__stars'>

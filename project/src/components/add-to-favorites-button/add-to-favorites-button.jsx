@@ -1,15 +1,16 @@
 import React from 'react';
-import PropTypes, {string} from 'prop-types';
+import PropTypes from 'prop-types';
 import {Routes, FAVORITE_BUTTON_SETTINGS, AuthorizationStatus} from '../../const';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {addOfferToFavorites} from '../../store/api-actions';
 import { useHistory } from 'react-router-dom';
+import {getAuthorizationStatus} from '../../store/user/selectors';
 
-
-function AddToFavoritesButton({ offerId, buttonType, isFavorite, authorizationStatus }) {
+function AddToFavoritesButton({ offerId, buttonType, isFavorite}) {
 
   const dispatch = useDispatch();
   const history = useHistory();
+  const authorizationStatus = useSelector(getAuthorizationStatus);
 
   const handleClick = () => {
     if (authorizationStatus !== AuthorizationStatus.AUTH) {
@@ -40,7 +41,6 @@ AddToFavoritesButton.propTypes = {
   offerId: PropTypes.number.isRequired,
   buttonType: PropTypes.string.isRequired,
   isFavorite: PropTypes.bool.isRequired,
-  authorizationStatus: string.isRequired,
 };
 
 export default AddToFavoritesButton;

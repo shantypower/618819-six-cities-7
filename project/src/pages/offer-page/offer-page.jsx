@@ -63,7 +63,7 @@ function OfferPage() {
                 <h1 className="property__name">
                   {currentOffer.title}
                 </h1>
-                <AddToFavoritesButton offerId={id} isFavorite={currentOffer.isFavorite} buttonType={ButtonTypes.LIST_ITEM_DETAIL}/>
+                <AddToFavoritesButton offerId={+id} isFavorite={currentOffer.isFavorite} buttonType={ButtonTypes.LIST_ITEM_DETAIL}/>
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">

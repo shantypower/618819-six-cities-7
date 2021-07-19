@@ -32,7 +32,9 @@ function FavoritesListItem({ favoritesByCity, city }) {
 }
 
 FavoritesListItem.propTypes = {
-  favoritesByCity: offerListItemProp,
+  favoritesByCity: PropTypes.arrayOf(
+    offerListItemProp,
+  ),
   city: PropTypes.string.isRequired,
 };
 
