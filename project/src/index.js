@@ -12,8 +12,9 @@ import rootReducer from './store/root-reducer';
 import {requireAuthorization} from './store/action';
 import {AuthorizationStatus} from './const';
 import {checkAuth, getOffers} from './store/api-actions';
-import {createBrowserHistory} from 'history';
 import {configureStore} from '@reduxjs/toolkit';
+import browserHistory from './browser-history';
+import {redirect} from "./store/middleware";
 
 const api = createAPI(
   () => store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH)),
@@ -26,10 +27,9 @@ const store = configureStore({
       thunk: {
         extraArgument: api,
       },
-    }),
+    }).concat(redirect),
 });
 
-const browserHistory = createBrowserHistory();
 
 store.dispatch(checkAuth());
 store.dispatch(getOffers());
