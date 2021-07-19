@@ -16,7 +16,7 @@ import {
   loadFavoriteOffers
 } from './action';
 
-import {AuthorizationStatus, APIRoute, Routes, ResponceCodes} from '../const';
+import {AuthorizationStatus, APIRoute, Routes, ResponseCodes} from '../const';
 import {adaptOffer, adaptReviewData, adaptUserData} from '../adapter/adapter';
 
 export const getOffers = () => (dispatch, _getState, api) => (
@@ -32,17 +32,15 @@ export const getOffer = (id) => (dispatch, _getState, api) => {
   dispatch(setOfferLoadingStatus(false));
   api.get(`/hotels/${id}`)
     .then((response) => {
-      const {status, data } = response;
+      const { data } = response;
       const offer = adaptOffer(data);
-      if ((status === ResponceCodes.NOT_FOUND) || (status === 400)) {
-        dispatch(redirectToRoute(Routes.NOT_FOUND));
-      } else {
-        dispatch(loadOffer(offer));
-      }
+      dispatch(loadOffer(offer));
     })
     .then(() => dispatch(setOfferLoadingStatus(true)))
-    .catch(() => {
-      dispatch(redirectToRoute(Routes.NOT_FOUND));
+    .catch((e) => {
+      if(e.response.status === ResponseCodes.NOT_FOUND) {
+        return dispatch(redirectToRoute(Routes.NOT_FOUND));
+      }
     });
 };
 
@@ -73,7 +71,7 @@ export const sendComment = ({id, comment, rating}) => (dispatch, _getState, api)
   return api.post(`/comments/${id}`, {comment, rating})
     .then((response) => {
       const { status, data } = response;
-      if (status !== ResponceCodes.SUCCESS) {
+      if (status !== ResponseCodes.SUCCESS) {
         dispatch(setHasPostedComment({hasPosted: false, comment: comment, rating: rating}));
       } else {
         const comments = data.map(adaptReviewData);
