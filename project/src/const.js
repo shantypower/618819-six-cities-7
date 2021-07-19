@@ -12,7 +12,7 @@ export const Routes = {
 
 export const RESPONSE_SUCCESS = 200;
 
-export const ResponceCodes = {
+export const ResponseCodes = {
   SUCCESS: 200,
   NOT_FOUND: 404,
 };
