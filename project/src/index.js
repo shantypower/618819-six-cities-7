@@ -1,30 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app';
-import {createStore, applyMiddleware} from 'redux';
 import {Router as BrowserRouter} from 'react-router-dom';
-import thunk from 'redux-thunk';
 import {createAPI} from './services/api';
 import {Provider} from 'react-redux';
-import {composeWithDevTools} from 'redux-devtools-extension';
 import {reducer} from './store/reducer';
 import {ActionCreator} from './store/action';
 import {AuthorizationStatus} from './const';
 import {checkAuth, getOffers} from './store/api-actions';
-import {createBrowserHistory} from 'history';
+import browserHistory from './browser-history';
+import {redirect} from './store/middlewars/redirect';
+import {configureStore} from '@reduxjs/toolkit';
 
 const api = createAPI(
   () => store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)),
 );
 
-const store = createStore(
-  reducer,
-  composeWithDevTools(
-    applyMiddleware(thunk.withExtraArgument(api)),
-  ),
-);
-
-const browserHistory = createBrowserHistory();
+const store = configureStore({
+  reducer: reducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      thunk: {
+        extraArgument: api,
+      },
+    }).concat(redirect),
+});
 
 store.dispatch(checkAuth());
 store.dispatch(getOffers());

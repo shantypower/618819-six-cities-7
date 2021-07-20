@@ -1,6 +1,9 @@
 import {ActionCreator} from './action';
-import {AuthorizationStatus, APIRoute, Routes} from '../const';
-import {adaptOffer, adaptUserData} from '../adapter/adapter';
+import {AuthorizationStatus, APIRoute, Routes, ResponseCodes} from '../const';
+import {adaptOffer, adaptReviewData, adaptUserData} from '../adapter/adapter';
+import {createBrowserHistory} from 'history';
+
+const browserHistory = createBrowserHistory();
 
 export const getOffers = () => (dispatch, _getState, api) => (
   api.get(APIRoute.OFFERS)
@@ -11,10 +14,69 @@ export const getOffers = () => (dispatch, _getState, api) => (
     .then((offers) => dispatch(ActionCreator.loadOffers(offers)))
 );
 
+export const getOffer = (id) => (dispatch, _getState, api) => {
+  dispatch(ActionCreator.setOfferLoadingStatus(false));
+  api.get(`/hotels/${id}`)
+    .then((response) => {
+      const {data} = response;
+      const offer = adaptOffer(data);
+      dispatch(ActionCreator.loadOffer(offer));
+    })
+    .then(() => dispatch(ActionCreator.setOfferLoadingStatus(true)))
+    .catch((error) => {
+      if ((error.response.status === ResponseCodes.NOT_FOUND || error.response.status === ResponseCodes.BAD_REQUEST)) {
+        dispatch(ActionCreator.redirectToRoute(Routes.NOT_FOUND));
+      }
+      dispatch(ActionCreator.redirectToRoute(Routes.NOT_FOUND));
+      browserHistory.push(Routes.NOT_FOUND);
+    });
+};
+
+export const getReviews = (id) => (dispatch, _getState, api) => {
+  dispatch(ActionCreator.setAreReviewsLoaded(false));
+  api.get(`/comments/${id}`)
+    .then(({data}) => {
+      const reviews = data.map((review) => adaptReviewData(review));
+      dispatch(ActionCreator.loadReviews(reviews));
+    })
+    .catch(() => dispatch(ActionCreator.loadReviews([])))
+    .finally(() => dispatch(ActionCreator.setAreReviewsLoaded(true)));
+};
+
+export const getNearby = (id) => (dispatch, _getState, api) => {
+  dispatch(ActionCreator.setAreLoadedOffersNearby(false));
+  api.get(`/hotels/${id}/nearby`)
+    .then(({ data }) => {
+      const offers = data.map((offer) => adaptOffer(offer));
+      dispatch(ActionCreator.loadOffersNearby(offers));
+    })
+    .catch(() => dispatch(ActionCreator.loadOffersNearby([])))
+    .finally(() => dispatch(ActionCreator.setAreLoadedOffersNearby(true)));
+};
+
+export const sendComment = ({id, comment, rating}) => (dispatch, _getState, api) => {
+  dispatch(ActionCreator.setAreReviewsLoaded(false));
+  return api.post(`/comments/${id}`, {comment, rating})
+    .then((response) => {
+      const { status, data } = response;
+      if (status !== ResponseCodes.SUCCESS) {
+        dispatch(ActionCreator.setHasPostedComment({hasPosted: false, comment: comment, rating: rating}));
+      } else {
+        const comments = data.map(adaptReviewData);
+        dispatch(ActionCreator.setHasPostedComment({hasPosted: true, comment: comment, rating: rating}));
+        dispatch(ActionCreator.loadComments(comments));
+        dispatch(ActionCreator.setAreReviewsLoaded(true));
+      }
+    })
+    .catch(() => {
+    });
+};
+
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(APIRoute.LOGIN)
+    .then(({data}) => dispatch(ActionCreator.setUser(adaptUserData(data))))
     .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
-    .catch(() => {})
+    .catch(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)))
 );
 
 export const login = ({login: email, password}) => (dispatch, _getState, api) => (

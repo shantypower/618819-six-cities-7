@@ -1,5 +1,4 @@
 import {DEFAULT_CITY, DEFAULT_SORT_TYPE, AuthorizationStatus} from '../const';
-import reviews from '../mocks/reviews';
 import {ActionType} from './action';
 
 const initialState = {
@@ -10,12 +9,21 @@ const initialState = {
     isPro: false,
     name: '',
   },
-  reviews: reviews,
+  reviews: [],
   offers: [],
+  currentOffer: null,
+  areReviewsLoaded: false,
+  areLoadedOffersNearby: false,
   city: DEFAULT_CITY,
   activeSortType: DEFAULT_SORT_TYPE,
   authorizationStatus: AuthorizationStatus.UNKNOWN,
   isDataLoaded: false,
+  isOfferLoaded: false,
+  hasPostedComment: {
+    hasPosted: false,
+    comment: '',
+    rating: 0,
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -56,6 +64,45 @@ const reducer = (state = initialState, action) => {
         ...state,
         offers: action.payload,
         isDataLoaded: true,
+      };
+    case ActionType.LOAD_OFFER:
+      return {
+        ...state,
+        currentOffer: action.payload,
+      };
+    case ActionType.LOAD_REVIEWS:
+      return {
+        ...state,
+        reviews: action.payload,
+      };
+    case ActionType.SET_ARE_REVIEWS_LOADED:
+      return {
+        ...state,
+        areReviewsLoaded: action.payload,
+      };
+    case ActionType.SET_IS_OFFER_LOADED:
+      return {
+        ...state,
+        isOfferLoaded: action.payload,
+      };
+    case ActionType.LOAD_OFFERS_NEARBY:
+      return {
+        ...state,
+        offersNearby: action.payload,
+      };
+    case ActionType.SET_ARE_LOADED_OFFERS_NEARBY:
+      return {
+        ...state,
+        areLoadedOffersNearby: action.payload,
+      };
+    case ActionType.SET_HAS_POSTED_COMMENT:
+      return {
+        ...state,
+        hasPostedComment: {
+          hasPosted: action.payload.hasPosted,
+          comment: action.payload.comment,
+          rating: action.payload.rating,
+        },
       };
     case ActionType.REDIRECT_TO_ROUTE:
       return {
