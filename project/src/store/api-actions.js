@@ -13,7 +13,6 @@ import {
   setUser
 } from './action';
 import {AuthorizationStatus, APIRoute, Routes, ResponseCodes} from '../const';
-import {ActionCreator} from './action';
 import {adaptOffer, adaptReviewData, adaptUserData} from '../adapter/adapter';
 import {createBrowserHistory} from 'history';
 
@@ -36,7 +35,7 @@ export const getOffer = (id) => (dispatch, _getState, api) => {
       const offer = adaptOffer(data);
       dispatch(loadOffer(offer));
     })
-    .then(() => dispatch(ActionCreator.setOfferLoadingStatus(true)))
+    .then(() => dispatch(setOfferLoadingStatus(true)))
     .catch((error) => {
       if ((error.response.status === ResponseCodes.NOT_FOUND || error.response.status === ResponseCodes.BAD_REQUEST)) {
         dispatch(redirectToRoute(Routes.NOT_FOUND));
