@@ -10,11 +10,10 @@ export const Routes = {
   NOT_FOUND: '/notFound',
 };
 
-export const RESPONSE_SUCCESS = 200;
-
-export const ResponceCodes = {
+export const ResponseCodes = {
   SUCCESS: 200,
   NOT_FOUND: 404,
+  BAD_REQUEST: 400,
 };
 
 export const AuthorizationStatus = {
