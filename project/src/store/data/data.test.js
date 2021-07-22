@@ -14,7 +14,7 @@ const state = {
   areFavoriteOffersLoaded: false,
 };
 
-const offers =  [{
+const offers = [{
   'bedrooms': 3,
   'city': {
     'location': {
@@ -68,7 +68,7 @@ const offers =  [{
   },
   'id': 2,
   'images': ['img/apartment-01.jpg', 'img/apartment-02.jpg'],
-  'isFavorite': false,
+  'isFavorite': true,
   'is_premium': true,
   'location': {
     'latitude': 52.3909553943508,
@@ -84,7 +84,7 @@ const offers =  [{
 },
 ];
 
-const favoriteOffers =  [{
+const updatedOffers =  [{
   'bedrooms': 3,
   'city': {
     'location': {
@@ -153,6 +153,182 @@ const favoriteOffers =  [{
   'type': 'apartment',
 },
 ];
+
+const favoriteOffers = [{
+  'bedrooms': 2,
+  'city': {
+    'location': {
+      'latitude': 52.38333,
+      'longitude': 4.9,
+      'zoom': 10,
+    },
+    'name': 'Amsterdam',
+  },
+  'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+  'goods': ['Heating', 'Kitchen', 'Cable TV', 'Washing machine', 'Coffee machine', 'Dishwasher'],
+  'host': {
+    'avatar_url': 'img/avatar-angelina.jpg',
+    'id': 3,
+    'is_pro': true,
+    'name': 'Angelina',
+  },
+  'id': 2,
+  'images': ['img/apartment-01.jpg', 'img/apartment-02.jpg'],
+  'isFavorite': true,
+  'is_premium': true,
+  'location': {
+    'latitude': 52.3909553943508,
+    'longitude': 4.85309666406198,
+    'zoom': 8,
+  },
+  'max_adults': 4,
+  'preview_image': 'img/apartment-01.jpg',
+  'price': 180,
+  'rating': 4.8,
+  'title': 'Beautiful & luxurious studio at great location',
+  'type': 'apartment',
+},
+];
+
+const updatedFavoriteOffers = [{
+  'bedrooms': 3,
+  'city': {
+    'location': {
+      'latitude': 52.38333,
+      'longitude': 4.9,
+      'zoom': 10,
+    },
+    'name': 'Amsterdam',
+  },
+  'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+  'goods': ['Heating', 'Kitchen', 'Cable TV', 'Washing machine', 'Coffee machine', 'Dishwasher'],
+  'host': {
+    'avatar_url': 'img/avatar-angelina.jpg',
+    'id': 3,
+    'is_pro': true,
+    'name': 'Angelina',
+  },
+  'id': 1,
+  'images': ['img/apartment-01.jpg', 'img/apartment-02.jpg'],
+  'isFavorite': true,
+  'is_premium': false,
+  'location': {
+    'latitude': 52.3909553943508,
+    'longitude': 4.85309666406198,
+    'zoom': 8,
+  },
+  'max_adults': 4,
+  'preview_image': 'img/apartment-01.jpg',
+  'price': 120,
+  'rating': 4.8,
+  'title': 'Beautiful & luxurious studio at great location',
+  'type': 'apartment',
+},
+{
+  'bedrooms': 2,
+  'city': {
+    'location': {
+      'latitude': 52.38333,
+      'longitude': 4.9,
+      'zoom': 10,
+    },
+    'name': 'Amsterdam',
+  },
+  'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+  'goods': ['Heating', 'Kitchen', 'Cable TV', 'Washing machine', 'Coffee machine', 'Dishwasher'],
+  'host': {
+    'avatar_url': 'img/avatar-angelina.jpg',
+    'id': 3,
+    'is_pro': true,
+    'name': 'Angelina',
+  },
+  'id': 2,
+  'images': ['img/apartment-01.jpg', 'img/apartment-02.jpg'],
+  'isFavorite': true,
+  'is_premium': true,
+  'location': {
+    'latitude': 52.3909553943508,
+    'longitude': 4.85309666406198,
+    'zoom': 8,
+  },
+  'max_adults': 4,
+  'preview_image': 'img/apartment-01.jpg',
+  'price': 180,
+  'rating': 4.8,
+  'title': 'Beautiful & luxurious studio at great location',
+  'type': 'apartment',
+},
+];
+
+const offerToUpdate = {
+  'bedrooms': 3,
+  'city': {
+    'location': {
+      'latitude': 52.38333,
+      'longitude': 4.9,
+      'zoom': 10,
+    },
+    'name': 'Amsterdam',
+  },
+  'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+  'goods': ['Heating', 'Kitchen', 'Cable TV', 'Washing machine', 'Coffee machine', 'Dishwasher'],
+  'host': {
+    'avatar_url': 'img/avatar-angelina.jpg',
+    'id': 3,
+    'is_pro': true,
+    'name': 'Angelina',
+  },
+  'id': 1,
+  'images': ['img/apartment-01.jpg', 'img/apartment-02.jpg'],
+  'isFavorite': false,
+  'is_premium': false,
+  'location': {
+    'latitude': 52.3909553943508,
+    'longitude': 4.85309666406198,
+    'zoom': 8,
+  },
+  'max_adults': 4,
+  'preview_image': 'img/apartment-01.jpg',
+  'price': 120,
+  'rating': 4.8,
+  'title': 'Beautiful & luxurious studio at great location',
+  'type': 'apartment',
+};
+
+const favoriteOffer = {
+  'bedrooms': 3,
+  'city': {
+    'location': {
+      'latitude': 52.38333,
+      'longitude': 4.9,
+      'zoom': 10,
+    },
+    'name': 'Amsterdam',
+  },
+  'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+  'goods': ['Heating', 'Kitchen', 'Cable TV', 'Washing machine', 'Coffee machine', 'Dishwasher'],
+  'host': {
+    'avatar_url': 'img/avatar-angelina.jpg',
+    'id': 3,
+    'is_pro': true,
+    'name': 'Angelina',
+  },
+  'id': 1,
+  'images': ['img/apartment-01.jpg', 'img/apartment-02.jpg'],
+  'isFavorite': true,
+  'is_premium': false,
+  'location': {
+    'latitude': 52.3909553943508,
+    'longitude': 4.85309666406198,
+    'zoom': 8,
+  },
+  'max_adults': 4,
+  'preview_image': 'img/apartment-01.jpg',
+  'price': 120,
+  'rating': 4.8,
+  'title': 'Beautiful & luxurious studio at great location',
+  'type': 'apartment',
+};
 
 const reviews = [{
   'comment': 'Fugiat et cupidatat irure occaecat ex.',
@@ -261,17 +437,9 @@ describe('Reducer: data', () => {
   });
   it('should update offers with the given favorite offer', () => {
 
-    const updatedOffers = offers;
-
-    const updatedFavoriteOffers = offers;
-
     const updatedNearbyOffers = offers;
 
     const nearbyOffers = offers;
-
-    const favoriteOffer = favoriteOffers[0];
-
-    const offerToUpdate = favoriteOffers[0];
 
     const currentState = {
       offers: offers,
@@ -310,7 +478,7 @@ describe('Reducer: data', () => {
 
     const loadFavoriteOffersAction = {
       type: ActionType.LOAD_FAVORITE_OFFERS,
-      payload: offers,
+      payload: favoriteOffers,
     };
 
     expect(data(state, loadFavoriteOffersAction))
