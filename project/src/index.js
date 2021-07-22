@@ -4,8 +4,8 @@ import App from './components/app/app';
 import {Router as BrowserRouter} from 'react-router-dom';
 import {createAPI} from './services/api';
 import {Provider} from 'react-redux';
-import {reducer} from './store/reducer';
-import {ActionCreator} from './store/action';
+import rootReducer from './store/root-reducer';
+import {requireAuthorization} from './store/action';
 import {AuthorizationStatus} from './const';
 import {checkAuth, getOffers} from './store/api-actions';
 import browserHistory from './browser-history';
@@ -13,11 +13,11 @@ import {redirect} from './store/middlewars/redirect';
 import {configureStore} from '@reduxjs/toolkit';
 
 const api = createAPI(
-  () => store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)),
+  () => store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH)),
 );
 
 const store = configureStore({
-  reducer: reducer,
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       thunk: {

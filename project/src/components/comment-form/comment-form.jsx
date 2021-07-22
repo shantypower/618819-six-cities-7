@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import {connect, useDispatch} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {sendComment} from '../../store/api-actions';
 import {MAX_REVIEW_LENGTH, MIN_REVIEW_LENGTH} from '../../const';
+import { getHasPostedComment } from '../../store/ui/selectors';
 
 
-function CommentForm({ offerId, hasPostedComment }) {
+function CommentForm({offerId}) {
+
+  const hasPostedComment = useSelector(getHasPostedComment);
 
   const [rating, setRating] = useState(0);
   const [review, setReviewText] = useState('');
@@ -85,7 +88,7 @@ function CommentForm({ offerId, hasPostedComment }) {
           </svg>
         </label>
       </div>
-      <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" defaultValue = '' onChange={(evt) => setReviewText(evt.target.value)} minLength={MIN_REVIEW_LENGTH} maxLength={MAX_REVIEW_LENGTH}
+      <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" onChange={(evt) => setReviewText(evt.target.value)} minLength={MIN_REVIEW_LENGTH} maxLength={MAX_REVIEW_LENGTH}
         value={review}
       >
       </textarea>
@@ -101,16 +104,6 @@ function CommentForm({ offerId, hasPostedComment }) {
 
 CommentForm.propTypes = {
   offerId: PropTypes.string.isRequired,
-  hasPostedComment: PropTypes.shape({
-    hasPosted: PropTypes.bool,
-    comment: PropTypes.string,
-    rating: PropTypes.number,
-  }),
 };
 
-const mapStateToProps = (state) => ({
-  hasPostedComment: state.hasPostedComment,
-});
-
-export {CommentForm};
-export default connect(null, mapStateToProps)(CommentForm);
+export default CommentForm;

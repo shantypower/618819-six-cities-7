@@ -63,7 +63,7 @@ Map.propTypes = {
     }),
     name: PropTypes.string.isRequired,
   }),
-  activeOfferId: PropTypes.string,
+  activeOfferId: PropTypes.number,
 };
 
 export default Map;

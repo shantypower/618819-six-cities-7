@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {Switch, Route} from 'react-router-dom';
 import PrivateRoute from '../private-route/private-route.jsx';
 import MainPage from '../../pages/main-page/main-page';
@@ -8,15 +7,16 @@ import LoginPage from '../../pages/login-page/login-page';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import {Routes} from '../../const';
-import offerListItemProp from '../offer-list-item/offer-list-item.prop';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Spinner from '../spinner/spinner';
 import {isCheckedAuth} from '../../utils/common';
+import { getIsDataLoadedStatus } from '../../store/data/selectors';
+import {getAuthorizationStatus} from '../../store/user/selectors';
 
+function App() {
 
-function App(props) {
-  // eslint-disable-next-line react/prop-types
-  const {offers, authorizationStatus, isDataLoaded} = props;
+  const authorizationStatus = useSelector(getAuthorizationStatus);
+  const isDataLoaded = useSelector(getIsDataLoadedStatus);
 
   if (isCheckedAuth(authorizationStatus) || !isDataLoaded) {
     return (
@@ -27,27 +27,12 @@ function App(props) {
   return (
     <Switch>
       <Route exact path={Routes.LOGIN} render={() =><LoginPage/>}/>
-      <PrivateRoute exact  path={Routes.FAVORITES}  render={() => <FavoritesPage offers = {offers}/>}/>
-      <Route exact path={Routes.ROOT} render={() => <MainPage offers = {offers} />}/>
-      <Route exact path={Routes.OFFER} render={() => <OfferPage offers={offers}/>}/>
+      <PrivateRoute exact  path={Routes.FAVORITES}  render={() => <FavoritesPage/>}/>
+      <Route exact path={Routes.ROOT} render={() => <MainPage/>}/>
+      <Route exact path={Routes.OFFER} render={() => <OfferPage/>}/>
       <Route render={() => <NotFoundPage />}/>
     </Switch>
   );
 }
 
-App.propTypes = {
-  offers: PropTypes.arrayOf(
-    PropTypes.shape(offerListItemProp).isRequired,
-  ),
-  authorizationStatus: PropTypes.string.isRequired,
-  isDataLoaded: PropTypes.bool.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  offers: state.offers,
-  authorizationStatus: state.authorizationStatus,
-  isDataLoaded: state.isDataLoaded,
-});
-
-export {App};
-export default connect(mapStateToProps)(App);
+export default App;

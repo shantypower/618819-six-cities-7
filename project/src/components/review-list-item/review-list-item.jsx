@@ -1,5 +1,5 @@
 import React from 'react';
-import reviewListItemProp from '../rewiew-list-item/review-list-item.prop';
+import reviewListItemProp from './review-list-item.prop';
 import {formatDate} from '../../utils/common';
 function ReviewListItem(props) {
 

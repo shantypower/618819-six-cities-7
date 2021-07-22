@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
 import SortingSelect from '../../components/sorting-select/sorting-select';
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import {getActiveSortType} from '../../store/ui/selectors';
+import {useSelector} from 'react-redux';
 
 
-function LocationsSortingForm({ activeSortType }) {
+function LocationsSortingForm() {
+
+  const activeSortType = useSelector(getActiveSortType);
+
   const [isSortOpen, toggleIsSortActive] = useState(false);
 
   const handleSortTypeClick = () => {
@@ -29,15 +32,4 @@ function LocationsSortingForm({ activeSortType }) {
   );
 }
 
-LocationsSortingForm.propTypes = {
-  activeSortType: PropTypes.string.isRequired,
-};
-
-
-const mapStateToProps = ({ activeSortType}) =>({
-  activeSortType: activeSortType,
-});
-
-
-export { LocationsSortingForm };
-export default connect(mapStateToProps)(LocationsSortingForm);
+export default LocationsSortingForm;

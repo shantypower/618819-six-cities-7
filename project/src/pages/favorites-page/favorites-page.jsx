@@ -1,13 +1,16 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 import Header from '../../components/header/header';
-import PropTypes from 'prop-types';
 import OffersList from '../../components/offers-list/offers-list';
 import Logo from '../../components/logo/logo';
-import offerListItemProp from '../../components/offer-list-item/offer-list-item.prop';
 import { OfferImageSettings, OfferTypeSettings } from '../../const';
 import { LogoSettings } from '../../const';
+import {getOffers} from '../../store/data/selectors';
 
-function FavoritesPage({offers}) {
+function FavoritesPage() {
+
+  const offers = useSelector(getOffers);
+
   return (
     <div className="page">
       <Header/>
@@ -51,11 +54,5 @@ function FavoritesPage({offers}) {
     </div>
   );
 }
-
-FavoritesPage.propTypes = {
-  offers: PropTypes.arrayOf(
-    offerListItemProp,
-  ),
-};
 
 export default FavoritesPage;

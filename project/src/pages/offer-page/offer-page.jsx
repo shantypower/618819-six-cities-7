@@ -1,28 +1,34 @@
-/* eslint-disable react/prop-types */
 import React, {useEffect} from 'react';
-import PropTypes, {string} from 'prop-types';
 import Header from '../../components/header/header';
 import CommentForm from '../../components/comment-form/comment-form';
-import ReviewListItem from '../../components/rewiew-list-item/review-list-item';
+import ReviewListItem from '../../components/review-list-item/review-list-item';
 import GoodsList from '../../components/goods-list/goods-list';
 import OffersList from '../../components/offers-list/offers-list';
-//import offerListItemProp from '../../components/offer-list-item/offer-list-item.prop';
 import Map from '../../components/map/map';
 import Spinner from '../../components/spinner/spinner';
-// eslint-disable-next-line no-unused-vars
-import { OfferTypeSettings, OfferImageSettings, ListSettings, AuthorizationStatus, MAX_ROOMS_PER_PAGE, MAX_REVIEWS_COUNT} from '../../const';
-import { useParams} from 'react-router-dom';
+import {OfferTypeSettings, OfferImageSettings, AuthorizationStatus, MAX_ROOMS_PER_PAGE} from '../../const';
+import {useParams} from 'react-router-dom';
 import {getReviews, getOffer, getNearby} from '../../store/api-actions';
-import {connect} from 'react-redux';
-//import { useHistory } from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import {getAuthorizationStatus} from '../../store/user/selectors';
+import {getAreLoadedOffersNearbyStatus, getCurrentOffer, getIsOfferLoadedStatus, getOffersNearby, getReviewsSliced} from '../../store/data/selectors';
 
-function OfferPage({areReviewsLoaded, offersNearby, currentOffer, reviews, authorizationStatus, onLoad, isOfferLoaded, areLoadedOffersNearby, activeSortType, hasPostedComment}) {
-  //const history = useHistory();
+function OfferPage() {
   const {id} = useParams();
+  const currentOffer = useSelector(getCurrentOffer);
+  const isOfferLoaded = useSelector(getIsOfferLoadedStatus);
+  const offersNearby = useSelector(getOffersNearby);
+  const areLoadedOffersNearby = useSelector(getAreLoadedOffersNearbyStatus);
+  const authorizationStatus = useSelector(getAuthorizationStatus);
+  const reviews = useSelector(getReviewsSliced).slice().sort((firstComment, secondComment) => new Date(secondComment.date) - new Date(firstComment.date));
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    onLoad(id);
-  }, [id, onLoad]);
+    dispatch(getOffer(id));
+    dispatch(getReviews(id));
+    dispatch(getNearby(id));
+  }, [id, dispatch]);
 
   if (!isOfferLoaded || !areLoadedOffersNearby) {
     return (
@@ -139,7 +145,7 @@ function OfferPage({areReviewsLoaded, offersNearby, currentOffer, reviews, autho
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <OffersList offers = {offersNearby.slice().splice(0, MAX_ROOMS_PER_PAGE)} activeSortType={activeSortType} offerImageSettings={OfferImageSettings} type={OfferTypeSettings.NEARBY}/>
+              <OffersList offers = {offersNearby.slice().splice(0, MAX_ROOMS_PER_PAGE)} offerImageSettings={OfferImageSettings.FAVORITES} type={OfferTypeSettings.NEARBY}/>
             </div>
           </section>
         </div>
@@ -148,31 +154,4 @@ function OfferPage({areReviewsLoaded, offersNearby, currentOffer, reviews, autho
   );
 }
 
-OfferPage.propTypes = {
-  //offers: offerListItemProp,
-  images: PropTypes.arrayOf(string),
-  onLoad: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  reviews: state.reviews.slice().splice(0, MAX_REVIEWS_COUNT),
-  offersNearby: state.offersNearby,
-  currentOffer: state.currentOffer,
-  areReviewsLoaded: state.areReviewsLoaded,
-  isOfferLoaded: state.isOfferLoaded,
-  areLoadedOffersNearby: state.areLoadedOffersNearby,
-  activeSortType: state.activeSortType,
-  authorizationStatus: state.authorizationStatus,
-  hasPostedComment: state.hasPostedComment,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onLoad(id) {
-    dispatch(getOffer(id));
-    dispatch(getReviews(id));
-    dispatch(getNearby(id));
-  },
-});
-
-export {OfferPage};
-export default connect(mapStateToProps,  mapDispatchToProps)(OfferPage);
+export default OfferPage;
