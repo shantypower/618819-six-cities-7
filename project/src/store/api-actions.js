@@ -25,14 +25,16 @@ export const getOffers = () => (dispatch, _getState, api) => (
   api.get(APIRoute.OFFERS)
     .then(({data}) => {
       const offers = data.map((offer) => adaptOffer(offer));
-      return offers;
+      dispatch(loadOffers(offers));
     })
-    .then((offers) => dispatch(loadOffers(offers)))
+    .catch(() => {
+      dispatch(loadOffers([]));
+    })
 );
 
 export const getOffer = (id) => (dispatch, _getState, api) => {
   dispatch(setOfferLoadingStatus(false));
-  api.get(`/hotels/${id}`)
+  return api.get(`/hotels/${id}`)
     .then((response) => {
       const {data} = response;
       const offer = adaptOffer(data);
@@ -50,7 +52,7 @@ export const getOffer = (id) => (dispatch, _getState, api) => {
 
 export const getReviews = (id) => (dispatch, _getState, api) => {
   dispatch(setAreReviewsLoaded(false));
-  api.get(`/comments/${id}`)
+  return api.get(`/comments/${id}`)
     .then(({data}) => {
       const reviews = data.map((review) => adaptReviewData(review));
       dispatch(loadReviews(reviews));
@@ -61,7 +63,7 @@ export const getReviews = (id) => (dispatch, _getState, api) => {
 
 export const getNearby = (id) => (dispatch, _getState, api) => {
   dispatch(setAreLoadedOffersNearby(false));
-  api.get(`/hotels/${id}/nearby`)
+  return api.get(`/hotels/${id}/nearby`)
     .then(({ data }) => {
       const offers = data.map((offer) => adaptOffer(offer));
       dispatch(loadOffersNearby(offers));
@@ -111,15 +113,13 @@ export const signout = () => (dispatch, _getState, api) => (
     .then(() => dispatch(logout()))
 );
 
-export const addOfferToFavorites = ({offerId, status}) => (dispatch, _getState, api) => {
-  api.post(`${APIRoute.FAVORITES}${offerId}/${status}`)
-    .then(({data}) => dispatch(updateOffer(adaptOffer(data))))
-    .catch(() => {});
-};
+export const addOfferToFavorites = ({offerId, status}) => (dispatch, _getState, api) => api.post(`${APIRoute.FAVORITES}${offerId}/${status}`)
+  .then(({data}) => dispatch(updateOffer(adaptOffer(data))))
+  .catch(() => {});
 
 export const fetchFavoriteOffers = () => (dispatch, _getState, api) => {
   dispatch(setFavoriteOffersLoadingStatus(false));
-  api.get(APIRoute.FAVORITES)
+  return api.get(APIRoute.FAVORITES)
     .then(({ data }) => {
       const offers = data.map((offer) => adaptOffer(offer));
       dispatch(loadFavoriteOffers(offers));
