@@ -23,6 +23,7 @@ function SortingSelectOption({ sortingType, handleSortTypeClick}) {
       tabIndex="0"
       data-sort={sortingType}
       onClick={handleSortOptionClick}
+      data-testid="sorting-option"
     >
       {SortTypes[sortingType]}
     </li>
