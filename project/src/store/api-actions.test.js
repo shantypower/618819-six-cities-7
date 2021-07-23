@@ -133,6 +133,11 @@ describe('Async operations', () => {
         expect(dispatch).toHaveBeenCalledTimes(3);
 
         expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.SET_IS_OFFER_LOADED,
+          payload: false,
+        });
+
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_OFFER,
           payload: adaptOffer(fakeOffer),
         });
@@ -343,16 +348,16 @@ describe('Async operations', () => {
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(2);
 
-
         expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.SET_ARE_FAVORITE_OFFERS_LOADED,
+          payload: false,
+        });
+
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
           type: ActionType.LOAD_FAVORITE_OFFERS,
           payload: [fakeOffer],
         });
 
-        /* expect(dispatch).toHaveBeenNthCalledWith(2, {
-          type: ActionType.SET_ARE_FAVORITE_OFFERS_LOADED,
-          payload: false,
-        }); */
       });
   });
 });

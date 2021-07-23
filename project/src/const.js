@@ -68,6 +68,11 @@ export const FAVORITE_BUTTON_SETTINGS = {
   },
 };
 
+export const LogoTypes = {
+  HEADER: 'HEADER',
+  FOOTER: 'FOOTER',
+};
+
 export const LogoSettings = {
   HEADER: {
     width: 81,
