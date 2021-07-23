@@ -26,6 +26,9 @@ export const APIRoute = {
   OFFERS: '/hotels',
   LOGIN: '/login',
   LOGOUT: '/logout',
+  REVIEWS: '/comments/',
+  NEARBY: '/nearby',
+  FAVORITES: '/favorite/',
 };
 
 export const OfferTypeSettings = {
@@ -44,6 +47,24 @@ export const OfferTypeSettings = {
   NEARBY: {
     articleClass: 'near-places__card place-card',
     imageContainerClass: 'near-places__image-wrapper place-card__image-wrapper',
+  },
+};
+
+export const ButtonTypes = {
+  LIST_ITEM: 'LIST_ITEM',
+  LIST_ITEM_DETAIL: 'LIST_ITEM_DETAIL',
+};
+
+export const FAVORITE_BUTTON_SETTINGS = {
+  'LIST_ITEM': {
+    CLASS: 'place-card',
+    WIDTH: 18,
+    HEIGHT: 19,
+  },
+  'LIST_ITEM_DETAIL': {
+    CLASS: 'property',
+    WIDTH: 31,
+    HEIGHT: 33,
   },
 };
 

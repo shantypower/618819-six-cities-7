@@ -2,22 +2,17 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import offerListItemProp from '../offer-list-item/offer-list-item.prop';
 import PropTypes from 'prop-types';
-import {AuthorizationStatus, Routes} from '../../const';
+import {ButtonTypes} from '../../const';
+import AddToFavoritesButton from '../../components/add-to-favorites-button/add-to-favorites-button';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import {getAuthorizationStatus} from '../../store/user/selectors';
 
 function OfferListItem(props) {
 
   const {offer, type, offerImageSettings, onMouseEnter, onMouseLeave} = props;
   const { isPremium, previewImage, price, title, isFavorite, rating, id } = offer;
-  const history = useHistory();
+
   const authorizationStatus = useSelector(getAuthorizationStatus);
-  const handleClick = () => {
-    if (authorizationStatus !== AuthorizationStatus.AUTH) {
-      history.push(Routes.LOGIN);
-    }
-  };
 
   return (
     <article
@@ -40,18 +35,7 @@ function OfferListItem(props) {
             <b className='place-card__price-value'>&euro;{price}</b>
             <span className='place-card__price-text'>&#47;&nbsp;night</span>
           </div>
-          <button className={
-            isFavorite
-              ? 'place-card__bookmark-button place-card__bookmark-button--active button'
-              : 'place-card__bookmark-button button'
-          } type='button'
-          onClick={handleClick}
-          >
-            <svg className='place-card__bookmark-icon' width='18' height='19'>
-              <use xlinkHref='#icon-bookmark'></use>
-            </svg>
-            <span className='visually-hidden'>To bookmarks</span>
-          </button>
+          <AddToFavoritesButton offerId={+id} isFavorite={isFavorite} buttonType={ButtonTypes.LIST_ITEM} authorizationStatus={authorizationStatus}/>
         </div>
         <div className='place-card__rating rating'>
           <div className='place-card__stars rating__stars'>

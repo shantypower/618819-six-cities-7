@@ -11,6 +11,8 @@ export const getCurrentOffer = (state) => state[NameSpace.DATA].currentOffer;
 export const getIsOfferLoadedStatus = (state) => state[NameSpace.DATA].isOfferLoaded;
 export const getAreReviewsLoadedStatus = (state) => state[NameSpace.DATA].areReviewsLoaded;
 export const getAreLoadedOffersNearbyStatus = (state) => state[NameSpace.DATA].areLoadedOffersNearby;
+export const getFavoriteOffersLoadingStatus = (state) => state[NameSpace.DATA].areFavoriteOffersLoaded;
+export const getFavoriteOffers = (state) => state[NameSpace.DATA].favoriteOffers;
 
 export const getCurrentOffers = createSelector(
   [getOffers, getCity],

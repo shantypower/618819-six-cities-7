@@ -17,6 +17,9 @@ export const ActionType = {
   SET_ARE_LOADED_OFFERS_NEARBY: 'offers/setAreLoadedOffersNearby',
   SET_HAS_POSTED_COMMENT: 'comments/setHasPostedComment',
   REDIRECT_TO_ROUTE: 'cities/redirectToRoute',
+  UPDATE_OFFER: 'offers/updateOffer',
+  LOAD_FAVORITE_OFFERS: 'offers/loadFavoriteOffers',
+  SET_ARE_FAVORITE_OFFERS_LOADED: 'offers/setAreFavoriteOffersLoaded',
 };
 
 export const setCity = createAction(ActionType.SET_CITY, (city) => ({
@@ -79,4 +82,16 @@ export const loadOffersNearby = createAction(ActionType.LOAD_OFFERS_NEARBY, (off
 
 export const redirectToRoute = createAction(ActionType.REDIRECT_TO_ROUTE, (url) => ({
   payload: url,
+}));
+
+export const updateOffer = createAction(ActionType.UPDATE_OFFER, (offer) => ({
+  payload: offer,
+}));
+
+export const loadFavoriteOffers = createAction(ActionType.LOAD_FAVORITE_OFFERS, (offers) => ({
+  payload: offers,
+}));
+
+export const setFavoriteOffersLoadingStatus = createAction(ActionType.SET_ARE_FAVORITE_OFFERS_LOADED, (status) => ({
+  payload: status,
 }));

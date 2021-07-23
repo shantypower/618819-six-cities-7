@@ -10,7 +10,10 @@ import {
   loadReviews,
   logout,
   requireAuthorization,
-  setUser
+  setUser,
+  updateOffer,
+  setFavoriteOffersLoadingStatus,
+  loadFavoriteOffers
 } from './action';
 import {AuthorizationStatus, APIRoute, Routes, ResponseCodes} from '../const';
 import {adaptOffer, adaptReviewData, adaptUserData} from '../adapter/adapter';
@@ -107,3 +110,19 @@ export const signout = () => (dispatch, _getState, api) => (
     .then(() => localStorage.removeItem('token'))
     .then(() => dispatch(logout()))
 );
+
+export const addOfferToFavorites = ({offerId, status}) => (dispatch, _getState, api) => {
+  api.post(`${APIRoute.FAVORITES}${offerId}/${status}`)
+    .then(({data}) => dispatch(updateOffer(adaptOffer(data))))
+    .catch(() => {});
+};
+
+export const fetchFavoriteOffers = () => (dispatch, _getState, api) => {
+  dispatch(setFavoriteOffersLoadingStatus(false));
+  api.get(APIRoute.FAVORITES)
+    .then(({ data }) => {
+      const offers = data.map((offer) => adaptOffer(offer));
+      dispatch(loadFavoriteOffers(offers));
+    })
+    .catch(() => dispatch(loadFavoriteOffers([])));
+};

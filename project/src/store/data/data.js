@@ -6,19 +6,25 @@ import {
   setAreLoadedOffersNearby,
   setAreReviewsLoaded,
   setOfferLoadingStatus,
-  setIsDataLoaded
+  setIsDataLoaded,
+  updateOffer,
+  loadFavoriteOffers,
+  setFavoriteOffersLoadingStatus
 } from '../action';
+import {removeOffer, updateOfferIsFavorite, updateOffers} from '../../utils/common';
 import {createReducer} from '@reduxjs/toolkit';
 
 const initialState = {
   offers: [],
   reviews: [],
   offersNearby: [],
+  favoriteOffers: [],
   currentOffer: null,
   isOfferLoaded: false,
   isDataLoaded: false,
   areReviewsLoaded: false,
   areLoadedOffersNearby: false,
+  areFavoriteOffersLoaded: false,
 };
 
 
@@ -48,6 +54,19 @@ const data = createReducer(initialState, (builder) => {
     })
     .addCase(setAreLoadedOffersNearby, (state, action) => {
       state.areLoadedOffersNearby = action.payload;
+    })
+    .addCase(updateOffer, (state, action) => {
+      state.offers = updateOffers(state.offers, action.payload);
+      state.favoriteOffers = removeOffer(state.favoriteOffers, action.payload);
+      state.currentOffer = updateOfferIsFavorite(state.currentOffer, action.payload);
+      state.offersNearby = updateOffers(state.offersNearby, action.payload);
+    })
+    .addCase(loadFavoriteOffers, (state, action) => {
+      state.favoriteOffers = action.payload;
+      state.areFavoriteOffersLoaded = true;
+    })
+    .addCase(setFavoriteOffersLoadingStatus, (state, action) => {
+      state.areFavoriteOffersLoaded = action.payload;
     });
 });
 
