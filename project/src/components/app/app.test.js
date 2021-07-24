@@ -4,7 +4,7 @@ import {Router} from 'react-router-dom';
 import {createMemoryHistory} from 'history';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-import {AuthorizationStatus, Routes, DEFAULT_SORT_TYPE, DEFAULT_CITY, SortTypes} from '../../const';
+import {AuthorizationStatus,DEFAULT_SORT_TYPE, DEFAULT_CITY, SortTypes} from '../../const';
 import App from './app';
 import thunk from 'redux-thunk';
 import {createAPI} from '../../services/api';
@@ -516,66 +516,13 @@ describe('Application Routing', () => {
     fakeApp = (
       <Provider store={store}>
         <Router history={history}>
-          <App />
+          <App/>
         </Router>
       </Provider>
     );
   });
 
-  it('should render "LoginPage" when user redirects to "/login"', () => {
-    history.push(Routes.LOGIN);
-    render(fakeApp);
-
-    expect(screen.getByRole('button')).toBeInTheDocument();
-    expect(screen.getByRole('button')).toHaveTextContent(/Sign in/i);
-    expect(screen.getByLabelText(/E-mail/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/Password/i)).toBeInTheDocument();
-  });
-
-  it('should render "Favorites" when user redirects to "/favorites"', () => {
-    history = createMemoryHistory();
-    const createFakeStore = configureStore([thunk.withExtraArgument(api)]);
-    store = createFakeStore({
-      USER: {
-        authorizationStatus: AuthorizationStatus.AUTH,
-        user: {
-          name: 'John',
-          email: 'john@mail.com',
-          avatarUrl: 'testAvatar',
-          isPro: false,
-          id: 1,
-        },
-      },
-      DATA: {
-        areFavoriteOffersLoaded: true,
-        favoriteOffers: favoriteOffers,
-      },
-      UI: {
-        city: DEFAULT_CITY,
-        activeSortType: SortTypes.POPULAR,
-        activeOfferId: null,
-      },
-    });
-
-    fakeApp = (
-      <Provider store={store}>
-        <Router history={history}>
-          <App />
-        </Router>
-      </Provider>
-    );
-
-    history.push(Routes.FAVORITES);
-    render(fakeApp);
-
-    expect(screen.getByText(/Saved listing/i)).toBeInTheDocument();
-    expect(screen.getByText(/Test title/i)).toBeInTheDocument();
-    expect(screen.getByText(/john@mail.com/i)).toBeInTheDocument();
-    expect(screen.getByText(/Sign out/i)).toBeInTheDocument();
-  });
-
-  it('should render "MainPage" when user redirects to "/"', () => {
-    history.push(Routes.ROOT);
+  it('should render "MainPage"', () => {
     render(fakeApp);
 
     expect(screen.getByText(/Cities/i)).toBeInTheDocument();
@@ -583,32 +530,4 @@ describe('Application Routing', () => {
     expect(screen.getByText(/Sign in/i)).toBeInTheDocument();
   });
 
-  it('should render "OfferPage" when user redirects to "/offer/"', () => {
-
-    history.push(Routes.OFFER);
-    render(fakeApp);
-
-    expect(screen.getByText(/Amsterdam/i)).toBeInTheDocument();
-    expect(screen.getByText(/Beautiful & luxurious hotel at great location/i)).toBeInTheDocument();
-    expect(screen.getByText(/Angelina/i)).toBeInTheDocument();
-    expect(screen.getByText(/A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam./i)).toBeInTheDocument();
-    expect(screen.getByText(/Max 2 adults/i)).toBeInTheDocument();
-    expect(screen.getByText(/1 Bedroom/i)).toBeInTheDocument();
-    expect(screen.getByText(/Heating/i)).toBeInTheDocument();
-    expect(screen.getByText(/Cable TV/i)).toBeInTheDocument();
-    expect(screen.getByText(/Coffee machine/i)).toBeInTheDocument();
-    expect(screen.getByText(/Reviews/i)).toBeInTheDocument();
-    expect(screen.getByText(/first fake comment/i)).toBeInTheDocument();
-    expect(screen.getByText(/second fake comment/i)).toBeInTheDocument();
-    expect(screen.getByText(/first nearby offer/i)).toBeInTheDocument();
-    expect(screen.getByText(/second nearby offer/i)).toBeInTheDocument();
-    expect(screen.getByText(/third nearby offer/i)).toBeInTheDocument();
-  });
-
-  it('should render "NotFoundPage" when user redirects to not-exist route', () => {
-    history.push('/notFound');
-    render(fakeApp);
-
-    expect(screen.getByText('404 Page not found!')).toBeInTheDocument();
-  });
 });

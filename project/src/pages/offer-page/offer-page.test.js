@@ -11,6 +11,192 @@ import {createAPI} from '../../services/api';
 import thunk from 'redux-thunk';
 import {Route} from 'react-router';
 
+const offers = [
+  {
+    id: 0,
+    city: {
+      location: {
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10,
+      },
+      name: 'Amsterdam',
+    },
+    price: 300,
+    isFavorite: false,
+    type: 'hotel',
+    goods: ['Heating', 'Kitchen'],
+    bedrooms: 1,
+    description: 'test description',
+    location: {
+      latitude: 52.36129248736812,
+      longitude: 4.930045185368442,
+      zoom: 8,
+    },
+    host: {
+      avatarUrl: 'img/1.png',
+      id: 3,
+      isPro: true,
+      name: 'Angelina',
+    },
+    images: ['image'],
+    title: 'title',
+    isPremium: false,
+    maxAdults: 2,
+    previewImage: 'http://picsum.photos/248/152?r=1',
+  },
+  {
+    id: 1,
+    city: {
+      location: {
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10,
+      },
+      name: 'Amsterdam',
+    },
+    price: 200,
+    goods: ['Heating', 'Kitchen'],
+    description: 'test description',
+    isFavorite: false,
+    type: 'hotel',
+    bedrooms: 1,
+    location: {
+      latitude: 52.36129248736812,
+      longitude: 4.930045185368442,
+      zoom: 8,
+    },
+    host: {
+      avatarUrl: 'img/1.png',
+      id: 3,
+      isPro: true,
+      name: 'Angelina',
+    },
+    images: ['image'],
+    title: 'title',
+    isPremium: false,
+    maxAdults: 2,
+    previewImage: 'http://picsum.photos/248/152?r=1',
+  },
+  {
+    id: 2,
+    city: {
+      location: {
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10,
+      },
+      name: 'Amsterdam',
+    },
+    price: 500,
+    goods: ['Heating', 'Kitchen'],
+    description: 'test description',
+    isFavorite: false,
+    type: 'hotel',
+    bedrooms: 1,
+    location: {
+      latitude: 52.36129248736812,
+      longitude: 4.930045185368442,
+      zoom: 8,
+    },
+    host: {
+      avatarUrl: 'img/1.png',
+      id: 3,
+      isPro: true,
+      name: 'Angelina',
+    },
+    images: ['image'],
+    title: 'title',
+    isPremium: false,
+    maxAdults: 2,
+    previewImage: 'http://picsum.photos/248/152?r=1',
+  },
+  {
+    id: 3,
+    city: {
+      location: {
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10,
+      },
+      name: 'Amsterdam',
+    },
+    price: 300,
+    goods: ['Heating', 'Kitchen'],
+    description: 'test description',
+    isFavorite: true,
+    type: 'hotel',
+    bedrooms: 1,
+    location: {
+      latitude: 52.36129248736812,
+      longitude: 4.930045185368442,
+      zoom: 8,
+    },
+    host: {
+      avatarUrl: 'img/1.png',
+      id: 3,
+      isPro: true,
+      name: 'Angelina',
+    },
+    images: ['image'],
+    title: 'title',
+    isPremium: false,
+    maxAdults: 2,
+    previewImage: 'http://picsum.photos/248/152?r=1',
+  },
+  {
+    id: 4,
+    city: 'Paris',
+    price: 200,
+    description: 'test description',
+    isFavorite: true,
+    type: 'hotel',
+    bedrooms: 1,
+    location: {
+      latitude: 52.36129248736812,
+      longitude: 4.930045185368442,
+      zoom: 8,
+    },
+    host: {
+      avatarUrl: 'img/1.png',
+      id: 3,
+      isPro: true,
+      name: 'Angelina',
+    },
+    images: ['image'],
+    title: 'title',
+    isPremium: false,
+    maxAdults: 2,
+    previewImage: 'http://picsum.photos/248/152?r=1',
+  },
+  {
+    id: 5,
+    city: 'Brussels',
+    price: 500,
+    goods: ['Heating', 'Kitchen'],
+    description: 'test description',
+    isFavorite: true,
+    type: 'hotel',
+    bedrooms: 1,
+    location: {
+      latitude: 52.36129248736812,
+      longitude: 4.930045185368442,
+      zoom: 8,
+    },
+    host: {
+      avatarUrl: 'img/1.png',
+      id: 3,
+      isPro: true,
+      name: 'Angelina',
+    },
+    images: ['image'],
+    title: 'title',
+    isPremium: false,
+    maxAdults: 2,
+    previewImage: 'http://picsum.photos/248/152?r=1',
+  },
+];
+
 
 let history;
 let store;
@@ -60,8 +246,7 @@ describe('Component: OfferPage', () => {
         </Router>
       </Provider>);
 
-    expect(screen.getByText(/Meet the host/i)).not.toBeInTheDocument();
-    expect(screen.getByText(/Other places in the neighbourhood/i)).not.toBeInTheDocument();
+    expect(screen.getByTestId('preloader')).toBeInTheDocument();
   });
 
   it('should render correctly when data is loaded', () => {
@@ -69,13 +254,13 @@ describe('Component: OfferPage', () => {
     const createFakeStore = configureStore([thunk.withExtraArgument(api)]);
     store = createFakeStore({
       DATA: {
-        offers: [],
+        offers: offers,
         reviews: [],
         offersNearby: [],
         favoriteOffers: [],
-        currentOffer: null,
-        isDataLoaded: false,
-        isOfferLoaded: false,
+        currentOffer: offers[1],
+        isDataLoaded: true,
+        isOfferLoaded: true,
         areReviewsLoaded: false,
         areLoadedOffersNearby: true,
         areFavoriteOffersLoaded: false,

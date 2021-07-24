@@ -1,5 +1,5 @@
 import React from 'react';
-import {render} from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import {Provider} from 'react-redux';
 import {Router} from 'react-router-dom';
 import MainEmpty from './main-empty';
@@ -35,12 +35,13 @@ describe('Component: MainEmpty', () => {
     render(
       <Provider store={store}>
         <Router history={history}>
-          <MainEmpty city={'Brussels'}/>
+          <MainEmpty/>
         </Router>
       </Provider>);
 
-    const {getByText} = render(<MainEmpty/>);
-    const mainText = getByText('No places to stay available in Brussels');
-    expect(mainText).toBeInTheDocument();
+    //const {getByText} = render(<MainEmpty/>);
+    //const mainText = getByText('No places to stay available in Brussels');
+    expect(screen.getByText(/No places to stay available/i)).toBeInTheDocument();
+    expect(screen.getByText(/We could not find any property available at the moment in/i)).toBeInTheDocument();
   });
 });

@@ -101,7 +101,7 @@ describe('Component AddToFavoritesButton should render correctly', () => {
     const {getByText, getByRole} = render(
       <Provider store={store}>
         <Router history={history}>
-          <AddToFavoritesButton buttonType={ButtonTypes.LIST_ITEM_DETAIL} offerId={mockFavoriteOffer.id} isFavorite={mockFavoriteOffer.isFavorite}/>
+          <AddToFavoritesButton buttonType={'LIST_ITEM_DETAIL'} offerId={mockFavoriteOffer.id} isFavorite={mockFavoriteOffer.isFavorite}/>
         </Router>
       </Provider>);
 
@@ -117,7 +117,7 @@ describe('Component AddToFavoritesButton should render correctly', () => {
     const {getByText, getByRole} = render(
       <Provider store={store}>
         <Router history={history}>
-          <AddToFavoritesButton buttonType={FAVORITE_BUTTON_SETTINGS.LIST_ITEM_DETAIL} offerId={mockUnfavoriteOffer.id} isFavorite={mockUnfavoriteOffer.isFavorite} />
+          <AddToFavoritesButton buttonType={'LIST_ITEM_DETAIL'} offerId={mockUnfavoriteOffer.id} isFavorite={mockUnfavoriteOffer.isFavorite} />
         </Router>
       </Provider>,
     );

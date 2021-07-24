@@ -32,7 +32,7 @@ function SortingSelectOption({ sortingType, handleSortTypeClick}) {
 
 SortingSelectOption.propTypes = {
   sortingType: PropTypes.string.isRequired,
-  handleSortTypeClick: PropTypes.func.isRequired,
+  handleSortTypeClick: PropTypes.func,
 };
 
 export default SortingSelectOption;

@@ -5,7 +5,7 @@ import { createMemoryHistory } from 'history';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import OfferListItem from './offer-list-item';
-import {OfferTypeSettings, AuthorizationStatus} from '../../const';
+import {OfferTypeSettings, AuthorizationStatus, OfferImageSettings} from '../../const';
 import userEvent from '@testing-library/user-event';
 import * as Redux from 'react-redux';
 import {ActionType} from '../../store/action';
@@ -54,7 +54,16 @@ describe('Component: OfferListItem', () => {
     history = createMemoryHistory();
     const createFakeStore = configureStore({});
     store = createFakeStore({
-      authorizationStatus: AuthorizationStatus.AUTH,
+      USER: {
+        authorizationStatus: AuthorizationStatus.NO_AUTH,
+        user: {
+          name: '',
+          email: '',
+          avatarUrl: '',
+          isPro: false,
+          id: null,
+        },
+      },
     });
   });
 
@@ -62,40 +71,31 @@ describe('Component: OfferListItem', () => {
     const {getByText} = render(
       <Provider store={store}>
         <Router history={history}>
-          <OfferListItem offer={mockOffer} authorizationStatus={AuthorizationStatus.AUTH} cardType={OfferTypeSettings.MAIN}/>
+          <OfferListItem offer={mockOffer} type={OfferTypeSettings.MAIN} offerImageSettings={OfferImageSettings.MAIN}/>
         </Router>
       </Provider>,
     );
     expect(getByText(/Beautiful & luxurious apartment/i)).toBeInTheDocument();
   });
 
-  it('should invoke hover actions user events', () => {
+  it('should invoke hover actions', () => {
 
     const dispatch = jest.fn();
+    const onMouseEnter = jest.fn();
     const useDispatch = jest.spyOn(Redux, 'useDispatch');
     useDispatch.mockReturnValue(dispatch);
 
     const {getByTestId} = render(
       <Provider store={store}>
         <Router history={history}>
-          <OfferListItem authorizationStatus={AuthorizationStatus.AUTH} offer={mockOffer} cardType={OfferTypeSettings.MAIN}/>
+          <OfferListItem offer={mockOffer} type={OfferTypeSettings.MAIN} offerImageSettings={OfferImageSettings.MAIN} onMouseEnter={onMouseEnter}/>
         </Router>
       </Provider>,
     );
-    const cardElement = getByTestId('place-card');
+    const cardElement = getByTestId('offer-info');
     userEvent.hover(cardElement);
 
-    expect(dispatch).toHaveBeenCalledTimes(1);
-    expect(dispatch).nthCalledWith(1, {
-      type: ActionType.SET_ACTIVE_OFFER,
-      payload: mockOffer.id,
-    });
+    expect(onMouseEnter).toHaveBeenCalledTimes(1);
 
-    userEvent.unhover(cardElement);
-    expect(dispatch).toHaveBeenCalledTimes(2);
-    expect(dispatch).nthCalledWith(2, {
-      type: ActionType.SET_ACTIVE_OFFER,
-      payload: null,
-    });
   });
 });

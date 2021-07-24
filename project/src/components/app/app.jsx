@@ -9,16 +9,16 @@ import OfferPage from '../../pages/offer-page/offer-page';
 import {Routes} from '../../const';
 import { useSelector } from 'react-redux';
 import Spinner from '../spinner/spinner';
-import {isCheckedAuth} from '../../utils/common';
+//import {isCheckedAuth} from '../../utils/common';
 import { getIsDataLoadedStatus } from '../../store/data/selectors';
-import {getAuthorizationStatus} from '../../store/user/selectors';
+//import {getAuthorizationStatus} from '../../store/user/selectors';
 
 function App() {
 
-  const authorizationStatus = useSelector(getAuthorizationStatus);
+  //const authorizationStatus = useSelector(getAuthorizationStatus);
   const isDataLoaded = useSelector(getIsDataLoadedStatus);
 
-  if (isCheckedAuth(authorizationStatus) || !isDataLoaded) {
+  if (!isDataLoaded) {
     return (
       <Spinner />
     );

@@ -31,6 +31,12 @@ export const APIRoute = {
   FAVORITES: '/favorite/',
 };
 
+export const OfferTypes = {
+  MAIN: 'MAIN',
+  FAVORITES: 'FAVORITES',
+  NEARBY: 'NEARBY',
+};
+
 export const OfferTypeSettings = {
   MAIN: {
     articleClass: 'cities__place-card place-card',

@@ -29,7 +29,7 @@ function OfferListItem(props) {
           <img className='place-card__image' src={previewImage} width={offerImageSettings.width} height={offerImageSettings.height} alt='Place view'/>
         </Link>
       </div>
-      <div className={type.infoContainerClass}>
+      <div className={type.infoContainerClass} data-testid = 'offer-info'>
         <div className='place-card__price-wrapper'>
           <div className='place-card__price'>
             <b className='place-card__price-value'>&euro;{price}</b>

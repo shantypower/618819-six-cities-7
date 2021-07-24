@@ -1,13 +1,11 @@
 import React from 'react';
-import {render} from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import {Router} from 'react-router-dom';
 import {createMemoryHistory} from 'history';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
-import OffersList from './offers-list';
-import {createAPI} from '../../services/api';
-import thunk from 'redux-thunk';
-import {DEFAULT_SORT_TYPE, AuthorizationStatus, OfferTypeSettings, OfferImageSettings} from '../../const';
+import {AuthorizationStatus, SortTypes} from '../../const';
+import FavoriteCity from './favorite-city';
 
 
 const mockOffers = [
@@ -21,8 +19,8 @@ const mockOffers = [
       },
       name: 'Amsterdam',
     },
-    description: 'A quiet cozy and picturesque that hides behind a river by the unique lightness of Amsterdam.',
-    goods: ['Heating', 'Kitchen', 'Cable TV', 'Washing machine'],
+    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    goods: ['Heating', 'Kitchen', 'Cable TV', 'Washing machine', 'Coffee machine', 'Dishwasher'],
     host: {
       avatarUrl: 'img/avatar-angelina.jpg',
       id: 3,
@@ -42,7 +40,7 @@ const mockOffers = [
     previewImage: 'http://picsum.photos/248/152?r=1',
     price: 120,
     rating: 2.3,
-    title: 'Beautiful & luxurious apartment',
+    title: 'Beautiful & luxurious apartment in Amsterdam',
     type: 'apartment',
   },
   {
@@ -53,7 +51,7 @@ const mockOffers = [
         longitude: 4.895168,
         zoom: 10,
       },
-      name: 'Amsterdam',
+      name: 'Paris',
     },
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     goods: ['Heating', 'Kitchen', 'Coffee machine', 'Dishwasher'],
@@ -76,53 +74,37 @@ const mockOffers = [
     previewImage: 'http://picsum.photos/248/152?r=1',
     price: 220,
     rating: 4.4,
-    title: 'Test title',
+    title: 'Beautiful & luxurious house at great location',
     type: 'house',
   },
 ];
 
+
 let history;
 let store;
-let api = null;
+const mockStore = configureStore({});
 
 
-describe('Component: OffersList', () => {
+describe('Component: FavoriteCity', () => {
   beforeAll(() => {
     history = createMemoryHistory();
-    api = createAPI(() => {});
   });
 
-  it('should render correctly if data is loaded', () => {
-    const createFakeStore = configureStore([thunk.withExtraArgument(api)]);
-    store = createFakeStore({
-      DATA: {
-        offers: mockOffers,
-      },
-      UI: {
-        city: 'Amsterdam',
-        activeSortType: DEFAULT_SORT_TYPE,
-      },
-      USER: {
-        authorizationStatus: AuthorizationStatus.NO_AUTH,
-        user: {
-          name: '',
-          email: '',
-          avatarUrl: '',
-          isPro: false,
-          id: null,
-        },
-      },
+  it('should render correctly', () => {
+    store = mockStore({
+      DATA: {favoriteOffers: mockOffers},
+      USER: {authorizationStatus: AuthorizationStatus.AUTH},
+      UI: {activeSortTYpe: SortTypes.POPULAR}
     });
-
-    const {getByText, getAllByTestId } = render(
+    render(
       <Provider store={store}>
         <Router history={history}>
-          <OffersList offers={mockOffers} type={OfferTypeSettings.MAIN} offerImageSettings={OfferImageSettings.MAIN}/>
+          <FavoriteCity offers={mockOffers}/>
         </Router>
       </Provider>);
 
-    expect(getByText(/Beautiful & luxurious apartment/i)).toBeInTheDocument();
-    expect(getByText('Test title')).toBeInTheDocument();
-    expect(getAllByTestId('offer-info')).toHaveLength(mockOffers.length);
+    expect(screen.getByText(/Beautiful & luxurious apartment in Amsterdam/i)).toBeInTheDocument();
+    expect(screen.getByText(/Beautiful & luxurious house at great location/i)).toBeInTheDocument();
+    expect(screen.getAllByTestId('offer-info')).toHaveLength(mockOffers.length);
   });
 });

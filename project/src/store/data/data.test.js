@@ -280,41 +280,6 @@ const offerToUpdate = {
   },
   'id': 1,
   'images': ['img/apartment-01.jpg', 'img/apartment-02.jpg'],
-  'isFavorite': false,
-  'is_premium': false,
-  'location': {
-    'latitude': 52.3909553943508,
-    'longitude': 4.85309666406198,
-    'zoom': 8,
-  },
-  'max_adults': 4,
-  'preview_image': 'img/apartment-01.jpg',
-  'price': 120,
-  'rating': 4.8,
-  'title': 'Beautiful & luxurious studio at great location',
-  'type': 'apartment',
-};
-
-const favoriteOffer = {
-  'bedrooms': 3,
-  'city': {
-    'location': {
-      'latitude': 52.38333,
-      'longitude': 4.9,
-      'zoom': 10,
-    },
-    'name': 'Amsterdam',
-  },
-  'description': 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
-  'goods': ['Heating', 'Kitchen', 'Cable TV', 'Washing machine', 'Coffee machine', 'Dishwasher'],
-  'host': {
-    'avatar_url': 'img/avatar-angelina.jpg',
-    'id': 3,
-    'is_pro': true,
-    'name': 'Angelina',
-  },
-  'id': 1,
-  'images': ['img/apartment-01.jpg', 'img/apartment-02.jpg'],
   'isFavorite': true,
   'is_premium': false,
   'location': {
@@ -456,7 +421,7 @@ describe('Reducer: data', () => {
 
     const updateOfferAction = {
       type: ActionType.UPDATE_OFFER,
-      payload: favoriteOffer,
+      payload: offerToUpdate,
     };
 
     expect(data(currentState, updateOfferAction))
@@ -465,7 +430,7 @@ describe('Reducer: data', () => {
         reviews: reviews,
         offersNearby: updatedNearbyOffers,
         favoriteOffers: updatedFavoriteOffers,
-        currentOffer: favoriteOffer,
+        currentOffer: offerToUpdate,
         isDataLoaded: true,
         isOfferLoaded: true,
         areReviewsLoaded: true,
