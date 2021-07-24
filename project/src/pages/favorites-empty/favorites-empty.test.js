@@ -2,7 +2,7 @@ import React from 'react';
 import {render, screen} from '@testing-library/react';
 import {Provider} from 'react-redux';
 import {Router} from 'react-router-dom';
-import MainEmpty from './main-empty';
+import FavoritesEmpty from './favorites-empty';
 import {createMemoryHistory} from 'history';
 import configureStore from 'redux-mock-store';
 import {AuthorizationStatus} from '../../const';
@@ -12,7 +12,7 @@ let store;
 let history = null;
 
 
-describe('Component: MainEmpty', () => {
+describe('Component: FavoritesEmpty', () => {
 
   beforeAll(() => {
     history = createMemoryHistory();
@@ -35,11 +35,11 @@ describe('Component: MainEmpty', () => {
     render(
       <Provider store={store}>
         <Router history={history}>
-          <MainEmpty/>
+          <FavoritesEmpty/>
         </Router>
       </Provider>);
 
-    expect(screen.getByText(/No places to stay available/i)).toBeInTheDocument();
-    expect(screen.getByText(/We could not find any property available at the moment in Brussels/i)).toBeInTheDocument();
+    expect(screen.getByText(/Nothing yet saved./i)).toBeInTheDocument();
+    expect(screen.getByText(/Save properties to narrow down search or plan your future trips./i)).toBeInTheDocument();
   });
 });

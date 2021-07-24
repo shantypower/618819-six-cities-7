@@ -91,6 +91,6 @@ describe('Component: MainPage', () => {
         </Router>
       </Provider>);
 
-    expect(screen.getByText('Sort by')).toBeInTheDocument();
+    expect(screen.getByText('No places to stay available')).toBeInTheDocument();
   });
 });
