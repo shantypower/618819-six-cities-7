@@ -8,7 +8,6 @@ import OfferListItem from './offer-list-item';
 import {OfferTypeSettings, AuthorizationStatus, OfferImageSettings} from '../../const';
 import userEvent from '@testing-library/user-event';
 import * as Redux from 'react-redux';
-import {ActionType} from '../../store/action';
 
 
 const mockOffer = {

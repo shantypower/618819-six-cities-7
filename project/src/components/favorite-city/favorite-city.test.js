@@ -94,7 +94,7 @@ describe('Component: FavoriteCity', () => {
     store = mockStore({
       DATA: {favoriteOffers: mockOffers},
       USER: {authorizationStatus: AuthorizationStatus.AUTH},
-      UI: {activeSortTYpe: SortTypes.POPULAR}
+      UI: {activeSortTYpe: SortTypes.POPULAR},
     });
     render(
       <Provider store={store}>

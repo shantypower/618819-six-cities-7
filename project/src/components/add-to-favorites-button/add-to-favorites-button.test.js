@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import {render} from '@testing-library/react';
 import configureStore from 'redux-mock-store';
 import AddToFavoritesButton from './add-to-favorites-button';
-import {FAVORITE_BUTTON_SETTINGS, ButtonTypes} from '../../const';
+import {ButtonTypes} from '../../const';
 import {createMemoryHistory} from 'history';
 import {Routes, AuthorizationStatus} from '../../const';
 import {Router} from 'react-router-dom';
