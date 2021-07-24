@@ -5,7 +5,6 @@ import Logo from '../logo/logo';
 import {AuthorizationStatus} from '../../const';
 import UserNavigationGuest from '../user-navigation-guest/user-navigation-guest';
 import UserNavigationAuthorized from '../user-navigation-authorised/user-navigation-authorized';
-//import {signout} from '../../store/api-actions';
 import {getAuthorizationStatus, getUserAvatar, getUserEmail} from '../../store/user/selectors';
 
 function Header() {
