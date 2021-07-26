@@ -11,7 +11,7 @@ function LoginPage() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const handleSubmit = (evt) => {
+  const handleFromSubmit = (evt) => {
     evt.preventDefault();
     dispatch(signin({
       login: loginRef.current.value,
@@ -28,7 +28,7 @@ function LoginPage() {
         <div className="page__login-container container">
           <section className="login">
             <h1 className="login__title">Sign in</h1>
-            <form className="login__form form" action="#" method="post" onSubmit={handleSubmit}>
+            <form className="login__form form" action="#" method="post" onSubmit={handleFromSubmit}>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden" htmlFor="email">E-mail</label>
                 <input className="login__input form__input" ref={loginRef} type="email" name="email" placeholder="Email" required id="email" data-testid="email"/>
