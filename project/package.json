@@ -25,7 +25,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "reacat-app",
+      "react-app",
       "react-app/jest",
       "htmlacademy/react"
     ]
