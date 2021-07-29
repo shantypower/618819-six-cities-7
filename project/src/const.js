@@ -23,12 +23,18 @@ export const AuthorizationStatus = {
 };
 
 export const APIRoute = {
-  OFFERS: '/hotels',
+  OFFERS: '/hotels/',
   LOGIN: '/login',
   LOGOUT: '/logout',
   REVIEWS: '/comments/',
   NEARBY: '/nearby',
   FAVORITES: '/favorite/',
+};
+
+export const OfferTypes = {
+  MAIN: 'MAIN',
+  FAVORITES: 'FAVORITES',
+  NEARBY: 'NEARBY',
 };
 
 export const OfferTypeSettings = {
@@ -66,6 +72,11 @@ export const FAVORITE_BUTTON_SETTINGS = {
     WIDTH: 31,
     HEIGHT: 33,
   },
+};
+
+export const LogoTypes = {
+  HEADER: 'HEADER',
+  FOOTER: 'FOOTER',
 };
 
 export const LogoSettings = {

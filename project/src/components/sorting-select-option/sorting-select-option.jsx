@@ -23,6 +23,7 @@ function SortingSelectOption({ sortingType, handleSortTypeClick}) {
       tabIndex="0"
       data-sort={sortingType}
       onClick={handleSortOptionClick}
+      data-testid="sorting-option"
     >
       {SortTypes[sortingType]}
     </li>
@@ -31,7 +32,7 @@ function SortingSelectOption({ sortingType, handleSortTypeClick}) {
 
 SortingSelectOption.propTypes = {
   sortingType: PropTypes.string.isRequired,
-  handleSortTypeClick: PropTypes.func.isRequired,
+  handleSortTypeClick: PropTypes.func,
 };
 
 export default SortingSelectOption;
