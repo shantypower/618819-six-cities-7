@@ -8,7 +8,6 @@ import configureStore from 'redux-mock-store';
 import LocationsList from './locations-list';
 import userEvent from '@testing-library/user-event';
 
-
 let history;
 let store;
 const mockStore = configureStore({});
@@ -63,7 +62,6 @@ const mockLocations = [
     },
   },
 ];
-
 
 describe('Component: LocationsList', () => {
   beforeAll(() => {

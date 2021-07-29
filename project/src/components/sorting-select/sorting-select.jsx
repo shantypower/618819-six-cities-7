@@ -3,7 +3,6 @@ import {SortTypes} from '../../const';
 import PropTypes from 'prop-types';
 import SortingSelectOption from '../sorting-select-option/sorting-select-option';
 
-
 function SortingSelect({ handleSortTypeClick }) {
   const sortingOptions = Object.keys(SortTypes);
 

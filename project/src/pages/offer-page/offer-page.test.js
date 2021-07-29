@@ -197,11 +197,9 @@ const offers = [
   },
 ];
 
-
 let history;
 let store;
 let api = null;
-
 
 describe('Component: OfferPage', () => {
   beforeAll(() => {

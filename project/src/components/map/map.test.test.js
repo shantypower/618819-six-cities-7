@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import Map from './map';
 import {AuthorizationStatus} from '../../const';
 
-
 const mockCity = {
   location: {
     latitude: 52.370216,

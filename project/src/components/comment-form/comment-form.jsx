@@ -5,7 +5,6 @@ import {sendComment} from '../../store/api-actions';
 import {MAX_REVIEW_LENGTH, MIN_REVIEW_LENGTH} from '../../const';
 import { getHasPostedComment } from '../../store/ui/selectors';
 
-
 function CommentForm({offerId}) {
 
   const hasPostedComment = useSelector(getHasPostedComment);
@@ -13,7 +12,6 @@ function CommentForm({offerId}) {
   const [rating, setRating] = useState(0);
   const [review, setReviewText] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
-
 
   const dispatch = useDispatch();
 
@@ -47,7 +45,6 @@ function CommentForm({offerId}) {
         setIsDisabled(false);
       });
   };
-
 
   return (
     <form className="reviews__form form" action="#" method="post" onSubmit={handleFormSubmit} onChange={handleFormChange}>

@@ -1,7 +1,6 @@
 import {renderHook} from '@testing-library/react-hooks';
 import useMap from './use-map';
 
-
 const mockCity = {
   name: 'Paris',
   location: {
@@ -32,7 +31,6 @@ jest.mock('leaflet', () => ({
     },
   },
 }));
-
 
 describe('Hook: useMap', () => {
 

@@ -5,7 +5,6 @@ import {SortTypes} from '../../const';
 import {setSortType} from '../../store/action';
 import {getActiveSortType} from '../../store/ui/selectors';
 
-
 function SortingSelectOption({ sortingType, handleSortTypeClick}) {
 
   const activeSortType = useSelector(getActiveSortType);

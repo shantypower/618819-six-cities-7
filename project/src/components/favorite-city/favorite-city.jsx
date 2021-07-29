@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import offerListItemProp from '../offer-list-item/offer-list-item.prop';
 import {mapOffersByCity} from '../../utils/common';
-import FavoritesListItem from '../favorite-list-item/favorite-list-item';
+import FavoriteListItem from '../favorite-list-item/favorite-list-item';
 
 function FavoriteCity(props) {
   const {offers} = props;
@@ -10,7 +10,7 @@ function FavoriteCity(props) {
   return(
     <ul className="favorites__list">
       {[...offersByCity.keys()]
-        .map((city) => <FavoritesListItem city={city} key={city} favoritesByCity={offersByCity.get(city)}/>)}
+        .map((city) => <FavoriteListItem city={city} key={city} favoritesByCity={offersByCity.get(city)}/>)}
     </ul>
   );
 }

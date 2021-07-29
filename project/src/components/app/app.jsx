@@ -11,7 +11,6 @@ import { useSelector } from 'react-redux';
 import Spinner from '../spinner/spinner';
 import { getIsDataLoadedStatus } from '../../store/data/selectors';
 
-
 function App() {
 
   const isDataLoaded = useSelector(getIsDataLoadedStatus);

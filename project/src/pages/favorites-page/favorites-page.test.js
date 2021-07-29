@@ -9,7 +9,6 @@ import {AuthorizationStatus, DEFAULT_CITY} from '../../const';
 import {createAPI} from '../../services/api';
 import thunk from 'redux-thunk';
 
-
 const mockOffers = [
   {
     bedrooms: 3,
@@ -81,11 +80,9 @@ const mockOffers = [
   },
 ];
 
-
 let history;
 let store;
 let api = null;
-
 
 describe('Component: FavoritesPage', () => {
   beforeAll(() => {

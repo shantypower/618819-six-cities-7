@@ -5,7 +5,6 @@ import configureStore from 'redux-mock-store';
 import {DEFAULT_SORT_TYPE} from '../../const';
 import {Provider} from 'react-redux';
 
-
 describe('Component: LocationsSortingForm', () => {
   it('should render correctly', () => {
     const createFakeStore = configureStore({});

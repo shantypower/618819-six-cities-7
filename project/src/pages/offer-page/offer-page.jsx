@@ -6,7 +6,7 @@ import GoodsList from '../../components/goods-list/goods-list';
 import OffersList from '../../components/offers-list/offers-list';
 import Map from '../../components/map/map';
 import Spinner from '../../components/spinner/spinner';
-import AddToFavoritesButton from '../../components/add-to-favorites-button/add-to-favorites-button';
+import FavoritesButton from '../../components/add-to-favorites-button/add-to-favorites-button';
 import {OfferTypeSettings, OfferImageSettings, AuthorizationStatus, MAX_ROOMS_PER_PAGE, ButtonTypes} from '../../const';
 import {useParams} from 'react-router-dom';
 import {getReviews, getOffer, getNearby} from '../../store/api-actions';
@@ -62,7 +62,7 @@ function OfferPage() {
                 <h1 className="property__name">
                   {currentOffer.title}
                 </h1>
-                <AddToFavoritesButton offerId={+id} isFavorite={currentOffer.isFavorite} buttonType={ButtonTypes.LIST_ITEM_DETAIL}/>
+                <FavoritesButton offerId={+id} isFavorite={currentOffer.isFavorite} buttonType={ButtonTypes.LIST_ITEM_DETAIL}/>
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">

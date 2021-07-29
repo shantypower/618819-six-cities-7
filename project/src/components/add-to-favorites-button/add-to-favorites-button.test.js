@@ -2,12 +2,11 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import {render} from '@testing-library/react';
 import configureStore from 'redux-mock-store';
-import AddToFavoritesButton from './add-to-favorites-button';
+import FavoritesButton from './add-to-favorites-button';
 import {ButtonTypes} from '../../const';
 import {createMemoryHistory} from 'history';
 import {Routes, AuthorizationStatus} from '../../const';
 import {Router} from 'react-router-dom';
-
 
 const mockFavoriteOffer = {
   bedrooms: 3,
@@ -43,7 +42,6 @@ const mockFavoriteOffer = {
   title: 'Beautiful & luxurious studio at great location',
   type: 'apartment',
 };
-
 
 const mockUnfavoriteOffer =   {
   bedrooms: 3,
@@ -84,7 +82,7 @@ let store = null;
 let history = null;
 
 
-describe('Component AddToFavoritesButton should render correctly', () => {
+describe('Component FavoritesButton should render correctly', () => {
   beforeAll(() => {
     history = createMemoryHistory();
     history.push(Routes.FAVORITES);
@@ -96,36 +94,36 @@ describe('Component AddToFavoritesButton should render correctly', () => {
     });
   });
 
-  it('AddToFavoritesButton should render correctly if offer is favorite', () => {
+  it('FavoritesButton should render correctly if offer is favorite', () => {
 
     const {getByText, getByRole} = render(
       <Provider store={store}>
         <Router history={history}>
-          <AddToFavoritesButton buttonType={'LIST_ITEM_DETAIL'} offerId={mockFavoriteOffer.id} isFavorite={mockFavoriteOffer.isFavorite}/>
+          <FavoritesButton buttonType={'LIST_ITEM_DETAIL'} offerId={mockFavoriteOffer.id} isFavorite={mockFavoriteOffer.isFavorite}/>
         </Router>
       </Provider>);
 
-    const AddToFavoritesButtonElementText = getByText('In bookmarks');
-    const AddToFavoritesButtonElement = getByRole('button');
+    const FavoritesButtonElementText = getByText('In bookmarks');
+    const FavoritesButtonElement = getByRole('button');
 
-    expect(AddToFavoritesButtonElementText).toBeInTheDocument();
-    expect(AddToFavoritesButtonElement).toHaveClass('property__bookmark-button property__bookmark-button--active button');
+    expect(FavoritesButtonElementText).toBeInTheDocument();
+    expect(FavoritesButtonElement).toHaveClass('property__bookmark-button property__bookmark-button--active button');
   });
 
-  it('AddToFavoritesButton should render correctly if offer is not favorite', () => {
+  it('FavoritesButton should render correctly if offer is not favorite', () => {
 
     const {getByText, getByRole} = render(
       <Provider store={store}>
         <Router history={history}>
-          <AddToFavoritesButton buttonType={'LIST_ITEM_DETAIL'} offerId={mockUnfavoriteOffer.id} isFavorite={mockUnfavoriteOffer.isFavorite} />
+          <FavoritesButton buttonType={'LIST_ITEM_DETAIL'} offerId={mockUnfavoriteOffer.id} isFavorite={mockUnfavoriteOffer.isFavorite} />
         </Router>
       </Provider>,
     );
 
-    const AddToFavoritesButtonElement = getByRole('button');
-    const AddToFavoritesButtonElementText = getByText('To bookmarks');
+    const FavoritesButtonElement = getByRole('button');
+    const FavoritesButtonElementText = getByText('To bookmarks');
 
-    expect(AddToFavoritesButtonElementText).toBeInTheDocument();
-    expect(AddToFavoritesButtonElement).not.toHaveClass('place-card__bookmark-button--active');
+    expect(FavoritesButtonElementText).toBeInTheDocument();
+    expect(FavoritesButtonElement).not.toHaveClass('place-card__bookmark-button--active');
   });
 });

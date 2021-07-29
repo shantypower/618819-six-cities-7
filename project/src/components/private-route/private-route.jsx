@@ -5,7 +5,6 @@ import {useSelector} from 'react-redux';
 import {Routes, AuthorizationStatus} from '../../const';
 import {getAuthorizationStatus} from '../../store/user/selectors';
 
-
 function PrivateRoute({render, path, exact}) {
 
   const authorizationStatus = useSelector(getAuthorizationStatus);

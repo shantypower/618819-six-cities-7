@@ -4,7 +4,6 @@ import UserNavigationGuest from './user-navigation-guest';
 import {Router} from 'react-router';
 import {createMemoryHistory} from 'history';
 
-
 describe('Component: UserNavigationGuest', () => {
   it('should render correctly', () => {
     const history = createMemoryHistory();

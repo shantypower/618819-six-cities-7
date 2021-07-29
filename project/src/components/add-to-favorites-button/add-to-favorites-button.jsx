@@ -6,7 +6,7 @@ import {addOfferToFavorites} from '../../store/api-actions';
 import { useHistory } from 'react-router-dom';
 import {getAuthorizationStatus} from '../../store/user/selectors';
 
-function AddToFavoritesButton({ offerId, buttonType, isFavorite}) {
+function FavoritesButton({ offerId, buttonType, isFavorite}) {
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -18,7 +18,6 @@ function AddToFavoritesButton({ offerId, buttonType, isFavorite}) {
     }
     dispatch(addOfferToFavorites({ offerId, status: Number(!isFavorite)}));
   };
-
 
   return (
     <button
@@ -37,10 +36,10 @@ function AddToFavoritesButton({ offerId, buttonType, isFavorite}) {
   );
 }
 
-AddToFavoritesButton.propTypes = {
+FavoritesButton.propTypes = {
   offerId: PropTypes.number.isRequired,
   buttonType: PropTypes.string.isRequired,
   isFavorite: PropTypes.bool.isRequired,
 };
 
-export default AddToFavoritesButton;
+export default FavoritesButton;

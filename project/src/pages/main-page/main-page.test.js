@@ -13,7 +13,6 @@ let history;
 let store;
 let api = null;
 
-
 describe('Component: MainPage', () => {
   beforeAll(() => {
     history = createMemoryHistory();

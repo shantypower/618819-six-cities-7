@@ -7,7 +7,6 @@ import { Provider } from 'react-redux';
 import userEvent from '@testing-library/user-event';
 import LoginPage from './login-page';
 
-
 let store = null;
 
 describe('Component: LoginPage', () => {

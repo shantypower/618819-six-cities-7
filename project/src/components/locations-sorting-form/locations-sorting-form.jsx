@@ -3,7 +3,6 @@ import SortingSelect from '../../components/sorting-select/sorting-select';
 import {getActiveSortType} from '../../store/ui/selectors';
 import {useSelector} from 'react-redux';
 
-
 function LocationsSortingForm() {
 
   const activeSortType = useSelector(getActiveSortType);

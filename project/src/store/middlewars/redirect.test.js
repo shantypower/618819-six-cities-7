@@ -45,5 +45,4 @@ describe('Middleware: redirect', () => {
     expect(fakeHistory.location.pathname).toBe(Routes.ROOT);
   });
 
-
 });
