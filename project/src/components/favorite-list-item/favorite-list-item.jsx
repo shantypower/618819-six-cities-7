@@ -8,7 +8,7 @@ import {setCity} from '../../store/action';
 import OffersList from '../offers-list/offers-list';
 import {getActiveSortType} from '../../store/ui/selectors';
 
-function FavoritesListItem({ favoritesByCity, city }) {
+function FavoriteListItem({ favoritesByCity, city }) {
 
   const dispatch = useDispatch();
   const activeSortType = useSelector(getActiveSortType);
@@ -31,11 +31,11 @@ function FavoritesListItem({ favoritesByCity, city }) {
   );
 }
 
-FavoritesListItem.propTypes = {
+FavoriteListItem.propTypes = {
   favoritesByCity: PropTypes.arrayOf(
     offerListItemProp,
   ),
   city: PropTypes.string.isRequired,
 };
 
-export default FavoritesListItem;
+export default FavoriteListItem;
