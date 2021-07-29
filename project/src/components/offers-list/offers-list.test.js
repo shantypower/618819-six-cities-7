@@ -9,7 +9,6 @@ import {createAPI} from '../../services/api';
 import thunk from 'redux-thunk';
 import {DEFAULT_SORT_TYPE, AuthorizationStatus, OfferTypeSettings, OfferImageSettings} from '../../const';
 
-
 const mockOffers = [
   {
     bedrooms: 3,
@@ -84,7 +83,6 @@ const mockOffers = [
 let history;
 let store;
 let api = null;
-
 
 describe('Component: OffersList', () => {
   beforeAll(() => {

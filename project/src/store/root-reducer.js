@@ -3,7 +3,6 @@ import {data} from './data/data';
 import {ui} from './ui/ui';
 import {user} from './user/user';
 
-
 export const NameSpace = {
   DATA: 'DATA',
   UI: 'UI',

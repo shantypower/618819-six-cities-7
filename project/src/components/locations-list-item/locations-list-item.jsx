@@ -15,12 +15,10 @@ function LocationsListItem({ name , isActive, onClick }) {
   );
 }
 
-
 LocationsListItem.propTypes = {
   name: PropTypes.string.isRequired,
   isActive: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
 };
-
 
 export default LocationsListItem;

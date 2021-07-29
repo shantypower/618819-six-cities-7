@@ -8,7 +8,6 @@ import {createMemoryHistory} from 'history';
 import {Routes, AuthorizationStatus} from '../../const';
 import {Router} from 'react-router-dom';
 
-
 const mockFavoriteOffer = {
   bedrooms: 3,
   city: {
@@ -43,7 +42,6 @@ const mockFavoriteOffer = {
   title: 'Beautiful & luxurious studio at great location',
   type: 'apartment',
 };
-
 
 const mockUnfavoriteOffer =   {
   bedrooms: 3,

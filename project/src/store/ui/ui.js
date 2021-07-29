@@ -16,7 +16,6 @@ const initialState = {
   },
 };
 
-
 const ui = createReducer(initialState, (builder) => {
   builder
     .addCase(setCity, (state, action) => {
@@ -33,6 +32,5 @@ const ui = createReducer(initialState, (builder) => {
       };
     });
 });
-
 
 export {ui};

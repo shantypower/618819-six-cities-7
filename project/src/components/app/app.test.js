@@ -9,7 +9,6 @@ import App from './app';
 import thunk from 'redux-thunk';
 import {createAPI} from '../../services/api';
 
-
 let history = null;
 let store = null;
 let fakeApp = null;

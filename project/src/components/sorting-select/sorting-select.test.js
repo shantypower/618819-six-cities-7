@@ -5,7 +5,6 @@ import configureStore from 'redux-mock-store';
 import {DEFAULT_SORT_TYPE, SortTypes} from '../../const';
 import {Provider} from 'react-redux';
 
-
 describe('Component: SortingSelect', () => {
   it('should render correctly', () => {
 

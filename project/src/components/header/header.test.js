@@ -7,11 +7,9 @@ import configureStore from 'redux-mock-store';
 import {AuthorizationStatus} from '../../const';
 import Header from './header';
 
-
 let history;
 let store;
 const mockStore = configureStore({});
-
 
 describe('Component: Header', () => {
   beforeAll(() => {

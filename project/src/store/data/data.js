@@ -27,7 +27,6 @@ const initialState = {
   areFavoriteOffersLoaded: false,
 };
 
-
 const data = createReducer(initialState, (builder) => {
   builder
     .addCase(loadOffers, (state, action) => {

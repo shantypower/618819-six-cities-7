@@ -7,11 +7,9 @@ import configureStore from 'redux-mock-store';
 import {AuthorizationStatus} from '../../const';
 import UserNavigationAuthorized from '../user-navigation-authorised/user-navigation-authorized';
 
-
 let history;
 let store;
 const mockStore = configureStore({});
-
 
 describe('Component: UserNavigationAuthorized', () => {
   beforeAll(() => {

@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 function Spinner() {
   return (
     <div className="spinner__wrapper">
@@ -8,6 +7,5 @@ function Spinner() {
     </div>
   );
 }
-
 
 export default Spinner;

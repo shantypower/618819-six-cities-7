@@ -17,7 +17,6 @@ const initialState = {
   },
 };
 
-
 const user = createReducer(initialState, (builder) => {
   builder
     .addCase(setUser, (state, action) => {

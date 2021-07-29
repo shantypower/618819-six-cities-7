@@ -11,7 +11,6 @@ const mockStore = configureStore({});
 let store;
 let history = null;
 
-
 describe('Component: MainEmpty', () => {
 
   beforeAll(() => {

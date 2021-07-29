@@ -19,7 +19,6 @@ function FavoritesButton({ offerId, buttonType, isFavorite}) {
     dispatch(addOfferToFavorites({ offerId, status: Number(!isFavorite)}));
   };
 
-
   return (
     <button
       className={`${FAVORITE_BUTTON_SETTINGS[buttonType].CLASS}__bookmark-button ${isFavorite ? `${FAVORITE_BUTTON_SETTINGS[buttonType].CLASS}__bookmark-button--active` : ''} button`}

@@ -7,7 +7,6 @@ import configureStore from 'redux-mock-store';
 import {AuthorizationStatus, SortTypes} from '../../const';
 import FavoriteCity from './favorite-city';
 
-
 const mockOffers = [
   {
     bedrooms: 3,
@@ -79,11 +78,9 @@ const mockOffers = [
   },
 ];
 
-
 let history;
 let store;
 const mockStore = configureStore({});
-
 
 describe('Component: FavoriteCity', () => {
   beforeAll(() => {

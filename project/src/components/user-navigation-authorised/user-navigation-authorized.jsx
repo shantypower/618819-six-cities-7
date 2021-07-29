@@ -42,11 +42,9 @@ function UserNavigationAuthorized({ email, avatarUrl}) {
   );
 }
 
-
 UserNavigationAuthorized.propTypes = {
   email: PropTypes.string.isRequired,
   avatarUrl: PropTypes.string.isRequired,
 };
-
 
 export default UserNavigationAuthorized;

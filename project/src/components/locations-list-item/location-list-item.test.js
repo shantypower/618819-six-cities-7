@@ -7,11 +7,9 @@ import configureStore from 'redux-mock-store';
 import LocationsListItem from './locations-list-item';
 import userEvent from '@testing-library/user-event';
 
-
 let history=null;
 let store;
 const mockStore = configureStore({});
-
 
 describe('Component: LocationsListItem', () => {
   beforeAll(() => {

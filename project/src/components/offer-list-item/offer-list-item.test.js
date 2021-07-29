@@ -9,7 +9,6 @@ import {OfferTypeSettings, AuthorizationStatus, OfferImageSettings} from '../../
 import userEvent from '@testing-library/user-event';
 import * as Redux from 'react-redux';
 
-
 const mockOffer = {
   bedrooms: 3,
   city: {

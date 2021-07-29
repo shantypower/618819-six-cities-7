@@ -1,8 +1,6 @@
-
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {Routes} from '../../const';
-
 
 function UserNavigationGuest() {
   return (
