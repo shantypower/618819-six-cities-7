@@ -46,7 +46,7 @@ function Map({offers, city, activeOfferId}) {
   }, [map, offers, markers, activeOfferId, city.location.latitude, city.location.longitude, city.location.zoom]);
 
   return (
-    <div className="cities__map map" style={{height: '100%'}} ref={mapRef}>
+    <div className="cities__map map" style={{height: '100%'}} ref={mapRef} data-testid="map">
     </div>
   );
 }

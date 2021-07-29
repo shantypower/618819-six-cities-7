@@ -10,6 +10,7 @@ import { OfferTypeSettings, OfferImageSettings } from '../../const';
 import { getCity, getActiveSortType } from '../../store/ui/selectors';
 import { getCurrentOffers } from '../../store/data/selectors';
 import {getAuthorizationStatus} from '../../store/user/selectors';
+import MainEmpty from '../main-empty/main-empty';
 
 function MainPage() {
 
@@ -19,6 +20,13 @@ function MainPage() {
   const authorizationStatus = useSelector(getAuthorizationStatus);
 
   const [activeOfferId, setActiveOfferId] = useState(1);
+
+  if (currentOffers.length === 0) {
+    return (
+      <MainEmpty/>
+    );
+  }
+
   return (
     <div className="page page--gray page--main">
       <div className="header__left container">

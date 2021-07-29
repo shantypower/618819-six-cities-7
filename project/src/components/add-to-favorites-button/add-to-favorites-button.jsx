@@ -32,7 +32,7 @@ function AddToFavoritesButton({ offerId, buttonType, isFavorite}) {
       >
         <use xlinkHref="#icon-bookmark"/>
       </svg>
-      <span className="visually-hidden">To bookmarks</span>
+      <span className="visually-hidden">{isFavorite ? 'In bookmarks' : 'To bookmarks'}</span>
     </button>
   );
 }

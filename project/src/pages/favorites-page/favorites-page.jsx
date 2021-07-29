@@ -3,10 +3,10 @@ import {useDispatch, useSelector} from 'react-redux';
 import Header from '../../components/header/header';
 import Logo from '../../components/logo/logo';
 import FavoriteCity from '../../components/favorite-city/favorite-city';
-import {LogoSettings}  from '../../const';
+import {LogoTypes}  from '../../const';
 import {getFavoriteOffers, getFavoriteOffersLoadingStatus} from '../../store/data/selectors';
 import {fetchFavoriteOffers} from '../../store/api-actions';
-import MainEmpty from '../main-empty/main-empty';
+import FavoritesEmpty from '../favorites-empty/favorites-empty';
 import Spinner from '../../components/spinner/spinner';
 
 function FavoritesPage() {
@@ -25,7 +25,7 @@ function FavoritesPage() {
   }
 
   if (!offers.length) {
-    return <MainEmpty/>;
+    return <FavoritesEmpty/>;
   }
 
   return (
@@ -40,7 +40,7 @@ function FavoritesPage() {
         </div>
       </main>
       <footer className="footer container">
-        <Logo logoSettings={LogoSettings.FOOTER}/>
+        <Logo logoType={LogoTypes.FOOTER}/>
       </footer>
     </div>
   );

@@ -20,7 +20,7 @@ function SortingSelect({ handleSortTypeClick }) {
 }
 
 SortingSelect.propTypes = {
-  handleSortTypeClick: PropTypes.func.isRequired,
+  handleSortTypeClick: PropTypes.func,
 };
 
 

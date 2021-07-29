@@ -30,7 +30,7 @@ export default PropTypes.shape({
   maxAdults: PropTypes.number,
   previewImage: PropTypes.string,
   price: PropTypes.number.isRequired,
-  rating: PropTypes.number.isRequired,
+  rating: PropTypes.number,
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
 }).isRequired;

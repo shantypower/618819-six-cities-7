@@ -23,7 +23,6 @@ function OfferPage() {
   const authorizationStatus = useSelector(getAuthorizationStatus);
   const reviews = useSelector(getReviewsSliced).slice().sort((firstComment, secondComment) => new Date(secondComment.date) - new Date(firstComment.date));
 
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -135,7 +134,7 @@ function OfferPage() {
             </div>
           </div>
           <section className="property__map map">
-            <Map offers={[...offersNearby, currentOffer]} city={currentOffer.city}/>
+            <Map offers={[...offersNearby, currentOffer]} city={currentOffer.city} activeOfferId={+id}/>
           </section>
         </section>
         <div className="container">

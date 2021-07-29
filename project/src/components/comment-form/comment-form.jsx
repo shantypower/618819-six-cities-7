@@ -103,7 +103,7 @@ function CommentForm({offerId}) {
 }
 
 CommentForm.propTypes = {
-  offerId: PropTypes.string.isRequired,
+  offerId: PropTypes.string,
 };
 
 export default CommentForm;
