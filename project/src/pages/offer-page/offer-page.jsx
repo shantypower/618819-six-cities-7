@@ -23,9 +23,6 @@ function OfferPage() {
   const authorizationStatus = useSelector(getAuthorizationStatus);
   const reviews = useSelector(getReviewsSliced).slice().sort((firstComment, secondComment) => new Date(secondComment.date) - new Date(firstComment.date));
 
-  //const [activeOfferId, setActiveOfferId] = useState(id);
-
-
   const dispatch = useDispatch();
 
   useEffect(() => {

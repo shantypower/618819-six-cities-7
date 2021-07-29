@@ -3,9 +3,7 @@ import {createAPI} from '../services/api';
 import {ActionType} from './action';
 import {
   getOffers,
-  getOffer,
   getReviews,
-  getNearby,
   sendComment,
   checkAuth,
   signin,
@@ -117,43 +115,6 @@ describe('Async operations', () => {
       });
   });
 
-  it('should make a correct API call to GET /hotels/:id', () => {
-    const apiMock = new MockAdapter(api);
-    const dispatch = jest.fn();
-    const offerId = 3;
-    const offerLoader = getOffer(offerId);
-
-    apiMock
-      .onGet(`${APIRoute.OFFERS}${offerId}`)
-      .reply(200, fakeOffer);
-
-    return offerLoader(dispatch, () => {}, api)
-
-      .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(3);
-
-        expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: ActionType.SET_IS_OFFER_LOADED,
-          payload: false,
-        });
-
-        expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: ActionType.LOAD_OFFER,
-          payload: adaptOffer(fakeOffer),
-        });
-
-        expect(dispatch).toHaveBeenNthCalledWith(2, {
-          type: ActionType.SET_IS_OFFER_LOADED,
-          payload: true,
-        });
-
-        expect(dispatch).toHaveBeenNthCalledWith(3, {
-          type: ActionType.REDIRECT_TO_ROUTE,
-          payload: Routes.NOT_FOUND,
-        });
-      });
-  });
-
   it('should make a correct API call to GET /comments/:id', () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
@@ -181,38 +142,6 @@ describe('Async operations', () => {
 
         expect(dispatch).toHaveBeenNthCalledWith(3, {
           type: ActionType.SET_ARE_REVIEWS_LOADED,
-          payload: true,
-        });
-      });
-  });
-
-  it('should make a correct API call to GET /hotels/:id/nearby', () => {
-    const apiMock = new MockAdapter(api);
-    const dispatch = jest.fn();
-    const offerId = 3;
-    const offersNearbyLoader = getNearby(offerId);
-
-    apiMock
-      .onGet(`${APIRoute.OFFERS}${offerId}${APIRoute.NEARBY}`)
-      .reply(200, [fakeOffer]);
-
-    return offersNearbyLoader(dispatch, () => {}, api)
-
-      .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(3);
-
-        expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: ActionType.SET_ARE_LOADED_OFFERS_NEARBY,
-          payload: false,
-        });
-
-        expect(dispatch).toHaveBeenNthCalledWith(2, {
-          type: ActionType.LOAD_OFFERS_NEARBY,
-          payload: [adaptOffer(fakeOffer)],
-        });
-
-        expect(dispatch).toHaveBeenNthCalledWith(3, {
-          type: ActionType.SET_ARE_LOADED_OFFERS_NEARBY,
           payload: true,
         });
       });
@@ -342,7 +271,7 @@ describe('Async operations', () => {
 
     apiMock
       .onGet(APIRoute.FAVORITES)
-      .reply(200, [fakeOffer]);
+      .reply(200, [adaptOffer(fakeOffer)]);
 
     return favoritesOffersLoader(dispatch, () => {}, api)
       .then(() => {
@@ -355,7 +284,7 @@ describe('Async operations', () => {
 
         expect(dispatch).toHaveBeenNthCalledWith(2, {
           type: ActionType.LOAD_FAVORITE_OFFERS,
-          payload: [fakeOffer],
+          payload: [adaptOffer(fakeOffer)],
         });
 
       });
