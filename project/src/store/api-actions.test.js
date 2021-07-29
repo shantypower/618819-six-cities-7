@@ -13,7 +13,7 @@ import {
 
 import {APIRoute, Routes, AuthorizationStatus} from '../const';
 
-import {adaptReviewData, adaptOffer, adaptUserData} from '../adapter/adapter';
+import {adaptReviewData, adaptOfferData, adaptUserData} from '../adapter/adapter';
 
 let api = null;
 
@@ -110,7 +110,7 @@ describe('Async operations', () => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_OFFERS,
-          payload: [adaptOffer(fakeOffer)],
+          payload: [adaptOfferData(fakeOffer)],
         });
       });
   });
@@ -259,7 +259,7 @@ describe('Async operations', () => {
 
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.UPDATE_OFFER,
-          payload: adaptOffer(fakeOffer),
+          payload: adaptOfferData(fakeOffer),
         });
       });
   });
@@ -271,7 +271,7 @@ describe('Async operations', () => {
 
     apiMock
       .onGet(APIRoute.FAVORITES)
-      .reply(200, [adaptOffer(fakeOffer)]);
+      .reply(200, [adaptOfferData(fakeOffer)]);
 
     return favoritesOffersLoader(dispatch, () => {}, api)
       .then(() => {
@@ -284,7 +284,7 @@ describe('Async operations', () => {
 
         expect(dispatch).toHaveBeenNthCalledWith(2, {
           type: ActionType.LOAD_FAVORITE_OFFERS,
-          payload: [adaptOffer(fakeOffer)],
+          payload: [adaptOfferData(fakeOffer)],
         });
 
       });
