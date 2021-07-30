@@ -4,7 +4,7 @@ import {Router, Switch, Route} from 'react-router-dom';
 import {createMemoryHistory} from 'history';
 import Logo from './logo';
 import userEvent from '@testing-library/user-event';
-import {LogoTypes} from '../../const';
+import {LogoType} from '../../const';
 
 let history;
 
@@ -16,7 +16,7 @@ describe('Component: Logo', () => {
   it('should render correctly', () => {
     const {getByRole} = render(
       <Router history={history}>
-        <Logo logoType={LogoTypes.HEADER} />
+        <Logo logoType={LogoType.HEADER} />
       </Router>);
 
     const imageElement = getByRole('img');
@@ -34,7 +34,7 @@ describe('Component: Logo', () => {
             <h1>This is main page</h1>
           </Route>
           <Route>
-            <Logo logoType={LogoTypes.HEADER} />
+            <Logo logoType={LogoType.HEADER} />
           </Route>
         </Switch>
       </Router>);

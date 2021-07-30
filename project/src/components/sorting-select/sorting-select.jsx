@@ -1,10 +1,10 @@
 import React from 'react';
-import {SortTypes} from '../../const';
+import {SortType} from '../../const';
 import PropTypes from 'prop-types';
 import SortingSelectOption from '../sorting-select-option/sorting-select-option';
 
 function SortingSelect({ handleSortTypeClick }) {
-  const sortingOptions = Object.keys(SortTypes);
+  const sortingOptions = Object.keys(SortType);
 
   return (
     <ul className="places__options places__options--custom places__options--opened">

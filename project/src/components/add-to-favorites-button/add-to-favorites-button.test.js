@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import {render} from '@testing-library/react';
 import configureStore from 'redux-mock-store';
 import FavoritesButton from './add-to-favorites-button';
-import {ButtonTypes} from '../../const';
+import {ButtonType} from '../../const';
 import {createMemoryHistory} from 'history';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import {Router} from 'react-router-dom';
@@ -90,7 +90,7 @@ describe('Component FavoritesButton should render correctly', () => {
     store = mockStore({ USER: {
       authorizationStatus: AuthorizationStatus.AUTH,
     },
-    buttonType: ButtonTypes.LIST_ITEM_DETAIL,
+    buttonType: ButtonType.LIST_ITEM_DETAIL,
     });
   });
 

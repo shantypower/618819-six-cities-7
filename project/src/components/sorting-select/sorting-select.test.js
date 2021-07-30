@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import SortingSelect from './sorting-select';
 import configureStore from 'redux-mock-store';
-import {DEFAULT_SORT_TYPE, SortTypes} from '../../const';
+import {DEFAULT_SORT_TYPE, SortType} from '../../const';
 import {Provider} from 'react-redux';
 
 describe('Component: SortingSelect', () => {
@@ -23,6 +23,6 @@ describe('Component: SortingSelect', () => {
 
     const optionsElements = getAllByTestId('sorting-option');
 
-    expect(optionsElements).toHaveLength(Object.keys(SortTypes).length);
+    expect(optionsElements).toHaveLength(Object.keys(SortType).length);
   });
 });

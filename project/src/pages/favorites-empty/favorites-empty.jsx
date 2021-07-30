@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../../components/header/header';
 import Logo from '../../components/logo/logo';
-import {LogoTypes}  from '../../const';
+import {LogoType}  from '../../const';
 
 function FavoritesEmpty() {
 
@@ -20,7 +20,7 @@ function FavoritesEmpty() {
         </div>
       </main>
       <footer className="footer container">
-        <Logo logoType={LogoTypes.FOOTER}/>
+        <Logo logoType={LogoType.FOOTER}/>
       </footer>
     </div>
   );

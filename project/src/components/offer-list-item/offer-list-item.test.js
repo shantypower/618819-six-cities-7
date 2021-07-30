@@ -5,7 +5,7 @@ import { createMemoryHistory } from 'history';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import OfferListItem from './offer-list-item';
-import {OfferTypeSettings, AuthorizationStatus, OfferImageSettings} from '../../const';
+import {OfferTypeSetting, AuthorizationStatus, OfferImageSetting} from '../../const';
 import userEvent from '@testing-library/user-event';
 import * as Redux from 'react-redux';
 
@@ -69,7 +69,7 @@ describe('Component: OfferListItem', () => {
     const {getByText} = render(
       <Provider store={store}>
         <Router history={history}>
-          <OfferListItem offer={mockOffer} type={OfferTypeSettings.MAIN} offerImageSettings={OfferImageSettings.MAIN}/>
+          <OfferListItem offer={mockOffer} type={OfferTypeSetting.MAIN} OfferImageSetting={OfferImageSetting.MAIN}/>
         </Router>
       </Provider>,
     );
@@ -86,7 +86,7 @@ describe('Component: OfferListItem', () => {
     const {getByTestId} = render(
       <Provider store={store}>
         <Router history={history}>
-          <OfferListItem offer={mockOffer} type={OfferTypeSettings.MAIN} offerImageSettings={OfferImageSettings.MAIN} onMouseEnter={onMouseEnter}/>
+          <OfferListItem offer={mockOffer} type={OfferTypeSetting.MAIN} OfferImageSetting={OfferImageSetting.MAIN} onMouseEnter={onMouseEnter}/>
         </Router>
       </Provider>,
     );

@@ -2,14 +2,14 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import offerListItemProp from '../offer-list-item/offer-list-item.prop';
 import PropTypes from 'prop-types';
-import {ButtonTypes} from '../../const';
+import {ButtonType} from '../../const';
 import FavoritesButton from '../../components/add-to-favorites-button/add-to-favorites-button';
 import { useSelector } from 'react-redux';
 import {getAuthorizationStatus} from '../../store/user/selectors';
 
 function OfferListItem(props) {
 
-  const {offer, type, offerImageSettings, onMouseEnter, onMouseLeave} = props;
+  const {offer, type, OfferImageSetting, onMouseEnter, onMouseLeave} = props;
   const { isPremium, previewImage, price, title, isFavorite, rating, id } = offer;
 
   const authorizationStatus = useSelector(getAuthorizationStatus);
@@ -26,7 +26,7 @@ function OfferListItem(props) {
         </div>}
       <div className={type.imageContainerClass}>
         <Link to={`/offer/${id}`}>
-          <img className='place-card__image' src={previewImage} width={offerImageSettings.width} height={offerImageSettings.height} alt='Place view'/>
+          <img className='place-card__image' src={previewImage} width={OfferImageSetting.width} height={OfferImageSetting.height} alt='Place view'/>
         </Link>
       </div>
       <div className={type.infoContainerClass} data-testid = 'offer-info'>
@@ -35,7 +35,7 @@ function OfferListItem(props) {
             <b className='place-card__price-value'>&euro;{price}</b>
             <span className='place-card__price-text'>&#47;&nbsp;night</span>
           </div>
-          <FavoritesButton offerId={+id} isFavorite={isFavorite} buttonType={ButtonTypes.LIST_ITEM} authorizationStatus={authorizationStatus}/>
+          <FavoritesButton offerId={+id} isFavorite={isFavorite} buttonType={ButtonType.LIST_ITEM} authorizationStatus={authorizationStatus}/>
         </div>
         <div className='place-card__rating rating'>
           <div className='place-card__stars rating__stars'>
@@ -61,7 +61,7 @@ OfferListItem.propTypes = {
     imageContainerClass: PropTypes.string,
     infoContainerClass: PropTypes.string,
   }),
-  offerImageSettings: PropTypes.shape({
+  OfferImageSetting: PropTypes.shape({
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
   }),

@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import Header from '../../components/header/header';
 import Logo from '../../components/logo/logo';
 import FavoriteCity from '../../components/favorite-city/favorite-city';
-import {LogoTypes}  from '../../const';
+import {LogoType}  from '../../const';
 import {getFavoriteOffers, getFavoriteOffersLoadingStatus} from '../../store/data/selectors';
 import {fetchFavoriteOffers} from '../../store/api-actions';
 import FavoritesEmpty from '../favorites-empty/favorites-empty';
@@ -40,7 +40,7 @@ function FavoritesPage() {
         </div>
       </main>
       <footer className="footer container">
-        <Logo logoType={LogoTypes.FOOTER}/>
+        <Logo logoType={LogoType.FOOTER}/>
       </footer>
     </div>
   );

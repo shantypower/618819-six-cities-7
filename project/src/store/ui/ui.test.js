@@ -6,7 +6,7 @@ import {
 
 import {ui} from './ui';
 
-import {SortTypes, DEFAULT_CITY, DEFAULT_SORT_TYPE} from '../../const';
+import {SortType, DEFAULT_CITY, DEFAULT_SORT_TYPE} from '../../const';
 
 const state = {
   city: DEFAULT_CITY,
@@ -27,8 +27,8 @@ describe('Reducer: ui', () => {
 
   it('should change sort type to a given value', () => {
 
-    expect(ui(state, setSortType(SortTypes.POPULAR)))
-      .toEqual({...state, activeSortType: SortTypes.POPULAR});
+    expect(ui(state, setSortType(SortType.POPULAR)))
+      .toEqual({...state, activeSortType: SortType.POPULAR});
   });
 
   it('should set posted status to a given value', () => {

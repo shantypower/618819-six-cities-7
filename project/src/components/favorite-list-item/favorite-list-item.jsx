@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import offerListItemProp from '../offer-list-item/offer-list-item.prop';
-import {AppRoute, OfferTypeSettings, OfferImageSettings} from '../../const';
+import {AppRoute, OfferTypeSetting, OfferImageSetting} from '../../const';
 import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {setCity} from '../../store/action';
@@ -26,7 +26,7 @@ function FavoriteListItem({ favoritesByCity, city }) {
           </Link>
         </div>
       </div>
-      <OffersList offers={favoritesByCity} activeSortType={activeSortType} offerImageSettings={OfferImageSettings.MAIN} type={OfferTypeSettings.MAIN}/>
+      <OffersList offers={favoritesByCity} activeSortType={activeSortType} OfferImageSetting={OfferImageSetting.MAIN} type={OfferTypeSetting.MAIN}/>
     </li>
   );
 }

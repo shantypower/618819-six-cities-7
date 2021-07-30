@@ -1,7 +1,3 @@
-export const ListSettings = {
-  offersQuantity: 5,
-};
-
 export const AppRoute = {
   LOGIN: '/login',
   ROOT: '/',
@@ -10,7 +6,7 @@ export const AppRoute = {
   NOT_FOUND: '/notFound',
 };
 
-export const ResponseCodes = {
+export const ResponseCode = {
   SUCCESS: 200,
   NOT_FOUND: 404,
   BAD_REQUEST: 400,
@@ -31,13 +27,13 @@ export const APIRoute = {
   FAVORITES: '/favorite/',
 };
 
-export const OfferTypes = {
+export const OfferType = {
   MAIN: 'MAIN',
   FAVORITES: 'FAVORITES',
   NEARBY: 'NEARBY',
 };
 
-export const OfferTypeSettings = {
+export const OfferTypeSetting = {
   MAIN: {
     articleClass: 'cities__place-card place-card',
     imageContainerClass: 'cities__image-wrapper place-card__image-wrapper',
@@ -56,12 +52,12 @@ export const OfferTypeSettings = {
   },
 };
 
-export const ButtonTypes = {
+export const ButtonType = {
   LIST_ITEM: 'LIST_ITEM',
   LIST_ITEM_DETAIL: 'LIST_ITEM_DETAIL',
 };
 
-export const FAVORITE_BUTTON_SETTINGS = {
+export const FavoriteButtonSetting = {
   'LIST_ITEM': {
     CLASS: 'place-card',
     WIDTH: 18,
@@ -74,12 +70,12 @@ export const FAVORITE_BUTTON_SETTINGS = {
   },
 };
 
-export const LogoTypes = {
+export const LogoType = {
   HEADER: 'HEADER',
   FOOTER: 'FOOTER',
 };
 
-export const LogoSettings = {
+export const LogoSetting = {
   HEADER: {
     width: 81,
     height: 41,
@@ -95,7 +91,7 @@ export const LogoSettings = {
   },
 };
 
-export const OfferImageSettings = {
+export const OfferImageSetting = {
   MAIN: {
     width: 260,
     height: 200,
@@ -107,7 +103,7 @@ export const OfferImageSettings = {
   },
 };
 
-export const SortTypes = {
+export const SortType = {
   POPULAR: 'Popular',
   PRICE_LOW: 'Price: low to high',
   PRICE_HIGH: 'Price: high to low',
@@ -116,7 +112,7 @@ export const SortTypes = {
 
 export const DEFAULT_CITY = 'Paris';
 
-export const DEFAULT_SORT_TYPE = SortTypes.POPULAR;
+export const DEFAULT_SORT_TYPE = SortType.POPULAR;
 
 export const MAX_ROOMS_PER_PAGE = 3;
 

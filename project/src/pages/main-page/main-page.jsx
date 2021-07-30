@@ -6,7 +6,7 @@ import LocationsList from '../../components/locations-list/locations-list';
 import LocationsSortingForm from '../../components/locations-sorting-form/locations-sorting-form';
 import {LOCATIONS} from '../../const';
 import { useSelector } from 'react-redux';
-import { OfferTypeSettings, OfferImageSettings } from '../../const';
+import { OfferTypeSetting, OfferImageSetting } from '../../const';
 import { getCity, getActiveSortType } from '../../store/ui/selectors';
 import { getCurrentOffers } from '../../store/data/selectors';
 import {getAuthorizationStatus} from '../../store/user/selectors';
@@ -46,7 +46,7 @@ function MainPage() {
               <b className="places__found">{`${currentOffers.length} places to stay in ${city}`}</b>
               <LocationsSortingForm activeSortType={activeSortType} />
               <div className="cities__places-list places__list tabs__content">
-                <OffersList offers = {currentOffers} activeSortType={activeSortType} setActiveOfferId={setActiveOfferId} offerImageSettings={OfferImageSettings.MAIN} type={OfferTypeSettings.MAIN} authorizationStatus={authorizationStatus}/>
+                <OffersList offers = {currentOffers} activeSortType={activeSortType} setActiveOfferId={setActiveOfferId} OfferImageSetting={OfferImageSetting.MAIN} type={OfferTypeSetting.MAIN} authorizationStatus={authorizationStatus}/>
               </div>
             </section>
             <div className="cities__right-section">

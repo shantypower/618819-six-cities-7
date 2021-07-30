@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {AppRoute, FAVORITE_BUTTON_SETTINGS, AuthorizationStatus} from '../../const';
+import {AppRoute, FavoriteButtonSetting, AuthorizationStatus} from '../../const';
 import {useDispatch, useSelector} from 'react-redux';
 import {addOfferToFavorites} from '../../store/api-actions';
 import { useHistory } from 'react-router-dom';
@@ -21,13 +21,13 @@ function FavoritesButton({ offerId, buttonType, isFavorite}) {
 
   return (
     <button
-      className={`${FAVORITE_BUTTON_SETTINGS[buttonType].CLASS}__bookmark-button ${isFavorite ? `${FAVORITE_BUTTON_SETTINGS[buttonType].CLASS}__bookmark-button--active` : ''} button`}
+      className={`${FavoriteButtonSetting[buttonType].CLASS}__bookmark-button ${isFavorite ? `${FavoriteButtonSetting[buttonType].CLASS}__bookmark-button--active` : ''} button`}
       type="button"
       onClick={handleClick}
     >
       <svg
-        className={`${FAVORITE_BUTTON_SETTINGS[buttonType].CLASS}__bookmark-icon`}
-        style={{width: FAVORITE_BUTTON_SETTINGS[buttonType].WIDTH, height: FAVORITE_BUTTON_SETTINGS[buttonType].HEIGHT}}
+        className={`${FavoriteButtonSetting[buttonType].CLASS}__bookmark-icon`}
+        style={{width: FavoriteButtonSetting[buttonType].WIDTH, height: FavoriteButtonSetting[buttonType].HEIGHT}}
       >
         <use xlinkHref="#icon-bookmark"/>
       </svg>

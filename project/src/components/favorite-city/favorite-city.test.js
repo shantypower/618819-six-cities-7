@@ -4,7 +4,7 @@ import {Router} from 'react-router-dom';
 import {createMemoryHistory} from 'history';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
-import {AuthorizationStatus, SortTypes} from '../../const';
+import {AuthorizationStatus, SortType} from '../../const';
 import FavoriteCity from './favorite-city';
 
 const mockOffers = [
@@ -91,7 +91,7 @@ describe('Component: FavoriteCity', () => {
     store = mockStore({
       DATA: {favoriteOffers: mockOffers},
       USER: {authorizationStatus: AuthorizationStatus.AUTH},
-      UI: {activeSortTYpe: SortTypes.POPULAR},
+      UI: {activeSortTYpe: SortType.POPULAR},
     });
     render(
       <Provider store={store}>

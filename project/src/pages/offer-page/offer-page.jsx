@@ -7,7 +7,7 @@ import OffersList from '../../components/offers-list/offers-list';
 import Map from '../../components/map/map';
 import Spinner from '../../components/spinner/spinner';
 import FavoritesButton from '../../components/add-to-favorites-button/add-to-favorites-button';
-import {OfferTypeSettings, OfferImageSettings, AuthorizationStatus, MAX_ROOMS_PER_PAGE, ButtonTypes} from '../../const';
+import {OfferTypeSetting, OfferImageSetting, AuthorizationStatus, MAX_ROOMS_PER_PAGE, ButtonType} from '../../const';
 import {useParams} from 'react-router-dom';
 import {getReviews, getOffer, getNearby} from '../../store/api-actions';
 import {useDispatch, useSelector} from 'react-redux';
@@ -62,7 +62,7 @@ function OfferPage() {
                 <h1 className="property__name">
                   {currentOffer.title}
                 </h1>
-                <FavoritesButton offerId={+id} isFavorite={currentOffer.isFavorite} buttonType={ButtonTypes.LIST_ITEM_DETAIL}/>
+                <FavoritesButton offerId={+id} isFavorite={currentOffer.isFavorite} buttonType={ButtonType.LIST_ITEM_DETAIL}/>
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
@@ -141,7 +141,7 @@ function OfferPage() {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <OffersList offers = {offersNearby.slice().splice(0, MAX_ROOMS_PER_PAGE)} offerImageSettings={OfferImageSettings.FAVORITES} type={OfferTypeSettings.NEARBY}/>
+              <OffersList offers = {offersNearby.slice().splice(0, MAX_ROOMS_PER_PAGE)} OfferImageSetting={OfferImageSetting.FAVORITES} type={OfferTypeSetting.NEARBY}/>
             </div>
           </section>
         </div>

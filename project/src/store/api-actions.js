@@ -15,7 +15,7 @@ import {
   setFavoriteOffersLoadingStatus,
   loadFavoriteOffers
 } from './action';
-import {AuthorizationStatus, APIRoute, AppRoute, ResponseCodes} from '../const';
+import {AuthorizationStatus, APIRoute, AppRoute, ResponseCode} from '../const';
 import {adaptOfferData, adaptReviewData, adaptUserData} from '../adapter/adapter';
 import {createBrowserHistory} from 'history';
 
@@ -42,7 +42,7 @@ export const getOffer = (id) => (dispatch, _getState, api) => {
     })
     .then(() => dispatch(setOfferLoadingStatus(true)))
     .catch((error) => {
-      if ((error.response.status === ResponseCodes.NOT_FOUND || error.response.status === ResponseCodes.BAD_REQUEST)) {
+      if ((error.response.status === ResponseCode.NOT_FOUND || error.response.status === ResponseCode.BAD_REQUEST)) {
         dispatch(redirectToRoute(AppRoute.NOT_FOUND));
       }
       dispatch(redirectToRoute(AppRoute.NOT_FOUND));
@@ -77,7 +77,7 @@ export const sendComment = ({id, comment, rating}) => (dispatch, _getState, api)
   return api.post(`${APIRoute.REVIEWS}${id}`, {comment, rating})
     .then((response) => {
       const { status, data } = response;
-      if (status !== ResponseCodes.SUCCESS) {
+      if (status !== ResponseCode.SUCCESS) {
         dispatch(setHasPostedComment({hasPosted: false, comment: comment, rating: rating}));
       } else {
         const comments = data.map(adaptReviewData);

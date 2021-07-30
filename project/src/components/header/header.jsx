@@ -1,6 +1,6 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
-import { LogoTypes } from '../../const';
+import { LogoType } from '../../const';
 import Logo from '../logo/logo';
 import {AuthorizationStatus} from '../../const';
 import UserNavigationGuest from '../user-navigation-guest/user-navigation-guest';
@@ -18,7 +18,7 @@ function Header() {
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <Logo logoType={LogoTypes.HEADER} />
+            <Logo logoType={LogoType.HEADER} />
           </div>
           <nav className="header__nav">
             <ul className="header__nav-list">
