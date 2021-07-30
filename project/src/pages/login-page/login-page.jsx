@@ -1,6 +1,6 @@
 import React, {useRef, useState} from 'react';
 import Header from '../../components/header/header';
-import {signin} from '../../store/api-actions';
+import {signIn} from '../../store/api-actions';
 import { useDispatch } from 'react-redux';
 import {Routes} from '../../const';
 import { useHistory } from 'react-router-dom';
@@ -27,7 +27,7 @@ function LoginPage() {
     } else if (password.length === 0) {
       setIsPasswordError(true);
     } else {
-      dispatch(signin({
+      dispatch(signIn({
         login: loginRef.current.value,
         password: passwordRef.current.value.trim(),
       }));

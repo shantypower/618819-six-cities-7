@@ -97,7 +97,7 @@ export const checkAuth = () => (dispatch, _getState, api) => (
     .catch(() => dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH)))
 );
 
-export const signin = ({login: email, password}) => (dispatch, _getState, api) => (
+export const signIn = ({login: email, password}) => (dispatch, _getState, api) => (
   api.post(APIRoute.LOGIN, {email, password})
     .then(({data}) => {
       dispatch(setUser(adaptUserData(data)));
@@ -107,7 +107,7 @@ export const signin = ({login: email, password}) => (dispatch, _getState, api) =
     .then(() => dispatch(redirectToRoute(Routes.ROOT)))
 );
 
-export const signout = () => (dispatch, _getState, api) => (
+export const signOut = () => (dispatch, _getState, api) => (
   api.delete(APIRoute.LOGOUT)
     .then(() => localStorage.removeItem('token'))
     .then(() => dispatch(logout()))

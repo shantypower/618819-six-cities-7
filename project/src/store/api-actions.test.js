@@ -6,7 +6,7 @@ import {
   getReviews,
   sendComment,
   checkAuth,
-  signin,
+  signIn,
   addOfferToFavorites,
   fetchFavoriteOffers
 } from './api-actions';
@@ -214,7 +214,7 @@ describe('Async operations', () => {
   it('should make a correct API call to POST /login', () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
-    const loginLoader = signin({login: fakeUser.email, password: '123456' });
+    const loginLoader = signIn({login: fakeUser.email, password: '123456' });
 
     apiMock
       .onPost(APIRoute.LOGIN)

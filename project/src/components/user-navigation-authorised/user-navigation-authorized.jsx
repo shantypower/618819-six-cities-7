@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {Routes} from '../../const';
 import {useDispatch} from 'react-redux';
-import {signout} from '../../store/api-actions';
+import {signOut} from '../../store/api-actions';
 import { useHistory } from 'react-router-dom';
 
 function UserNavigationAuthorized({ email, avatarUrl}) {
@@ -14,7 +14,7 @@ function UserNavigationAuthorized({ email, avatarUrl}) {
     history.push(Routes.FAVORITES);
   };
   const handleClick = () => {
-    dispatch(signout());
+    dispatch(signOut());
   };
 
   return (
