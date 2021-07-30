@@ -77,6 +77,7 @@ export const sendComment = ({id, comment, rating}) => (dispatch, _getState, api)
   return api.post(`${APIRoute.REVIEWS}${id}`, {comment, rating})
     .then((response) => {
       const { status, data } = response;
+      console.log(response)
       if (status !== ResponseCodes.SUCCESS) {
         dispatch(setHasPostedComment({hasPosted: false, comment: comment, rating: rating}));
       } else {
@@ -86,7 +87,8 @@ export const sendComment = ({id, comment, rating}) => (dispatch, _getState, api)
         dispatch(setAreReviewsLoaded(true));
       }
     })
-    .catch(() => {
+    .catch((e) => {
+      console.log("Can not send the comment due to error: ", e);
     });
 };
 
