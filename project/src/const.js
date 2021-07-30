@@ -27,12 +27,6 @@ export const APIRoute = {
   FAVORITES: '/favorite/',
 };
 
-export const OfferType = {
-  MAIN: 'MAIN',
-  FAVORITES: 'FAVORITES',
-  NEARBY: 'NEARBY',
-};
-
 export const OfferTypeSetting = {
   MAIN: {
     articleClass: 'cities__place-card place-card',
@@ -110,17 +104,17 @@ export const SortType = {
   TOP: 'Top rated first',
 };
 
-export const DEFAULT_CITY = 'Paris';
+export const MainPageSetting = {
+  DEFAULT_CITY: 'Paris',
+  DEFAULT_SORT_TYPE: SortType.POPULAR,
+};
 
-export const DEFAULT_SORT_TYPE = SortType.POPULAR;
-
-export const MAX_ROOMS_PER_PAGE = 3;
-
-export const MIN_REVIEW_LENGTH = 50;
-
-export const MAX_REVIEW_LENGTH = 300;
-
-export const MAX_REVIEWS_COUNT = 10;
+export const OfferPageSetting = {
+  MAX_ROOMS_PER_PAGE: 3,
+  MIN_REVIEW_LENGTH: 50,
+  MAX_REVIEW_LENGTH: 300,
+  MAX_REVIEWS_COUNT: 10,
+};
 
 export const LOCATIONS = [
   {

@@ -6,11 +6,11 @@ import {
 
 import {ui} from './ui';
 
-import {SortType, DEFAULT_CITY, DEFAULT_SORT_TYPE} from '../../const';
+import {SortType, MainPageSetting.DEFAULT_CITY, MainPageSetting.DEFAULT_SORT_TYPE} from '../../const';
 
 const state = {
-  city: DEFAULT_CITY,
-  activeSortType: DEFAULT_SORT_TYPE,
+  city: MainPageSetting.DEFAULT_CITY,
+  activeSortType: MainPageSetting.DEFAULT_SORT_TYPE,
   hasPostedComment: {
     hasPosted: false,
     comment: '',

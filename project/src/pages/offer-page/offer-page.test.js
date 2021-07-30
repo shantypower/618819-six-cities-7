@@ -6,7 +6,7 @@ import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import OfferPage from './offer-page';
 import Spinner from '../../components/spinner/spinner';
-import {AuthorizationStatus, DEFAULT_CITY} from '../../const';
+import {AuthorizationStatus, MainPageSetting.DEFAULT_CITY} from '../../const';
 import {createAPI} from '../../services/api';
 import thunk from 'redux-thunk';
 import {Route} from 'react-router';
@@ -233,7 +233,7 @@ describe('Component: OfferPage', () => {
           name: 'Test',
         },
       },
-      UI: {city: DEFAULT_CITY},
+      UI: {city: MainPageSetting.DEFAULT_CITY},
     });
     render(
       <Provider store={store}>
@@ -273,7 +273,7 @@ describe('Component: OfferPage', () => {
           name: 'Test',
         },
       },
-      UI: {city: DEFAULT_CITY},
+      UI: {city: MainPageSetting.DEFAULT_CITY},
     });
     render(
       <Provider store={store}>

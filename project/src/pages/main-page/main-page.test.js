@@ -5,7 +5,7 @@ import {createMemoryHistory} from 'history';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import MainPage from './main-page';
-import {AuthorizationStatus, DEFAULT_CITY} from '../../const';
+import {AuthorizationStatus, MainPageSetting.DEFAULT_CITY} from '../../const';
 import {createAPI} from '../../services/api';
 import thunk from 'redux-thunk';
 
@@ -81,7 +81,7 @@ describe('Component: MainPage', () => {
           name: 'Test name',
         },
       },
-      UI: {city: DEFAULT_CITY},
+      UI: {city: MainPageSetting.DEFAULT_CITY},
     });
     render(
       <Provider store={store}>

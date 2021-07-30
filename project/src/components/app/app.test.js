@@ -4,7 +4,7 @@ import {Router} from 'react-router-dom';
 import {createMemoryHistory} from 'history';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-import {AuthorizationStatus,DEFAULT_SORT_TYPE, DEFAULT_CITY} from '../../const';
+import {AuthorizationStatus,MainPageSetting.DEFAULT_SORT_TYPE, MainPageSetting.DEFAULT_CITY} from '../../const';
 import App from './app';
 import thunk from 'redux-thunk';
 import {createAPI} from '../../services/api';
@@ -501,8 +501,8 @@ describe('Application Routing', () => {
         areFavoriteOffersLoaded: true,
       },
       UI: {
-        city: DEFAULT_CITY,
-        activeSortType: DEFAULT_SORT_TYPE,
+        city: MainPageSetting.DEFAULT_CITY,
+        activeSortType: MainPageSetting.DEFAULT_SORT_TYPE,
         activeOfferId: 0,
         hasPostedComment: {
           hasPosted: true,

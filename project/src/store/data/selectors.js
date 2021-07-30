@@ -1,7 +1,7 @@
 import {NameSpace} from '../root-reducer';
 import {createSelector} from 'reselect';
 import {getCity} from '../ui/selectors';
-import {MAX_REVIEWS_COUNT} from '../../const';
+import {OfferPageSetting} from '../../const';
 
 export const getReviews = (state) => state[NameSpace.DATA].reviews;
 export const getOffers = (state) => state[NameSpace.DATA].offers;
@@ -21,5 +21,5 @@ export const getCurrentOffers = createSelector(
 
 export const getReviewsSliced = createSelector(
   getReviews,
-  (items) => items.slice(0, MAX_REVIEWS_COUNT),
+  (items) => items.slice(0, OfferPageSetting.MAX_REVIEWS_COUNT),
 );

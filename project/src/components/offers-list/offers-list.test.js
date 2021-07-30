@@ -7,7 +7,7 @@ import configureStore from 'redux-mock-store';
 import OffersList from './offers-list';
 import {createAPI} from '../../services/api';
 import thunk from 'redux-thunk';
-import {DEFAULT_SORT_TYPE, AuthorizationStatus, OfferTypeSetting, OfferImageSetting} from '../../const';
+import {MainPageSetting.DEFAULT_SORT_TYPE, AuthorizationStatus, OfferTypeSetting, OfferImageSetting} from '../../const';
 
 const mockOffers = [
   {
@@ -98,7 +98,7 @@ describe('Component: OffersList', () => {
       },
       UI: {
         city: 'Amsterdam',
-        activeSortType: DEFAULT_SORT_TYPE,
+        activeSortType: MainPageSetting.DEFAULT_SORT_TYPE,
       },
       USER: {
         authorizationStatus: AuthorizationStatus.NO_AUTH,

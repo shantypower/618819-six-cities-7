@@ -3,12 +3,12 @@ import {
   setHasPostedComment,
   setSortType
 } from '../action';
-import {DEFAULT_CITY, DEFAULT_SORT_TYPE} from '../../const';
+import {MainPageSetting} from '../../const';
 import {createReducer} from '@reduxjs/toolkit';
 
 const initialState = {
-  city: DEFAULT_CITY,
-  activeSortType: DEFAULT_SORT_TYPE,
+  city: MainPageSetting.DEFAULT_CITY,
+  activeSortType: MainPageSetting.DEFAULT_SORT_TYPE,
   hasPostedComment: {
     hasPosted: true,
     comment: '',

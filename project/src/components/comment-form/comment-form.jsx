@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {useSelector, useDispatch} from 'react-redux';
 import {sendComment} from '../../store/api-actions';
-import {MAX_REVIEW_LENGTH, MIN_REVIEW_LENGTH} from '../../const';
+import {OfferPageSetting} from '../../const';
 import { getHasPostedComment } from '../../store/ui/selectors';
 
 function CommentForm({offerId}) {
@@ -16,8 +16,8 @@ function CommentForm({offerId}) {
   const dispatch = useDispatch();
 
   const handleFormChange = (evt) => {
-    setIsDisabled(!(review.length >= MIN_REVIEW_LENGTH
-      && review.length <= MAX_REVIEW_LENGTH
+    setIsDisabled(!(review.length >= OfferPageSetting.MIN_REVIEW_LENGTH
+      && review.length <= OfferPageSetting.MAX_REVIEW_LENGTH
       && rating > 0));
   };
 
@@ -85,7 +85,7 @@ function CommentForm({offerId}) {
           </svg>
         </label>
       </div>
-      <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" onChange={(evt) => setReviewText(evt.target.value)} minLength={MIN_REVIEW_LENGTH} maxLength={MAX_REVIEW_LENGTH}
+      <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" onChange={(evt) => setReviewText(evt.target.value)} minLength={OfferPageSetting.MIN_REVIEW_LENGTH} maxLength={OfferPageSetting.MAX_REVIEW_LENGTH}
         value={review}
       >
       </textarea>

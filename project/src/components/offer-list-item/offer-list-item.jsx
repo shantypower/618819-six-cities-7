@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import offerListItemProp from '../offer-list-item/offer-list-item.prop';
 import PropTypes from 'prop-types';
 import {ButtonType} from '../../const';
-import FavoritesButton from '../../components/add-to-favorites-button/add-to-favorites-button';
+import FavoritesButton from '../favorites-button/favorites-button';
 import { useSelector } from 'react-redux';
 import {getAuthorizationStatus} from '../../store/user/selectors';
 

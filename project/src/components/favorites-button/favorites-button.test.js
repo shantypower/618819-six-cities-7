@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import {render} from '@testing-library/react';
 import configureStore from 'redux-mock-store';
-import FavoritesButton from './add-to-favorites-button';
+import FavoritesButton from './favorites-button';
 import {ButtonType} from '../../const';
 import {createMemoryHistory} from 'history';
 import {AppRoute, AuthorizationStatus} from '../../const';
