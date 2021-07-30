@@ -114,6 +114,15 @@ export const OfferPageSetting = {
   MIN_REVIEW_LENGTH: 50,
   MAX_REVIEW_LENGTH: 300,
   MAX_REVIEWS_COUNT: 10,
+  DEFAULT_RATING: 0,
+  EMPTY_OFFERS_LENGTH: 0,
+};
+
+export const ErrorMessage = {
+  DEFAULT: 'Something went wrong. Try again later.',
+  OFFLINE: 'Internet connection error.',
+  REVIEW_ERROR: 'Review sending error. Please try again.',
+  LOGIN_ERROR: 'Login error. Please try again.',
 };
 
 export const LOCATIONS = [
@@ -166,3 +175,5 @@ export const LOCATIONS = [
     },
   },
 ];
+
+export const DEFAULT_TIMEOUT = 10000;
