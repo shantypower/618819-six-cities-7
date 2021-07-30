@@ -5,7 +5,7 @@ import configureStore from 'redux-mock-store';
 import FavoritesButton from './add-to-favorites-button';
 import {ButtonTypes} from '../../const';
 import {createMemoryHistory} from 'history';
-import {Routes, AuthorizationStatus} from '../../const';
+import {AppRoute, AuthorizationStatus} from '../../const';
 import {Router} from 'react-router-dom';
 
 const mockFavoriteOffer = {
@@ -85,7 +85,7 @@ let history = null;
 describe('Component FavoritesButton should render correctly', () => {
   beforeAll(() => {
     history = createMemoryHistory();
-    history.push(Routes.FAVORITES);
+    history.push(AppRoute.FAVORITES);
     const mockStore = configureStore({});
     store = mockStore({ USER: {
       authorizationStatus: AuthorizationStatus.AUTH,

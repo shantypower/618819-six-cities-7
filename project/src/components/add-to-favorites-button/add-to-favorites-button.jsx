@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Routes, FAVORITE_BUTTON_SETTINGS, AuthorizationStatus} from '../../const';
+import {AppRoute, FAVORITE_BUTTON_SETTINGS, AuthorizationStatus} from '../../const';
 import {useDispatch, useSelector} from 'react-redux';
 import {addOfferToFavorites} from '../../store/api-actions';
 import { useHistory } from 'react-router-dom';
@@ -14,7 +14,7 @@ function FavoritesButton({ offerId, buttonType, isFavorite}) {
 
   const handleClick = () => {
     if (authorizationStatus !== AuthorizationStatus.AUTH) {
-      history.push(Routes.LOGIN);
+      history.push(AppRoute.LOGIN);
     }
     dispatch(addOfferToFavorites({ offerId, status: Number(!isFavorite)}));
   };

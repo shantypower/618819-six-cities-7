@@ -6,7 +6,7 @@ import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import LoginPage from '../../pages/login-page/login-page';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import OfferPage from '../../pages/offer-page/offer-page';
-import {Routes} from '../../const';
+import {AppRoute} from '../../const';
 import { useSelector } from 'react-redux';
 import Spinner from '../spinner/spinner';
 import { getIsDataLoadedStatus } from '../../store/data/selectors';
@@ -23,10 +23,10 @@ function App() {
 
   return (
     <Switch>
-      <Route exact path={Routes.LOGIN} render={() =><LoginPage/>}/>
-      <PrivateRoute exact  path={Routes.FAVORITES}  render={() => <FavoritesPage/>}/>
-      <Route exact path={Routes.ROOT} render={() => <MainPage/>}/>
-      <Route exact path={Routes.OFFER} render={() => <OfferPage/>}/>
+      <Route exact path={AppRoute.LOGIN} render={() =><LoginPage/>}/>
+      <PrivateRoute exact  path={AppRoute.FAVORITES}  render={() => <FavoritesPage/>}/>
+      <Route exact path={AppRoute.ROOT} render={() => <MainPage/>}/>
+      <Route exact path={AppRoute.OFFER} render={() => <OfferPage/>}/>
       <Route render={() => <NotFoundPage />}/>
     </Switch>
   );

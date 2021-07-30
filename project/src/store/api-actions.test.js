@@ -11,7 +11,7 @@ import {
   fetchFavoriteOffers
 } from './api-actions';
 
-import {APIRoute, Routes, AuthorizationStatus} from '../const';
+import {APIRoute, AppRoute, AuthorizationStatus} from '../const';
 
 import {adaptReviewData, adaptOfferData, adaptUserData} from '../adapter/adapter';
 
@@ -236,7 +236,7 @@ describe('Async operations', () => {
 
         expect(dispatch).toHaveBeenNthCalledWith(3, {
           type: ActionType.REDIRECT_TO_ROUTE,
-          payload: Routes.ROOT,
+          payload: AppRoute.ROOT,
         });
       });
   });

@@ -15,7 +15,7 @@ import {
   setFavoriteOffersLoadingStatus,
   loadFavoriteOffers
 } from './action';
-import {AuthorizationStatus, APIRoute, Routes, ResponseCodes} from '../const';
+import {AuthorizationStatus, APIRoute, AppRoute, ResponseCodes} from '../const';
 import {adaptOfferData, adaptReviewData, adaptUserData} from '../adapter/adapter';
 import {createBrowserHistory} from 'history';
 
@@ -43,10 +43,10 @@ export const getOffer = (id) => (dispatch, _getState, api) => {
     .then(() => dispatch(setOfferLoadingStatus(true)))
     .catch((error) => {
       if ((error.response.status === ResponseCodes.NOT_FOUND || error.response.status === ResponseCodes.BAD_REQUEST)) {
-        dispatch(redirectToRoute(Routes.NOT_FOUND));
+        dispatch(redirectToRoute(AppRoute.NOT_FOUND));
       }
-      dispatch(redirectToRoute(Routes.NOT_FOUND));
-      browserHistory.push(Routes.NOT_FOUND);
+      dispatch(redirectToRoute(AppRoute.NOT_FOUND));
+      browserHistory.push(AppRoute.NOT_FOUND);
     });
 };
 
@@ -104,7 +104,7 @@ export const signIn = ({login: email, password}) => (dispatch, _getState, api) =
       localStorage.setItem('token', data.token);
     })
     .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
-    .then(() => dispatch(redirectToRoute(Routes.ROOT)))
+    .then(() => dispatch(redirectToRoute(AppRoute.ROOT)))
 );
 
 export const signOut = () => (dispatch, _getState, api) => (

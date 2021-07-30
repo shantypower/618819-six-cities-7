@@ -2,7 +2,7 @@ export const ListSettings = {
   offersQuantity: 5,
 };
 
-export const Routes = {
+export const AppRoute = {
   LOGIN: '/login',
   ROOT: '/',
   FAVORITES: '/favorites',
