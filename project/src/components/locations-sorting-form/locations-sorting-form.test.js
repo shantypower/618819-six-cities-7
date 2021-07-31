@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import LocationsSortingForm from './locations-sorting-form';
 import configureStore from 'redux-mock-store';
-import {MainPageSetting.DEFAULT_SORT_TYPE} from '../../const';
+import {MainPageSetting} from '../../const';
 import {Provider} from 'react-redux';
 
 describe('Component: LocationsSortingForm', () => {

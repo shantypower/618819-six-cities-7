@@ -1,13 +1,14 @@
 import React from 'react';
+import * as Redux from 'react-redux';
 import {render, screen} from '@testing-library/react';
-import {Router} from 'react-router-dom';
+import {Route, Router, Switch} from 'react-router-dom';
 import {createMemoryHistory} from 'history';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
-import FavoritesPage from './favorites-page';
 import {AuthorizationStatus, MainPageSetting} from '../../const';
-import {createAPI} from '../../services/api';
-import thunk from 'redux-thunk';
+import FavoriteListItem from './favorite-list-item';
+import userEvent from '@testing-library/user-event';
+import {ActionType} from '../../store/action';
 
 const mockOffers = [
   {
@@ -20,7 +21,7 @@ const mockOffers = [
       },
       name: 'Amsterdam',
     },
-    description: 'A quiet cozy and picturesque that hides behind a river by the unique lightness of Amsterdam.',
+    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     goods: ['Heating', 'Kitchen', 'Cable TV', 'Washing machine', 'Coffee machine', 'Dishwasher'],
     host: {
       avatarUrl: 'img/avatar-angelina.jpg',
@@ -80,88 +81,76 @@ const mockOffers = [
   },
 ];
 
+const mockCity = {
+  location: {
+    latitude: 52.370216,
+    longitude: 4.895168,
+    zoom: 10,
+  },
+  name: 'Amsterdam',
+};
+
 let history;
 let store;
-let api = null;
+const mockStore = configureStore({});
 
-describe('Component: FavoritesPage', () => {
+
+describe('Component: FavoritesItem', () => {
   beforeAll(() => {
     history = createMemoryHistory();
-    api = createAPI(() => {});
   });
 
-  it('should render correctly if data is loaded', () => {
-    const createFakeStore = configureStore([thunk.withExtraArgument(api)]);
-    store = createFakeStore({
-      DATA: {
-        offers: [],
-        comments: [],
-        offersNearby: [],
-        favoriteOffers: mockOffers,
-        currentOffer: null,
-        isDataLoaded: true,
-        isOfferLoaded: false,
-        areReviewsLoaded: false,
-        areLoadedOffersNearby: true,
-        areFavoriteOffersLoaded: true,
-      },
-      USER: {
-        authorizationStatus: AuthorizationStatus.AUTH,
-        user: {
-          avatarUrl: 'test.jpg',
-          email: 'test@test.com',
-          id: 1,
-          isPro: false,
-          name: 'Test',
-        },
-      },
+  it('should render correctly', () => {
+    store = mockStore({
+      DATA: {favoriteOffers: mockOffers},
+      USER: {authorizationStatus: AuthorizationStatus.AUTH},
       UI: {city: MainPageSetting.DEFAULT_CITY},
     });
     render(
       <Provider store={store}>
         <Router history={history}>
-          <FavoritesPage />
+          <FavoriteListItem favoritesByCity={mockOffers} city={mockCity.name} />
         </Router>
       </Provider>);
 
-    expect(screen.getByText(/test@test.com/i)).toBeInTheDocument();
-    expect(screen.getByText('Beautiful & luxurious house at great location')).toBeInTheDocument();
+    expect(screen.getByText(/Amsterdam/i)).toBeInTheDocument();
+    expect(screen.getAllByTestId('place-card')).toHaveLength(mockOffers.length);
   });
 
-  it('should render correctly if data is not loaded', () => {
-    const createFakeStore = configureStore([thunk.withExtraArgument(api)]);
-    store = createFakeStore({
-      DATA: {
-        offers: [],
-        comments: [],
-        offersNearby: [],
-        favoriteOffers: [],
-        currentOffer: null,
-        isDataLoaded: true,
-        isOfferLoaded: false,
-        areReviewsLoaded: false,
-        areLoadedOffersNearby: true,
-        areFavoriteOffersLoaded: false,
-      },
-      USER: {
-        authorizationStatus: AuthorizationStatus.AUTH,
-        user: {
-          avatarUrl: 'test.jpg',
-          email: 'test@test.com',
-          id: 1,
-          isPro: false,
-          name: 'Test',
-        },
-      },
+  it('should redirect to / upon link click', () => {
+    history.push('/favorites');
+    const dispatch = jest.fn();
+    const useDispatch = jest.spyOn(Redux, 'useDispatch');
+    useDispatch.mockReturnValue(dispatch);
+
+    store = mockStore({
+      DATA: {favoriteOffers: mockOffers},
+      USER: {authorizationStatus: AuthorizationStatus.AUTH},
       UI: {city: MainPageSetting.DEFAULT_CITY},
     });
-    render(
+    const {getByTestId, queryByText} = render(
       <Provider store={store}>
         <Router history={history}>
-          <FavoritesPage />
+          <Switch>
+            <Route path="/" exact>
+              <h1>This is main page</h1>
+            </Route>
+            <Route>
+              <FavoriteListItem favoritesByCity={mockOffers} city={mockCity.name} />
+            </Route>
+          </Switch>
         </Router>
       </Provider>);
 
-    expect(screen.queryByText('Beautiful & luxurious house at great location')).not.toBeInTheDocument();
+    const linkElement = getByTestId('locations__item-link');
+    expect(linkElement).toBeInTheDocument();
+    userEvent.click(linkElement);
+
+    expect(dispatch).nthCalledWith(1, {
+      type: ActionType.SET_CITY,
+      payload: mockCity.name,
+    });
+
+    expect(queryByText('This is main page')).toBeInTheDocument();
   });
 });

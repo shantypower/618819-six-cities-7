@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import SortingSelect from './sorting-select';
 import configureStore from 'redux-mock-store';
-import {MainPageSetting.DEFAULT_SORT_TYPE, SortType} from '../../const';
+import {MainPageSetting, SortType} from '../../const';
 import {Provider} from 'react-redux';
 
 describe('Component: SortingSelect', () => {

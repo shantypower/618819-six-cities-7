@@ -6,7 +6,7 @@ import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import OfferPage from './offer-page';
 import Spinner from '../../components/spinner/spinner';
-import {AuthorizationStatus, MainPageSetting.DEFAULT_CITY} from '../../const';
+import {AuthorizationStatus, MainPageSetting} from '../../const';
 import {createAPI} from '../../services/api';
 import thunk from 'redux-thunk';
 import {Route} from 'react-router';

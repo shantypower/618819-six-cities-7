@@ -19,6 +19,7 @@ function OfferListItem(props) {
       className={type.articleClass}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      data-testid="place-card"
     >
       {isPremium &&
         <div className='place-card__mark'>

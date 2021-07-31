@@ -1,16 +1,18 @@
 import {
   setCity,
   setHasPostedComment,
-  setSortType
+  setSortType,
+  setCommentError
 } from '../action';
 
 import {ui} from './ui';
 
-import {SortType, MainPageSetting.DEFAULT_CITY, MainPageSetting.DEFAULT_SORT_TYPE} from '../../const';
+import {SortType, MainPageSetting} from '../../const';
 
 const state = {
   city: MainPageSetting.DEFAULT_CITY,
   activeSortType: MainPageSetting.DEFAULT_SORT_TYPE,
+  isCommentError: true,
   hasPostedComment: {
     hasPosted: false,
     comment: '',
@@ -29,6 +31,12 @@ describe('Reducer: ui', () => {
 
     expect(ui(state, setSortType(SortType.POPULAR)))
       .toEqual({...state, activeSortType: SortType.POPULAR});
+  });
+
+  it('should change comment post error status to a given value', () => {
+
+    expect(ui(state, setCommentError(false)))
+      .toEqual({...state, isCommentError: false});
   });
 
   it('should set posted status to a given value', () => {

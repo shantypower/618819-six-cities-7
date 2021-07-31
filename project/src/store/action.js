@@ -101,4 +101,3 @@ export const setCommentError = createAction(ActionType.SET_COMMENT_ERROR, (isErr
   payload: isError,
 }));
 
-//export const resetCommentError = createAction(ActionType.RESET_COMMENT_ERROR);

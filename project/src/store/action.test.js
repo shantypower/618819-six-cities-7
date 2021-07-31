@@ -18,7 +18,8 @@ import {
   redirectToRoute,
   updateOffer,
   loadFavoriteOffers,
-  setFavoriteOffersLoadingStatus
+  setFavoriteOffersLoadingStatus,
+  setCommentError
 } from './action';
 
 const offers = [
@@ -260,6 +261,17 @@ describe('Actions', () => {
     };
 
     expect(setFavoriteOffersLoadingStatus(isLoaded)).toEqual(expectedAction);
+  });
+
+  it('action creator for check comment post error status returns correct action', () => {
+    const isError = false;
+
+    const expectedAction = {
+      type: ActionType.SET_COMMENT_ERROR,
+      payload: isError,
+    };
+
+    expect(setCommentError(isError)).toEqual(expectedAction);
   });
 
 });

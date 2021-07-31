@@ -160,8 +160,7 @@ describe('Async operations', () => {
     return reviewSender(dispatch, () => {}, api)
 
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(4);
-
+        expect(dispatch).toHaveBeenCalledTimes(5);
 
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.SET_ARE_REVIEWS_LOADED,
@@ -169,16 +168,21 @@ describe('Async operations', () => {
         });
 
         expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.SET_COMMENT_ERROR,
+          payload: false,
+        });
+
+        expect(dispatch).toHaveBeenNthCalledWith(3, {
           type: ActionType.SET_HAS_POSTED_COMMENT,
           payload: {hasPosted: true, comment: comment, rating: rating},
         });
 
-        expect(dispatch).toHaveBeenNthCalledWith(3, {
+        expect(dispatch).toHaveBeenNthCalledWith(4, {
           type: ActionType.LOAD_REVIEWS,
           payload: [adaptReviewData(fakeReview)],
         });
 
-        expect(dispatch).toHaveBeenNthCalledWith(4, {
+        expect(dispatch).toHaveBeenNthCalledWith(5, {
           type: ActionType.SET_ARE_REVIEWS_LOADED,
           payload: true,
         });

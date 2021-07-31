@@ -25,7 +25,7 @@ function ReviewListItem(props) {
         <p className="reviews__text">
           {review.comment}
         </p>
-        <time className="reviews__time" dateTime="2019-04-24">{formatDate(review.date)}</time>
+        <time className="reviews__time" dateTime="2019-04-24" data-testid="reviews__time">{formatDate(review.date)}</time>
       </div>
     </li>
   );

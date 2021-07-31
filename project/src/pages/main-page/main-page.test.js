@@ -5,7 +5,7 @@ import {createMemoryHistory} from 'history';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import MainPage from './main-page';
-import {AuthorizationStatus, MainPageSetting.DEFAULT_CITY} from '../../const';
+import {AuthorizationStatus, MainPageSetting} from '../../const';
 import {createAPI} from '../../services/api';
 import thunk from 'redux-thunk';
 
