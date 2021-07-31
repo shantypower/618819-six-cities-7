@@ -69,7 +69,7 @@ describe('Component: OfferListItem', () => {
     const {getByText} = render(
       <Provider store={store}>
         <Router history={history}>
-          <OfferListItem offer={mockOffer} type={OfferTypeSetting.MAIN} OfferImageSetting={OfferImageSetting.MAIN}/>
+          <OfferListItem offer={mockOffer} type={OfferTypeSetting.MAIN} offerImageSetting={OfferImageSetting.MAIN}/>
         </Router>
       </Provider>,
     );
@@ -86,7 +86,7 @@ describe('Component: OfferListItem', () => {
     const {getByTestId} = render(
       <Provider store={store}>
         <Router history={history}>
-          <OfferListItem offer={mockOffer} type={OfferTypeSetting.MAIN} OfferImageSetting={OfferImageSetting.MAIN} onMouseEnter={onMouseEnter}/>
+          <OfferListItem offer={mockOffer} type={OfferTypeSetting.MAIN} offerImageSetting={OfferImageSetting.MAIN} onMouseEnter={onMouseEnter}/>
         </Router>
       </Provider>,
     );

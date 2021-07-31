@@ -11,7 +11,7 @@ export default PropTypes.shape({
     name: PropTypes.string.isRequired,
   }),
   description: PropTypes.string,
-  goods: PropTypes.array,
+  goods: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   host: PropTypes.shape({
     avatarUrl: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,

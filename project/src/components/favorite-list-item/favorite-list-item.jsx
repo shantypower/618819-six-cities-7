@@ -27,7 +27,7 @@ function FavoriteListItem({ favoritesByCity, city }) {
         </div>
       </div>
       <div className="favorites__places">
-        <OffersList offers={favoritesByCity} activeSortType={activeSortType} OfferImageSetting={OfferImageSetting.FAVORITES} type={OfferTypeSetting.FAVORITES}/>
+        <OffersList offers={favoritesByCity} activeSortType={activeSortType} offerImageSetting={OfferImageSetting.FAVORITES} type={OfferTypeSetting.FAVORITES}/>
       </div>
     </li>
   );

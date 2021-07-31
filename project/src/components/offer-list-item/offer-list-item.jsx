@@ -9,7 +9,7 @@ import {getAuthorizationStatus} from '../../store/user/selectors';
 
 function OfferListItem(props) {
 
-  const {offer, type, OfferImageSetting, onMouseEnter, onMouseLeave} = props;
+  const {offer, type, offerImageSetting, onMouseEnter, onMouseLeave} = props;
   const { isPremium, previewImage, price, title, isFavorite, rating, id } = offer;
 
   const authorizationStatus = useSelector(getAuthorizationStatus);
@@ -26,7 +26,7 @@ function OfferListItem(props) {
         </div>}
       <div className={type.imageContainerClass}>
         <Link to={`/offer/${id}`}>
-          <img className='place-card__image' src={previewImage} width={OfferImageSetting.width} height={OfferImageSetting.height} alt='Place view'/>
+          <img className='place-card__image' src={previewImage} width={offerImageSetting.width} height={offerImageSetting.height} alt='Place view'/>
         </Link>
       </div>
       <div className={type.infoContainerClass} data-testid = 'offer-info'>
@@ -61,7 +61,7 @@ OfferListItem.propTypes = {
     imageContainerClass: PropTypes.string,
     infoContainerClass: PropTypes.string,
   }),
-  OfferImageSetting: PropTypes.shape({
+  offerImageSetting: PropTypes.shape({
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
   }),

@@ -46,7 +46,7 @@ function MainPage() {
               <b className="places__found">{`${currentOffers.length} places to stay in ${city}`}</b>
               <LocationsSortingForm activeSortType={activeSortType} />
               <div className="cities__places-list places__list tabs__content">
-                <OffersList offers = {currentOffers} activeSortType={activeSortType} setActiveOfferId={setActiveOfferId} OfferImageSetting={OfferImageSetting.MAIN} type={OfferTypeSetting.MAIN} authorizationStatus={authorizationStatus}/>
+                <OffersList offers = {currentOffers} activeSortType={activeSortType} setActiveOfferId={setActiveOfferId} offerImageSetting={OfferImageSetting.MAIN} type={OfferTypeSetting.MAIN} authorizationStatus={authorizationStatus}/>
               </div>
             </section>
             <div className="cities__right-section">

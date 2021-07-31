@@ -7,7 +7,7 @@ import configureStore from 'redux-mock-store';
 import OffersList from './offers-list';
 import {createAPI} from '../../services/api';
 import thunk from 'redux-thunk';
-import {MainPageSetting.DEFAULT_SORT_TYPE, AuthorizationStatus, OfferTypeSetting, OfferImageSetting} from '../../const';
+import {MainPageSetting, AuthorizationStatus, OfferTypeSetting, OfferImageSetting} from '../../const';
 
 const mockOffers = [
   {
@@ -115,7 +115,7 @@ describe('Component: OffersList', () => {
     const {getByText, getAllByTestId } = render(
       <Provider store={store}>
         <Router history={history}>
-          <OffersList offers={mockOffers} type={OfferTypeSetting.MAIN} OfferImageSetting={OfferImageSetting.MAIN}/>
+          <OffersList offers={mockOffers} type={OfferTypeSetting.MAIN} offerImageSetting={OfferImageSetting.MAIN}/>
         </Router>
       </Provider>);
 

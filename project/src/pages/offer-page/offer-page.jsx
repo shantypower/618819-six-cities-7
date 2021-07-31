@@ -141,7 +141,7 @@ function OfferPage() {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <OffersList offers = {offersNearby.slice().splice(0, OfferPageSetting.MAX_ROOMS_PER_PAGE)} OfferImageSetting={OfferImageSetting.MAIN} type={OfferTypeSetting.NEARBY}/>
+              <OffersList offers = {offersNearby.slice().splice(0, OfferPageSetting.MAX_ROOMS_PER_PAGE)} offerImageSetting={OfferImageSetting.MAIN} type={OfferTypeSetting.NEARBY}/>
             </div>
           </section>
         </div>

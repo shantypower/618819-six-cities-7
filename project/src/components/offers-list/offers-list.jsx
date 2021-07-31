@@ -8,7 +8,7 @@ import {setCity} from '../../store/action';
 import {getCity, getActiveSortType} from '../../store/ui/selectors';
 
 function OffersList(props) {
-  const { offers, type, OfferImageSetting, setActiveOfferId = () => {}} = props;
+  const { offers, type, offerImageSetting, setActiveOfferId = () => {}} = props;
 
   const dispatch = useDispatch();
   const city = useSelector(getCity);
@@ -34,7 +34,7 @@ function OffersList(props) {
           isActive={offer.name === city}
           idLink={offer.id}
           type={type}
-          OfferImageSetting={OfferImageSetting}
+          offerImageSetting={offerImageSetting}
           onClick={handleClick}
           setActiveOfferId={setActiveOfferId}
         />
@@ -53,7 +53,16 @@ OffersList.propTypes = {
     imageContainerClass: PropTypes.string,
     infoContainerClass: PropTypes.string,
   }),
-  OfferImageSetting: PropTypes.object.isRequired,
+  offerImageSetting: PropTypes.shape({
+    MAIN: PropTypes.shape({
+      width: PropTypes.number.isRequired,
+      height: PropTypes.number.isRequired,
+    }),
+    FAVORITES: PropTypes.shape({
+      width: PropTypes.number.isRequired,
+      height: PropTypes.number.isRequired,
+    }),
+  }),
   setActiveOfferId: PropTypes.func,
 };
 
