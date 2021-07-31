@@ -168,5 +168,3 @@ export const LOCATIONS = [
     },
   },
 ];
-
-export const DEFAULT_TIMEOUT = 10000;
