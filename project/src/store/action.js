@@ -20,6 +20,7 @@ export const ActionType = {
   UPDATE_OFFER: 'offers/updateOffer',
   LOAD_FAVORITE_OFFERS: 'offers/loadFavoriteOffers',
   SET_ARE_FAVORITE_OFFERS_LOADED: 'offers/setAreFavoriteOffersLoaded',
+  SET_COMMENT_ERROR: 'error/setCommentError',
 };
 
 export const setCity = createAction(ActionType.SET_CITY, (city) => ({
@@ -95,3 +96,9 @@ export const loadFavoriteOffers = createAction(ActionType.LOAD_FAVORITE_OFFERS, 
 export const setFavoriteOffersLoadingStatus = createAction(ActionType.SET_ARE_FAVORITE_OFFERS_LOADED, (status) => ({
   payload: status,
 }));
+
+export const setCommentError = createAction(ActionType.SET_COMMENT_ERROR, (isError) => ({
+  payload: isError,
+}));
+
+//export const resetCommentError = createAction(ActionType.RESET_COMMENT_ERROR);

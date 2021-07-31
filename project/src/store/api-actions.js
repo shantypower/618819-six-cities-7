@@ -13,7 +13,8 @@ import {
   setUser,
   updateOffer,
   setFavoriteOffersLoadingStatus,
-  loadFavoriteOffers
+  loadFavoriteOffers,
+  setCommentError
 } from './action';
 import {AuthorizationStatus, APIRoute, AppRoute, ResponseCode} from '../const';
 import {adaptOfferData, adaptReviewData, adaptUserData} from '../adapter/adapter';
@@ -74,6 +75,7 @@ export const getNearby = (id) => (dispatch, _getState, api) => {
 
 export const sendComment = ({id, comment, rating}) => (dispatch, _getState, api) => {
   dispatch(setAreReviewsLoaded(false));
+  dispatch(setCommentError(false));
   return api.post(`${APIRoute.REVIEWS}${id}`, {comment, rating})
     .then((response) => {
       const { status, data } = response;
@@ -86,7 +88,8 @@ export const sendComment = ({id, comment, rating}) => (dispatch, _getState, api)
         dispatch(setAreReviewsLoaded(true));
       }
     })
-    .catch(() => {
+    .catch((e) => {
+      dispatch(setCommentError(true));
     });
 };
 

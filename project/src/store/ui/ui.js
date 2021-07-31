@@ -1,7 +1,8 @@
 import {
   setCity,
   setHasPostedComment,
-  setSortType
+  setSortType,
+  setCommentError
 } from '../action';
 import {MainPageSetting} from '../../const';
 import {createReducer} from '@reduxjs/toolkit';
@@ -9,6 +10,7 @@ import {createReducer} from '@reduxjs/toolkit';
 const initialState = {
   city: MainPageSetting.DEFAULT_CITY,
   activeSortType: MainPageSetting.DEFAULT_SORT_TYPE,
+  isCommentError: false,
   hasPostedComment: {
     hasPosted: true,
     comment: '',
@@ -23,6 +25,9 @@ const ui = createReducer(initialState, (builder) => {
     })
     .addCase(setSortType, (state, action) => {
       state.activeSortType = action.payload;
+    })
+    .addCase(setCommentError, (state, action) => {
+      state.isCommentError = action.payload;
     })
     .addCase(setHasPostedComment, (state, action) => {
       state.hasPostedComment = {
